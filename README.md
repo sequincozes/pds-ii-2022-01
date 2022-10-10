@@ -1,2 +1,2 @@
 # Em progresso...
-Cada aluno deve documentar o seu m
+Cada aluno deve documentar o seu módulo do projeto no readme.md.
