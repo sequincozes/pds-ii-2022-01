@@ -11,3 +11,5 @@ CREATE TABLE `pds2`.`Amigos` (`idAmigos` INT NOT NULL , `fk_amigo1` INT NOT NULL
 CREATE TABLE `pds2`.`AvaliacoesPerfilUsuarios` (`idAvaliacoes` INT NOT NULL , `avaliacoes` TEXT NOT NULL , `fk_avaliador` INT NOT NULL , `fk_avaliado` INT NOT NULL , `score` ENUM('1','2','3','4','5') NOT NULL , PRIMARY KEY (`idAvaliacoes`)) ENGINE = InnoDB;
 
 CREATE TABLE `pds2`.`VinculosUsuario` (`idVinculo` INT NOT NULL , `fk_Usuario` INT NOT NULL , `fk_Vinculo` INT NOT NULL , `dataFimTrabalho` DATE NULL DEFAULT NULL , `dataInicioTrabalho` DATE NOT NULL , `cargo` VARCHAR(50) NOT NULL , PRIMARY KEY (`idVinculo`)) ENGINE = InnoDB;
+
+ALTER TABLE Usuario ADD PRIMARY KEY(idUsuario);
