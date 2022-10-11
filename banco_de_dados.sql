@@ -14,4 +14,7 @@ CREATE TABLE `pds2`.`VinculosUsuario` (`idVinculo` INT NOT NULL , `fk_Usuario` I
 
 ALTER TABLE Usuario ADD PRIMARY KEY(idUsuario);
 
-ALTER TABLE Usuario ADD CONSTRAINT fk_UsuarioTipo FOREIGN KEY(fk_tipoUsuario) REFERENCES TipoUsuario(idTipoUsuario);
+ALTER TABLE Usuario ADD CONSTRAINT fk_UsuarioTipo FOREIGN KEY(fk_tipoUsuario) REFERENCES TipoUsuario(idTipoUsuario) ON UPDATE CASCADE;
+
+ALTER TABLE VinculosUsuario ADD CONSTRAINT fk_user FOREIGN KEY(fk_Usuario) references Usuario(idUsuario)
+ON DELETE CASCADE ON UPDATE CASCADE;
