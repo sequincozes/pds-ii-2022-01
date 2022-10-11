@@ -13,3 +13,5 @@ CREATE TABLE `pds2`.`AvaliacoesPerfilUsuarios` (`idAvaliacoes` INT NOT NULL , `a
 CREATE TABLE `pds2`.`VinculosUsuario` (`idVinculo` INT NOT NULL , `fk_Usuario` INT NOT NULL , `fk_Vinculo` INT NOT NULL , `dataFimTrabalho` DATE NULL DEFAULT NULL , `dataInicioTrabalho` DATE NOT NULL , `cargo` VARCHAR(50) NOT NULL , PRIMARY KEY (`idVinculo`)) ENGINE = InnoDB;
 
 ALTER TABLE Usuario ADD PRIMARY KEY(idUsuario);
+
+ALTER TABLE Usuario ADD CONSTRAINT fk_UsuarioTipo FOREIGN KEY(fk_tipoUsuario) REFERENCES TipoUsuario(idTipoUsuario);
