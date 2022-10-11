@@ -7,3 +7,5 @@ CREATE TABLE `pds2`.`Usuario` (`idUsuario` INT NOT NULL , `fk_tipoUsuario` INT N
 CREATE TABLE `pds2`.`ConvitesAmizade` (`idConviteAmizade` INT NOT NULL , `fk_convidado` INT NOT NULL , `fk_solicitante` INT NOT NULL , `dataConvite` DATE NOT NULL DEFAULT CURRENT_TIMESTAMP , `status` ENUM("pendente","aceito") NOT NULL DEFAULT 'pendente' , PRIMARY KEY (`idConviteAmizade`)) ENGINE = InnoDB;
 
 CREATE TABLE `pds2`.`Amigos` (`idAmigos` INT NOT NULL , `fk_amigo1` INT NOT NULL , `fk_amigo2` INT NOT NULL , `dataAmizade` DATE NOT NULL , PRIMARY KEY (`idAmigos`)) ENGINE = InnoDB;
+
+CREATE TABLE `pds2`.`AvaliacoesPerfilUsuarios` (`idAvaliacoes` INT NOT NULL , `avaliacoes` TEXT NOT NULL , `fk_avaliador` INT NOT NULL , `fk_avaliado` INT NOT NULL , `score` ENUM('1','2','3','4','5') NOT NULL , PRIMARY KEY (`idAvaliacoes`)) ENGINE = InnoDB;
