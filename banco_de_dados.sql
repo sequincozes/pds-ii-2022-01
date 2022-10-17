@@ -32,3 +32,5 @@ ALTER TABLE Amigos ADD CONSTRAINT fk_amigo2 FOREIGN KEY(fk_amigo2) REFERENCES Us
 ALTER TABLE ConvitesAmizade ADD CONSTRAINT fk_convidado FOREIGN KEY(fk_convidado) REFERENCES Usuario(idUsuario) ON UPDATE CASCADE ON DELETE CASCADE;
 
 ALTER TABLE ConvitesAmizade ADD CONSTRAINT fk_solicitante FOREIGN KEY(fk_solicitante) REFERENCES Usuario(idUsuario) ON UPDATE CASCADE ON DELETE CASCADE;
+
+//Comentário teste
