@@ -176,7 +176,7 @@ CREATE TABLE `tipousuario` (
 --
 
 CREATE TABLE `usuario` (
-  `idUsuario` int(11) NOT NULL,
+  `idUsuario` int(11) NOT NULL PRIMARY key AUTO_INCREMENT,
   `fk_tipoUsuario` int(11) NOT NULL,
   `dataNascimento` date NOT NULL,
   `senha` varchar(50) NOT NULL,
@@ -279,13 +279,6 @@ ALTER TABLE `tipousuario`
   ADD PRIMARY KEY (`idTipoUsuario`);
 
 --
--- Índices para tabela `usuario`
---
-ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`idUsuario`),
-  ADD KEY `fk_UsuarioTipo` (`fk_tipoUsuario`);
-
---
 -- Índices para tabela `vinculosusuario`
 --
 ALTER TABLE `vinculosusuario`
@@ -340,8 +333,11 @@ ALTER TABLE `usuario`
 ALTER TABLE `vinculosusuario`
   ADD CONSTRAINT `fk_user` FOREIGN KEY (`fk_Usuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_vinc` FOREIGN KEY (`fk_Vinculo`) REFERENCES `instituicao` (`idInstituicao`) ON DELETE SET NULL ON UPDATE CASCADE;
-COMMIT;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+ALTER TABLE `usuario` CHANGE `fotoPerfil` `fotoPerfil` VARCHAR(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL;
+
+ALTER TABLE `usuario` CHANGE `biografia` `biografia` TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL;
+
+ALTER TABLE `usuario` CHANGE `vistoPorUltimo` `vistoPorUltimo` TIMESTAMP on update CURRENT_TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP;
+
+ALTER TABLE `usuario` ADD `email` VARCHAR(50) NOT NULL AFTER `nome`;
