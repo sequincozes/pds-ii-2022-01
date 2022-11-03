@@ -2,8 +2,6 @@
 
     //require_once("../model/CadastroUsuarioModel.php");
 
-
-
     echo "<script>console.log('teste')</script>";
     /*$cidade = $_POST["cidade"];
     $email = $_POST["email"];

@@ -20,17 +20,22 @@ $(document).ready(function () {
             method: 'POST',
             url: 'controller/CadastroUsuarioController.php',
             data: {
-          
+                nome:$var_nome,
+                email:$var_email,
+                senha:$var_senha,
+                cidade: $var_cidade,
+                data: $var_data
             },
 
             success: function () {
                 $('input').val("");
                 $('.modal').modal('hide');
+                console.log("certo")
                 
             },
 
             error: function () {
-              
+              console.log("Errado")
             }
         });
 
