@@ -119,6 +119,10 @@ blockquote {
 dfn {
   font-style: italic; }
 
+.input-group > input:hover, .input-group-append > span{
+  cursor:pointer;
+}
+
 b,
 strong {
   font-weight: bolder; }
