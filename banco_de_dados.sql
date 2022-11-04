@@ -341,3 +341,5 @@ ALTER TABLE `usuario` CHANGE `biografia` `biografia` TEXT CHARACTER SET utf8mb4 
 ALTER TABLE `usuario` CHANGE `vistoPorUltimo` `vistoPorUltimo` TIMESTAMP on update CURRENT_TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP;
 
 ALTER TABLE `usuario` ADD `email` VARCHAR(50) NOT NULL AFTER `nome`;
+
+ALTER TABLE `usuario` CHANGE `senha` `senha` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL;

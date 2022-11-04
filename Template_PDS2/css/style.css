@@ -116,8 +116,22 @@ dd {
 blockquote {
   margin: 0 0 1rem; }
 
+#alert{
+  display: none;
+  width: 95%;
+  margin:0 auto;
+}
+
+#imageLogin:hover{
+  cursor: pointer;
+}
+
 dfn {
   font-style: italic; }
+
+.input-group > input:hover, .input-group-append > span{
+  cursor:pointer;
+}
 
 b,
 strong {
