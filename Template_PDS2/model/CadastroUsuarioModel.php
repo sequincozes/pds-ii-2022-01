@@ -1,23 +1,39 @@
 <?php
 
-function cadastrarUsuario($nome, $email, $senha, $cidade, $dataNasc)
+function cadastrarUsuario($nome, $email, $senha, $cidade, $dataNasc, $msg)
 {
     try {
+        require_once("ConexaoBD.php");
 
-        include_once("model/ConexaoBD.php");
+        if (empty($msg)) {
 
-        $id = 1;
-        $sql = "INSERT INTO usuario('fk_tipoUsuario','senha','cidade','nome','email') values (?,?,?,?,?);";
+            $stmt = $conn->prepare("SELECT * FROM usuario WHERE email=?");
+            $stmt->execute([$email]);
+            $emailEx = $stmt->fetchAll();
 
-        $stmt = $conn->prepare($sql);
-        $stmt->bindParam(1, $id);
-        $stmt->bindParam(2, $senha);
-        $stmt->bindParam(3, $cidade);
-        $stmt->bindParam(4, $nome);
-        $stmt->bindParam(5, $email);
+            if (count($emailEx) > 0) {
+                $msg = "Email Duplicado";
+            } else {
 
+                $senhaUser = password_hash($senha, PASSWORD_DEFAULT);
+                $sql = "INSERT INTO usuario(fk_tipoUsuario,dataNascimento,senha,cidade,nome,email) values (?,?,?,?,?,?)";
 
-        $stmt->execute();
+                $sth = $conn->prepare($sql);
+                $id_tipo = 1;
+
+                $sth->bindParam(1, $id_tipo, PDO::PARAM_INT);
+                $sth->bindParam(2, $dataNasc, PDO::PARAM_STR);
+                $sth->bindParam(3, $senhaUser, PDO::PARAM_STR);
+                $sth->bindParam(4, $cidade, PDO::PARAM_STR);
+                $sth->bindParam(5, $nome, PDO::PARAM_STR);
+                $sth->bindParam(6, $email, PDO::PARAM_STR);
+
+                $sth->execute();
+                $msg = "Valido";
+            }
+        }
+        echo json_encode($msg);
+        
     } catch (PDOException $e) {
         echo $e;
     }

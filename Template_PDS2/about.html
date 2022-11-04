@@ -39,7 +39,7 @@
   <div id="colorlib-page">
     <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
     <aside id="colorlib-aside" role="complementary" class="js-fullheight text-center">
-      <h1 id="colorlib-logo"><a href="index.html">elen<span>.</span></a></h1>
+      <h1 id="colorlib-logo"><a href="index.html">Logar<span>.</span></a></h1>
       <nav id="colorlib-main-menu" role="navigation">
         <ul>
           <li><a href="index.html">Home</a></li>
@@ -68,7 +68,7 @@
     <div id="colorlib-main">
 
       <!--Inicio modal-->
-      <form method="POST" id="formularioUsuarios">
+      <form method="POST" id="formularioUsuarios" autocomplete="off">
         <div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
           aria-hidden="true">
           <div class="modal-dialog" role="document">
@@ -108,14 +108,21 @@
                 </div>
 
                 <div class="input-group">
-                  <input type="text" class="form-control date fj-date" type="date" id="orangeForm-date" name="dataN" aria-describedby="basic-addon2" required>
+                  <input type="text" class="form-control date fj-date" type="date"  data-mdb-inline="true" id="orangeForm-date" name="dataN" aria-describedby="basic-addon2" required>
                   <div class="input-group-append">
-                    <span class="input-group-text" id="basic-addon2"><i class="icon-th"></i></span>
+                    <span class="input-group-text" id="basic-addon2"><i class="icon-calendar"></i></span>
                   </div>
                 </div>
 
                 <label data-error="wrong" data-success="right" for="orangeForm-date">Data de Nascimento</label>
 
+              </div>
+
+              <div id="alert" class="alert alert-danger alert-dismissible fade show" role="alert">
+                Alerta Formulario Usuarios
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
               </div>
 
               <div class="half modal-footer d-flex justify-content-center">
@@ -129,10 +136,6 @@
         </div>
       </form>
 
-      <div class="text-center">
-        <a href="" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalRegisterForm">Launch
-          Modal Register Form</a>
-      </div>
       <!--Fim modal-->
 
 
@@ -141,7 +144,7 @@
         <div class="overlay"></div>
         <div class="js-fullheight d-flex justify-content-center align-items-center">
           <div class="col-md-8 text text-center">
-            <div class="img mb-4" style="background-image: url(images/author.jpg);"></div>
+            <div id="imageLogin" class="img mb-4" style="background-image: url(images/author.jpg);"></div>
             <div class="desc">
               <h2 class="subheading">Hello I'm</h2>
               <h1 class="mb-4">Elen Henderson</h1>

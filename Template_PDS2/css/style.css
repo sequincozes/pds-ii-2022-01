@@ -116,6 +116,16 @@ dd {
 blockquote {
   margin: 0 0 1rem; }
 
+#alert{
+  display: none;
+  width: 95%;
+  margin:0 auto;
+}
+
+#imageLogin:hover{
+  cursor: pointer;
+}
+
 dfn {
   font-style: italic; }
 
