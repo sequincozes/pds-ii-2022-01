@@ -437,3 +437,5 @@ ALTER TABLE `usuario` CHANGE `vistoPorUltimo` `vistoPorUltimo` TIMESTAMP on upda
 ALTER TABLE `usuario` ADD `email` VARCHAR(50) NOT NULL AFTER `nome`;
 
 ALTER TABLE `usuario` CHANGE `senha` `senha` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL;
+
+ALTER TABLE `usuario` CHANGE `nome` `nome` VARCHAR(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL;
