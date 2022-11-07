@@ -19,6 +19,8 @@ $(document).ready(function () {
     //Limpa o modal formulario quando é fechado(enviado ou não)
     $('.modal').on('hidden.bs.modal', function () {
         $(this).find('input').val('');
+        document.getElementById("alert").style.display = "none";
+        visibilidade = false;
       });
 
 
