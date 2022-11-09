@@ -1,7 +1,7 @@
 var visibilidade = false;
 
 $(document).ready(function () {
-
+   
     //Definição do DatePicker
     $('.fj-date').datepicker({
         format: "dd/mm/yyyy",
@@ -11,7 +11,7 @@ $(document).ready(function () {
 
     //Abre o modal formulario ao clicar na imagem
     $("#imageLogin").click(function(){
-        $(".modal").modal({
+        $(".modal-cadastro").modal({
             show:true
         })
     });
@@ -96,5 +96,16 @@ $(document).ready(function () {
         }
 
     });
+
+    $('#trocarForm').click(function () { 
+        const xhttp = new XMLHttpRequest();
+        xhttp.onload = function(){
+            document.getElementById("colorlib-main").innerHTML = this.responseText;
+        }
+
+        xhttp.open("GET","FormulariosUsuario.html",true);
+        xhttp.send();
+     });
+        
 
 });

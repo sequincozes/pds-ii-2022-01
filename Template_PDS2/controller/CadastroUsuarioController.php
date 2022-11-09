@@ -26,7 +26,6 @@
         $erro = "Senha Invalida";
     }
 
-
     cadastrarUsuario($nome,$email,$senha,$cidade,$dataUser,$erro);
 
 ?>
