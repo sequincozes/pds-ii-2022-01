@@ -9,7 +9,7 @@ function logarUsuario($emailUser, $senhaUser, $msg)
 
         if (empty($msg)) {
 
-            $stmt = $conn->prepare("SELECT senha,nome FROM usuario WHERE email=?");
+            $stmt = $conn->prepare("SELECT senha,nome,biografia FROM usuario WHERE email=?");
             $stmt->execute([$emailUser]);
             $userEx = $stmt->fetch();
 
@@ -25,6 +25,9 @@ function logarUsuario($emailUser, $senhaUser, $msg)
                     $_SESSION["nome"] = $userEx["nome"];
                     $_SESSION["email"] = $emailUser;
                     $_SESSION["senha"] = $senhaUser;
+                    if(!empty($userEx["biografia"]) && $userEx["biografia"] != null){
+                       $_SESSION['biografia'] = $userEx["biografia"];
+                    }
                     $_SESSION['autenticado'] = true;
 
                 }
