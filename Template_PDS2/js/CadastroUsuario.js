@@ -9,12 +9,6 @@ $(document).ready(function () {
 
     });
 
-    //Abre o modal formulario ao clicar na imagem
-    $("#imageLogin").click(function(){
-        $(".modal-cadastro").modal({
-            show:true
-        })
-    });
 
     //Limpa o modal formulario quando é fechado(enviado ou não)
     $('.modal').on('hidden.bs.modal', function () {
@@ -97,7 +91,7 @@ $(document).ready(function () {
 
     });
 
-    $('#trocarForm').click(function () { 
+    /*$('#trocarForm').click(function () { 
         const xhttp = new XMLHttpRequest();
         xhttp.onload = function(){
             document.getElementById("colorlib-main").innerHTML = this.responseText;
@@ -105,7 +99,7 @@ $(document).ready(function () {
 
         xhttp.open("GET","FormulariosUsuario.html",true);
         xhttp.send();
-     });
+     });*/
         
 
 });

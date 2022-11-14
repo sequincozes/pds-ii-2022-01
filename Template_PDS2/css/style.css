@@ -89,6 +89,7 @@ abbr[data-original-title] {
   cursor: help;
   border-bottom: 0; }
 
+
 address {
   margin-bottom: 1rem;
   font-style: normal;
@@ -153,13 +154,18 @@ sub {
 sup {
   top: -.5em; }
 
+#botaoLog{
+  border: 0;
+  box-shadow: none;
+}
+
 a {
   color: #78d5ef;
   text-decoration: none;
   background-color: transparent;
   -webkit-text-decoration-skip: objects; }
   a:hover {
-    color: #34c0e7;
+    cursor: pointer;
     text-decoration: underline; }
 
 a:not([href]):not([tabindex]) {
@@ -171,6 +177,9 @@ a:not([href]):not([tabindex]) {
   a:not([href]):not([tabindex]):focus {
     outline: 0; }
 
+svg:hover{
+  cursor:pointer;
+}
 pre,
 code,
 kbd,

@@ -1,5 +1,6 @@
 <?php
 
+    require_once("../sessoes.php");
     require_once("../model/LoginUsuarioModel.php");
 
     $emailUser = filter_input(INPUT_POST, 'emailLogin', FILTER_SANITIZE_EMAIL);
