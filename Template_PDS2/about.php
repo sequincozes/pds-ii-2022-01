@@ -10,6 +10,7 @@ if (isset($_SESSION["autenticado"])) {
   if (isset($_SESSION["autenticado"]) == true) {
     $nome = $_SESSION["nome"];
     $biografia = $_SESSION["biografia"];
+    $foto = $_SESSION["fotoPerfil"];
   }
 }
 ?>
@@ -320,8 +321,8 @@ if (isset($_SESSION["autenticado"])) {
                             <div class="pt-1 mb-2">
                               <button class="btn btn-primary btn-lg btn-block" type="submit">Entrar</button>
                             </div>
-
-                            <div id="alert" class="alert alert-login alert-danger alert-dismissible fade show" role="alert">
+                            
+                            <div id="alert" class="alert alert-login alert-danger alert-dismissible fade show " role="alert">
                               Alerta Formulario Login
                             </div>
 
@@ -347,7 +348,7 @@ if (isset($_SESSION["autenticado"])) {
             <div class="overlay"></div>
             <div class="js-fullheight d-flex justify-content-center align-items-center">
               <div class="col-md-8 text text-center">
-                <div id="imageLogin2" class="img mb-4" style="background-image: url(images/author.jpg);"></div>
+                <div id="imageLogin2" class="img mb-3" style="background-image: url('images/author.jpg')"></div>
                 <div class="desc">
                   <h2 class="subheading">
                     Olá, eu sou
