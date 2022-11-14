@@ -11,6 +11,7 @@ $(document).ready(function () {
 
     $("#formularioLogin").submit(function (g) {
         g.preventDefault();
+        alert("teste");
     
         $var_email = $('input[name=emailLogin]').val();
         $var_senha = $('input[name=senhaLogin]').val();
