@@ -11,7 +11,6 @@ $(document).ready(function () {
 
     $("#formularioLogin").submit(function (g) {
         g.preventDefault();
-        alert("teste");
     
         $var_email = $('input[name=emailLogin]').val();
         $var_senha = $('input[name=senhaLogin]').val();
@@ -31,8 +30,6 @@ $(document).ready(function () {
     
                 if ($resp.msg == "Usuario Existe") {
                     visibilidade = false;
-                    sessao_ativa = true;
-
                     window.location.replace("about.php");
                 }
     
@@ -89,4 +86,15 @@ function ocultar() {
     $('.alert-login').css('display', 'none');
     visibilidade = false;
 }
+
+function exibirLogout(){
+    if(document.getElementById('#formSVG').display == 'none'){
+        alert("teste")
+    }
+   // $('#formSVG').css('display', 'block');
+}
+
+$("#formSVG").submit(function(){
+    $('#formSVG').css('display', 'none');
+});
 

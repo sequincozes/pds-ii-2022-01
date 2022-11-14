@@ -2,31 +2,16 @@
 
 require_once("model/LoginUsuarioModel.php");
 
-$nome = "Elen Henderson";
-
-if (session_status() !== PHP_SESSION_ACTIVE) {
-  session_start();
-}
+require_once('./iniciarSessao.php');
+$nome = "";
+$descricao = "";
 
 if (isset($_SESSION["autenticado"])) {
   if (isset($_SESSION["autenticado"]) == true) {
     $nome = $_SESSION["nome"];
     $descricao = "Teste biografia";
   }
-} else {
-  $nome = "";
-  $descricao = "";
 }
-
-function encerrarSessao(){
-  /*unset($_SESSION['nome']);
-  unset($_SESSION['email']);
-  unset($_SESSION['senha']);
-  unset($_SESSION['autenticado']);
-  session_destroy();
-  header("Refresh: 0", "URL=index.html");*/
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -61,8 +46,6 @@ function encerrarSessao(){
 
   <link rel="stylesheet" href="css/bootstrap-datepicker.css">
 
-
-
 </head>
 
 <body>
@@ -79,19 +62,20 @@ function encerrarSessao(){
           <li><a href="fashion.html">Fashion</a></li>
           <li class="colorlib-active"><a href="about.html">About</a></li>
           <li><a href="contact.html">Contact</a></li>
-          <?php ?>
+
         </ul>
       </nav>
 
-      <button id="botaoLog" class="btn" onclick='<?php 
+      <?php if (session_status() == PHP_SESSION_ACTIVE && $_SESSION["autenticado"] == true) { ?>
+        <form id="formSVG" action="./destruirSessao.php" method="POST">
+          <button id="botaoLog" type="submit" class="btn"><svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
+              <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
+            </svg></button>
+        </form>
+      <?php } ?>
 
-    
-        
 
-      ?>'><svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
-        <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
-        <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
-      </svg></button>
 
       <div class="colorlib-footer">
         <ul>
@@ -212,7 +196,7 @@ function encerrarSessao(){
       </form>
 
 
-      <div class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url(images/bg_4.jpg);" data-stellar-background-ratio="0.5">
+      <div class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url(images/bg_6.jpg);" data-stellar-background-ratio="0.5">
         <div class="overlay"></div>
         <div class="js-fullheight d-flex justify-content-center align-items-center">
           <div class="col-md-8 text text-center">
@@ -221,22 +205,25 @@ function encerrarSessao(){
               <h2 class="subheading">
                 <?php
 
-                if (!isset($_SESSION["autenticado"]) || $_SESSION["autenticado"] == false) {
-                  echo "<a data-toggle='modal' data-target='#modalLoginForm' style='color:#fd7e14'>" . 'Realizar Login' . "</a>"."<br>";
-                  echo "<a data-toggle='modal' data-target='#modalRegisterForm'>" . "Criar Conta" . "</a>";
-
+                if (!isset($_SESSION["autenticado"]) || $_SESSION["autenticado"] == null) {
+                  echo "<a id='botaoModalLogin' data-toggle='modal' data-target='#modalLoginForm' style='color:#fd7e14'>" . 'Realizar Login' . "</a>" . "<br>";
+                  echo "<a id='botaoModalRegister' data-toggle='modal' data-target='#modalRegisterForm'>" . "Criar Conta" . "</a>";
                 } else {
                   echo "Olá, eu sou ";
                 }
                 ?>
               </h2>
-              <h1 class="mb-4"><?php echo $nome ?></h1>
-              <p class="mb-4"><?php echo $descricao ?></p>
-              <ul class="ftco-social mt-3">
-                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-              </ul>
+
+              <?php if (session_status() == PHP_SESSION_ACTIVE && $_SESSION["autenticado"] == true) { ?>
+                <h1 class="mb-4"><?php echo $nome ?></h1>
+                <p class="mb-4"><?php echo $descricao ?></p>
+                <ul class="ftco-social mt-3">
+                  <li class="ftco-animate"><a href="#"><span class="icon-twitter" title="Twitter"></span></a></li>
+                  <li class="ftco-animate"><a href="#"><span class="icon-facebook" title="Facebook"></span></a></li>
+                  <li class="ftco-animate"><a href="#"><span class="icon-instagram" title="Instagram"></span></a></li>
+                  <li class="ftco-animate"><a href="#"><span class="icon-settings" title="Editar Perfil"></span></a></li>
+                </ul>
+              <?php } ?>
             </div>
           </div>
         </div>-->

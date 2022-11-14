@@ -7613,7 +7613,7 @@ h1, h2, h3, h4, h5,
       border-radius: 50%; }
     .hero-wrap .text .subheading {
       font-size: 24px;
-      color: #bfbfbf;
+      color: #8d8d8d;
       font-weight: 300; }
     .hero-wrap .text h1 {
       letter-spacing: 1px;
@@ -8380,6 +8380,23 @@ textarea.form-control {
     z-index: -1; }
   .subs-wrap h3 {
     color: #fff; }
+
+    #botaoModalRegister{
+      font-size:large;
+      color:#8d8d8d;
+      transition: all 0.5s;
+    }
+    #botaoModalLogin{
+      transition: all 0.5s;
+    }
+
+    #botaoModalRegister:hover{
+      opacity: 0.6;
+    }
+
+    #botaoModalLogin:hover{
+      opacity: 0.6;
+    }
 
 .subscribe-form .form-group {
   position: relative;

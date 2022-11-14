@@ -17,6 +17,7 @@ function logarUsuario($emailUser, $senhaUser, $msg)
                 $msg = "Consulta Vazia";
             } else if (count($userEx) > 0 and password_verify($senhaUser, $userEx[0])) {
                 $msg = "Usuario Existe";
+                
 
                 if (session_status() !== PHP_SESSION_ACTIVE) {
                     session_start();
