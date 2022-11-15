@@ -30,7 +30,7 @@ $(document).ready(function () {
     
                 if ($resp.msg == "Usuario Existe") {
                     visibilidade = false;
-                    window.location.replace("about.php");
+                    window.location.replace("PerfilUsuario.php");
                 }
     
                 else if ($resp.msg == "Consulta Vazia") {

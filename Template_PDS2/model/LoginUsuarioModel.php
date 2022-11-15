@@ -4,23 +4,20 @@ function logarUsuario($emailUser, $senhaUser, $msg)
 {
 
     require_once("ConexaoBD.php");
+    require_once("../iniciarSessao.php");
 
     try {
 
         if (empty($msg)) {
 
-            $stmt = $conn->prepare("SELECT senha,nome,biografia,fotoPerfil FROM usuario WHERE email=?");
+            $stmt = $conn->prepare("SELECT * FROM usuario WHERE email=?");
             $stmt->execute([$emailUser]);
             $userEx = $stmt->fetch();
 
             if (empty($userEx)) {
                 $msg = "Consulta Vazia";
-            } else if (count($userEx) > 0 and password_verify($senhaUser, $userEx[0])) {
+            } else if (count($userEx) > 0 and password_verify($senhaUser, $userEx["senha"])) {
                 $msg = "Usuario Existe";
-                
-
-                if (session_status() !== PHP_SESSION_ACTIVE) {
-                    session_start();
 
                     $_SESSION["nome"] = $userEx["nome"];
                     $_SESSION["email"] = $emailUser;
@@ -31,7 +28,7 @@ function logarUsuario($emailUser, $senhaUser, $msg)
                     }
                     $_SESSION['autenticado'] = true;
 
-                }
+                
 
             } else if (count($userEx) > 0 and !password_verify($senhaUser, $userEx[0])) {
                 $msg = "Senha Incorreta";

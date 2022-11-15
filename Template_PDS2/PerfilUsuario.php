@@ -9,6 +9,7 @@ $biografia = "";
 if (isset($_SESSION["autenticado"])) {
   if (isset($_SESSION["autenticado"]) == true) {
     $nome = $_SESSION["nome"];
+    $email = $_SESSION["email"];
     $biografia = $_SESSION["biografia"];
     $foto = $_SESSION["fotoPerfil"];
   }
@@ -70,11 +71,12 @@ if (isset($_SESSION["autenticado"])) {
       <!-- Botão de Logout -->
       <?php if (session_status() == PHP_SESSION_ACTIVE && $_SESSION["autenticado"] == true) { ?>
         <form id="formSVG" action="./destruirSessao.php" method="POST">
-          <button id="botaoLog" type="submit" class="btn"><svg class="circular " xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentcolor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
-              <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
-              <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
+          <button id="botaoLog" type="submit" class="btn" title="Desconectar"> <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="#fd7e14" class="bi bi-door-closed-fill" viewBox="0 0 16 16">
+              <path d="M12 1a1 1 0 0 1 1 1v13h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V2a1 1 0 0 1 1-1h8zm-2 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
             </svg></button>
         </form>
+
+
       <?php } ?>
 
 
@@ -107,24 +109,24 @@ if (isset($_SESSION["autenticado"])) {
                 <div class="md-form mb-3">
                   <i class="fas fa-user prefix grey-text"></i>
                   <input type="text" name="nome" id="orangeForm-name" title="Digite seu nome" class="form-control validate" required>
-                  <label data-error="wrong" data-success="right" for="orangeForm-name">Seu nome</label>
+                  <label data-error="wrong" data-success="right" for="orangeForm-name">Seu nome <span class="red">*</span></label>
                 </div>
                 <div class="md-form mb-3">
                   <i class="fas fa-envelope prefix grey-text"></i>
                   <input type="email" id="orangeForm-email" name="email" title="Digite seu email" class="form-control validate" required>
-                  <label data-error="wrong" data-success="right" for="orangeForm-email">Seu email</label>
+                  <label data-error="wrong" data-success="right" for="orangeForm-email">Seu email <span class="red">*</span></label>
                 </div>
 
                 <div class="md-form mb-3">
                   <i class="fas fa-lock prefix grey-text"></i>
                   <input type="password" id="orangeForm-pass" name="senha" title="Digite sua senha" class="form-control validate" required>
-                  <label data-error="wrong" data-success="right" for="orangeForm-pass">Sua Senha</label>
+                  <label data-error="wrong" data-success="right" for="orangeForm-pass">Sua Senha <span class="red">*</span></label>
                 </div>
 
                 <div class="md-form mb-3">
                   <i class="fas fa-envelope prefix grey-text"></i>
                   <input type="text" id="orangeForm-cidade" name="cidade" title="Digite o nome da sua cidade" class="form-control validate" required>
-                  <label data-error="wrong" data-success="right" for="orangeForm-email">Cidade</label>
+                  <label data-error="wrong" data-success="right" for="orangeForm-email">Cidade <span class="red">*</span></label>
                 </div>
 
                 <div class="input-group">
@@ -134,7 +136,7 @@ if (isset($_SESSION["autenticado"])) {
                   </div>
                 </div>
 
-                <label data-error="wrong" data-success="right" for="orangeForm-date">Data de Nascimento</label>
+                <label data-error="wrong" data-success="right" for="orangeForm-date">Data de Nascimento <span class="red">*</span></label>
 
               </div>
 
@@ -167,7 +169,7 @@ if (isset($_SESSION["autenticado"])) {
           <div class="modal-dialog modal-lg">
             <div class="modal-content" role="document">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Edição de Perfil</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle" >Personalize seu perfil</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -177,7 +179,7 @@ if (isset($_SESSION["autenticado"])) {
                 <div class="container-xl ">
                   <!-- Account page navigation-->
                   <nav class="nav nav-borders">
-                    <a class="nav-link active ms-0" href="https://www.bootdey.com/snippets/view/bs5-edit-profile-account-details" target="__blank">Perfil</a>
+                    <a class="nav-link active ms-0" href="https://www.bootdey.com/snippets/view/bs5-edit-profile-account-details" target="__blank" style="color:#fd7e14">Perfil</a>
                   </nav>
                   <hr class="mt-0 mb-4">
                   <div class="row">
@@ -204,20 +206,20 @@ if (isset($_SESSION["autenticado"])) {
                             <!-- Form Group (username)-->
                             <div class="mb-3">
                               <label class="small mb-1" for="inputUsername">Nome de Usuario (Como seu nome vai aparecer no site)</label>
-                              <input class="form-control" id="inputUsername" type="text" placeholder="Digite seu nome" value="">
+                              <input class="form-control" id="inputUsername" type="text" name="nomePerfil" placeholder="Digite seu nome" value="">
                             </div>
                             <!-- Form Row-->
                             <div class="mb-3">
                               <!-- Form Group (first name)-->
                               <label class="small mb-1" for="exampleFormControlTextarea1">Biografia (fale um pouco sobre você)</label>
-                              <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Fale em poucas palavras um poco sobre quem é você" rows="3"></textarea>
+                              <textarea class="form-control" id="exampleFormControlTextarea1" name="biografiaPerfil" placeholder="Fale em poucas palavras um poco sobre quem é você" rows="3"></textarea>
 
                             </div>
 
                             <div class="mb-3">
                               <label class="small mb-1" for="orangeForm-date">Data de Nascimento</label>
                               <div class="input-group">
-                                <input type="text" class="form-control date fj-date" type="date" data-mdb-inline="true" id="orangeForm-date" name="dataN" aria-describedby="basic-addon2" required>
+                                <input type="text" class="form-control date fj-date" type="date" data-mdb-inline="true" id="orangeForm-date" name="dataPerfil" aria-describedby="basic-addon2" required>
                                 <div class="input-group-append">
                                   <span class="input-group-text" id="basic-addon2"><i class="icon-calendar"></i></span>
                                 </div>
@@ -230,8 +232,8 @@ if (isset($_SESSION["autenticado"])) {
                               <!-- Form Group (organization name)-->
                               <div class="col-md-6">
                                 <label class="small mb-1" for="inputOrgName">Trabalho Atual</label>
-                                <select class="form-select form-control" aria-label="Default select example">
-                                  <option selected>Selecione a Instituição</option>
+                                <select id="selectInstituicao" class="form-select form-control text-muted" aria-label="Default select example">
+                                  <option class="text-muted" selected>Selecione a Instituição</option>
                                   <option value="1">One</option>
                                   <option value="2">Two</option>
                                   <option value="3">Three</option>
@@ -240,37 +242,28 @@ if (isset($_SESSION["autenticado"])) {
                               <!-- Form Group (location)-->
                               <div class="col-md-6">
                                 <label class="small mb-1" for="inputLocation">Cidade</label>
-                                <input class="form-control" id="inputLocation" type="text" placeholder="Onde você reside ?" value="">
+                                <input class="form-control" name="cidadePerfil" id="inputLocation" type="text" placeholder="Onde você reside ?" value="">
                               </div>
                             </div>
                             <!-- Form Group (email address)-->
                             <div class="mb-3">
                               <label class="small mb-1" for="inputEmailAddress">Email</label>
-                              <input class="form-control" id="inputEmailAddress" type="email" title="Email não pode ser alterado" placeholder="Email do usuario" disabled>
+                              <input class="form-control" id="inputEmailAddress" type="email" name="emailPerfil" title="Email não pode ser alterado" placeholder="<?php echo $email ?>" disabled>
                             </div>
 
                             <div class="mb-3">
                               <label class="small mb-1" for="inputPass">Senha</label>
                               <div class="input-group">
-                                <input type="password" placeholder="Clique no ícone ao lado para editar senha" title="Alterar senha" class="form-control" data-mdb-inline="true" id="orangeFormPass" aria-describedby="basic-addon2" disabled>
+                                <input type="password" placeholder="Clique no ícone ao lado para editar senha" name="senhaPerfil" title="Alterar senha" class="form-control" data-mdb-inline="true" id="inputAlterarSenha" aria-describedby="basic-addon2" disabled>
                                 <div class="input-group-append">
-                                  <span class="input-group-text" id="basic-addon2"><i class="icon-edit"></i></span>
+                                  <span class="input-group-text" id="iconAlterarSenha"><i class="icon-edit"></i></span>
                                 </div>
                               </div>
                             </div>
 
-                            <div class="mb-3">
-                              <label class="small mb-1" for="inputPass">Senha</label>
-                              <div class="input-group">
-                                <input type="password" placeholder="Clique no ícone ao lado para editar senha" title="Alterar senha" class="form-control" data-mdb-inline="true" id="orangeFormPass" aria-describedby="basic-addon2" disabled>
-                                <div class="input-group-append">
-                                  <span class="input-group-text" id="basic-addon2"><i class="icon-edit"></i></span>
-                                </div>
-                              </div>
-                            </div>
                             <!-- Save changes button-->
                             <div class="half modal-footer d-flex justify-content-center">
-                              <button class="btn btn-primary" type="button">Salvar Alterações</button>
+                              <button class="btn btn-primary btn-lg btn-block salvar" type="submit">Salvar Alterações</button>
                             </div>
                           </form>
                         </div>
@@ -283,93 +276,93 @@ if (isset($_SESSION["autenticado"])) {
             </div>
           </div>
         </div>
+      </form>
 
-        <!-- Fim do modal -->
+      <!-- Fim do modal -->
 
-        <!--Formulario Login -->
-        <?php if (session_status() != PHP_SESSION_ACTIVE || $_SESSION["autenticado"] != true) { ?>
-          <section class="vh-100">
-            <form method="POST" id="formularioLogin" autocomplete="off">
-              <div class="container py-4 h-100">
-                <div class="row d-flex justify-content-center align-items-center h-100">
-                  <div class="col col-xl-10">
-                    <div class="card" style="border-radius: 1rem;">
-                      <div class="row g-0">
-                        <div class="col-md-6 col-lg-5 d-none d-md-block">
-                          <img id="imageLogin" width="100%" src="images/image_1.jpg" />
-                        </div>
-                        <div class="col-md-6 col-lg-7 d-flex align-items-center">
-                          <div class="card-body p-4 p-lg-5">
-                            <div class="d-flex align-items-center pb-1">
-                              <span class="h1">Login</span>
-                            </div>
-
-                            <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Entre com suas Credenciais</h5>
-
-                            <div class="form-outline mb-2">
-                              <i class="fas fa-envelope prefix grey-text"></i>
-                              <input type="email" id="orangeForm-email" name="emailLogin" title="Digite seu email" class="form-control validate" required>
-                              <label data-error="wrong" data-success="right" for="orangeForm-email">Seu email</label>
-                            </div>
-
-                            <div class="form-outline mb-4">
-                              <i class="fas fa-lock prefix grey-text"></i>
-                              <input type="password" id="orangeForm-pass" name="senhaLogin" title="Digite sua senha" class="form-control validate" required>
-                              <label data-error="wrong" data-success="right" for="orangeForm-pass">Sua Senha</label>
-                            </div>
-
-                            <div class="pt-1 mb-2">
-                              <button class="btn btn-primary btn-lg btn-block" type="submit">Entrar</button>
-                            </div>
-                            
-                            <div id="alert" class="alert alert-login alert-danger alert-dismissible fade show " role="alert">
-                              Alerta Formulario Login
-                            </div>
-
-                            <a class="small text-muted" href="#!">Esqueceu sua senha ?</a>
-                            <p class="mb-3 pb-lg-2">Ainda não possui uma conta ? <a data-toggle="modal" data-target="#modalRegisterForm" style="color: #fd7e14;">Registre-se</a></p>
-
+      <!--Formulario Login -->
+      <?php if (session_status() != PHP_SESSION_ACTIVE || $_SESSION["autenticado"] != true) { ?>
+        <section class="vh-100">
+          <form method="POST" id="formularioLogin" autocomplete="off">
+            <div class="container py-4 h-100">
+              <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col col-xl-10">
+                  <div class="card" style="border-radius: 1rem;">
+                    <div class="row g-0">
+                      <div class="col-md-6 col-lg-5 d-none d-md-block">
+                        <img id="imageLogin" width="100%" src="images/image_1.jpg" />
+                      </div>
+                      <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                        <div class="card-body p-4 p-lg-5">
+                          <div class="d-flex align-items-center pb-1">
+                            <span class="h1">Login</span>
                           </div>
+
+                          <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Entre com suas Credenciais</h5>
+
+                          <div class="form-outline mb-2">
+                            <i class="fas fa-envelope prefix grey-text"></i>
+                            <input type="email" id="orangeForm-email" name="emailLogin" title="Digite seu email" class="form-control validate" required>
+                            <label data-error="wrong" data-success="right" for="orangeForm-email">Seu email</label>
+                          </div>
+
+                          <div class="form-outline mb-4">
+                            <i class="fas fa-lock prefix grey-text"></i>
+                            <input type="password" id="orangeForm-pass" name="senhaLogin" title="Digite sua senha" class="form-control validate" required>
+                            <label data-error="wrong" data-success="right" for="orangeForm-pass">Sua Senha</label>
+                          </div>
+
+                          <div class="pt-1 mb-2">
+                            <button class="btn btn-primary btn-lg btn-block" type="submit">Entrar</button>
+                          </div>
+
+                          <div id="alert" class="alert alert-login alert-danger alert-dismissible fade show " role="alert">
+                            Alerta Formulario Login
+                          </div>
+
+                          <a class="small text-muted" href="#!">Esqueceu sua senha ?</a>
+                          <p class="mb-3 pb-lg-2">Ainda não possui uma conta ? <a data-toggle="modal" data-target="#modalRegisterForm" style="color: #fd7e14;">Registre-se</a></p>
+
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </form>
-          </section>
-        <?php } ?>
+            </div>
+          </form>
+        </section>
+      <?php } ?>
 
-        <!--Fim do Formulario -->
+      <!--Fim do Formulario -->
 
+      <?php if (session_status() == PHP_SESSION_ACTIVE && $_SESSION["autenticado"] == true) { ?>
+        <div class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url(images/bg_6.jpg);" data-stellar-background-ratio="0.5">
+          <div class="overlay"></div>
+          <div class="js-fullheight d-flex justify-content-center align-items-center">
+            <div class="col-md-8 text text-center">
+              <div id="imageLogin2" class="img mb-3" style="background-image: url('images/author.jpg')"></div>
+              <div class="desc">
+                <h2 class="subheading">
+                  Olá, eu sou
+                </h2>
 
-        <?php if (session_status() == PHP_SESSION_ACTIVE && $_SESSION["autenticado"] == true) { ?>
-          <div class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url(images/bg_6.jpg);" data-stellar-background-ratio="0.5">
-            <div class="overlay"></div>
-            <div class="js-fullheight d-flex justify-content-center align-items-center">
-              <div class="col-md-8 text text-center">
-                <div id="imageLogin2" class="img mb-3" style="background-image: url('images/author.jpg')"></div>
-                <div class="desc">
-                  <h2 class="subheading">
-                    Olá, eu sou
-                  </h2>
-
-                  <?php if (session_status() == PHP_SESSION_ACTIVE && $_SESSION["autenticado"] == true) { ?>
-                    <h1 class="mb-3"><?php echo $nome ?></h1>
-                    <p class="mb-4"><?php echo $biografia ?></p>
-                    <ul class="ftco-social mt-3">
-                      <li class="ftco-animate"><a href="#"><span class="icon-twitter" title="Twitter"></span></a></li>
-                      <li class="ftco-animate"><a href="#"><span class="icon-facebook" title="Facebook"></span></a></li>
-                      <li class="ftco-animate"><a href="#"><span class="icon-instagram" title="Instagram"></span></a></li>
-                      <li class="ftco-animate"><a data-toggle='modal' data-target='#modalEditProfile'><span class="icon-settings" title="Editar Perfil"></span></a></li>
-                    </ul>
-                  <?php } ?>
-                </div>
+                <?php if (session_status() == PHP_SESSION_ACTIVE && $_SESSION["autenticado"] == true) { ?>
+                  <h1 class="mb-3 nomeUser"><?php echo $nome ?></h1>
+                  <p class="mb-4 biografia"><?php echo $biografia ?></p>
+                  <ul class="ftco-social mt-3">
+                    <li class="ftco-animate"><a href="#"><span class="icon-twitter" title="Twitter"></span></a></li>
+                    <li class="ftco-animate"><a href="#"><span class="icon-facebook" title="Facebook"></span></a></li>
+                    <li class="ftco-animate"><a href="#"><span class="icon-instagram" title="Instagram"></span></a></li>
+                    <li class="ftco-animate"><a data-toggle='modal' data-target='#modalEditProfile'><span class="icon-settings" title="Editar Perfil"></span></a></li>
+                  </ul>
+                <?php } ?>
               </div>
             </div>
           </div>
+        </div>
 
-        <?php } ?>
+      <?php } ?>
     </div>
   </div><!-- END COLORLIB-PAGE -->
 
@@ -386,6 +379,7 @@ if (isset($_SESSION["autenticado"])) {
   <script src="js/bootstrap.min.js"></script>
   <script src="js/CadastroUsuario.js"></script>
   <script src="js/LoginUsuario.js"></script>
+  <script src="js/EditarPerfilUsuario.js"></script>
 
   <script src="js/jquery.easing.1.3.js"></script>
   <script src="js/jquery.waypoints.min.js"></script>
