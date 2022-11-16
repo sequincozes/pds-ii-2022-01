@@ -71,16 +71,13 @@ if (isset($_SESSION["autenticado"])) {
       <!-- Botão de Logout -->
       <?php if (session_status() == PHP_SESSION_ACTIVE && $_SESSION["autenticado"] == true) { ?>
         <form id="formSVG" action="./destruirSessao.php" method="POST">
-          <button id="botaoLog" type="submit" class="btn" title="Desconectar"> <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="#fd7e14" class="bi bi-door-closed-fill" viewBox="0 0 16 16">
+          <button id="botaoLog" type="submit" class="btn" title="Desconectar"> <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="#6c757d" class="bi bi-door-closed-fill" viewBox="0 0 16 16">
               <path d="M12 1a1 1 0 0 1 1 1v13h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V2a1 1 0 0 1 1-1h8zm-2 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
             </svg></button>
         </form>
 
 
       <?php } ?>
-
-
-
       <div class="colorlib-footer">
         <ul>
           <li><a href="#"><i class="icon-facebook"></i></a></li>
@@ -92,8 +89,6 @@ if (isset($_SESSION["autenticado"])) {
     </aside> <!-- END COLORLIB-ASIDE -->
 
     <div id="colorlib-main">
-
-
       <!-- Form para Cadastro de Usuarios -->
       <form method="POST" id="formularioUsuarios" autocomplete="off">
         <div class="modal modal-cadastro fade" id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -169,7 +164,7 @@ if (isset($_SESSION["autenticado"])) {
           <div class="modal-dialog modal-lg">
             <div class="modal-content" role="document">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle" >Personalize seu perfil</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Personalize seu perfil</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -351,10 +346,11 @@ if (isset($_SESSION["autenticado"])) {
                   <h1 class="mb-3 nomeUser"><?php echo $nome ?></h1>
                   <p class="mb-4 biografia"><?php echo $biografia ?></p>
                   <ul class="ftco-social mt-3">
-                    <li class="ftco-animate"><a href="#"><span class="icon-twitter" title="Twitter"></span></a></li>
-                    <li class="ftco-animate"><a href="#"><span class="icon-facebook" title="Facebook"></span></a></li>
-                    <li class="ftco-animate"><a href="#"><span class="icon-instagram" title="Instagram"></span></a></li>
-                    <li class="ftco-animate"><a data-toggle='modal' data-target='#modalEditProfile'><span class="icon-settings" title="Editar Perfil"></span></a></li>
+                  <li class="ftco-animate"><a data-toggle='modal' data-target='#modalEditProfile'><span class="icon-settings ic" title="Editar Perfil"></span></a></li>
+                    <li class="ftco-animate"><a href="#"><span class="icon-twitter ic" title="Twitter"></span></a></li>
+                    <li class="ftco-animate"><a href="#"><span class="icon-facebook ic " title="Facebook"></span></a></li>
+                    <li class="ftco-animate"><a href="#"><span class="icon-instagram ic" title="Instagram"></span></a></li>
+                    
                   </ul>
                 <?php } ?>
               </div>
@@ -362,6 +358,29 @@ if (isset($_SESSION["autenticado"])) {
           </div>
         </div>
 
+        <div class="container">
+
+          <div class="fab" ontouchstart="" title="Notificações">
+            <button class="main">
+            </button>
+            <ul>
+              <li>
+                <div id="fb">
+                  <div id="fb-top">
+                    <p><b>Friend Requests</b><span>Find Friends &bull; Settings</span></p>
+                  </div>
+                  <img src="images/author.jpg" height="100" width="100" alt="Image of woman">
+                  <p id="info"><b>Natalie G.</b> <br> <span>14 mutual friends</p>
+                  <div id="button-block">
+                    <div id="confirm">Confirm</div>
+                    <div id="delete">Delete Request</div>
+                  </div>
+                </div>
+              </li>
+
+            </ul>
+          </div>
+        </div>
       <?php } ?>
     </div>
   </div><!-- END COLORLIB-PAGE -->

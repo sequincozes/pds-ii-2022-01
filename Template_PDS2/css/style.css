@@ -11523,6 +11523,9 @@ textarea.form-control {
   opacity: 0;
   visibility: hidden;
 }
+.ic:hover{
+  color: #fd7e14;
+}
 
 .about-author img {
   -webkit-border-radius: 50%;
@@ -12388,3 +12391,205 @@ select.option:hover {
 .salvar{
   width: 100%;
 }
+
+
+.fab{
+  position: fixed;
+  top:60px;
+  right:10px;
+}
+
+.fab button{
+  cursor: pointer;
+  width: 48px;
+  height: 48px;
+  border-radius: 30px;
+  background-color: #fd7e14;;
+  border: none;
+  box-shadow: 0 1px 5px rgba(0,0,0,.4);
+  font-size: 24px;
+  color: white;
+    
+  -webkit-transition: .2s ease-out;
+  -moz-transition: .2s ease-out;
+  transition: .2s ease-out;
+}
+
+.fab button.main{
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-radius: 27px;
+  background-color: #fd7e14;;
+  right: 0;
+  bottom: 0;
+  z-index: 20;
+}
+
+.fab button.main:before{
+  content: '🔔';
+}
+
+.fab ul{
+  position:absolute;
+  top: 0;
+  right: 0;
+  padding:0;
+  padding-right:45px;
+  margin:0;
+  list-style:none;
+  z-index:10;
+  
+  -webkit-transition: .2s ease-out;
+  -moz-transition: .2s ease-out;
+  transition: .2s ease-out;
+}
+
+.fab ul li{
+  display: flex;
+  justify-content: flex-start;
+  position: relative;
+  margin-bottom: -20%;
+  opacity: 0;
+  
+  -webkit-transition: .3s ease-out;
+  -moz-transition: .3s ease-out;
+  transition: .3s ease-out;
+}
+
+.fab ul li label{
+  margin-right:10px;
+  white-space: nowrap;
+  display: block;
+  margin-top: 10px;
+  padding: 5px 8px;
+  background-color: white;
+  box-shadow: 0 1px 3px rgba(0,0,0,.2);
+  border-radius:3px;
+  height: 18px;
+  font-size: 16px;
+  pointer-events: none;
+  opacity:0;
+  
+  -webkit-transition: .2s ease-out;
+  -moz-transition: .2s ease-out;
+  transition: .2s ease-out;
+}
+
+.fab button.main:active,
+.fab button.main:focus{
+  outline: none;
+  background-color: #fd7e14;
+  box-shadow: 0 3px 8px rgba(0,0,0,.5);
+ }
+ 
+.fab button.main:active:before,
+.fab button.main:focus:before{
+  content: '↑';
+}
+
+.fab button.main:active + ul,
+.fab button.main:focus + ul{
+  bottom: 70px;
+}
+
+.fab button.main:active + ul li,
+.fab button.main:focus + ul li{
+  margin-bottom: 10px;
+  opacity: 1;
+}
+
+.fab button.main:active + ul li:hover label,
+.fab button.main:focus + ul li:hover label{
+  opacity: 1;
+}
+
+#fb{
+  
+  width:500px;
+  border:1px solid gray;
+  border-radius:5px;
+  position:relative;
+  height:175px;
+  background-color: white;
+}
+
+#fb p{
+  font-family:sans-serif;
+  margin: 0 0 0 10px;
+  line-height:30px;
+}
+
+#fb-top span{
+  color:#4267B2;
+  float:right;
+  margin-right:10px;
+}
+#fb-top{
+  background-color:#efefef;
+  height:30px;
+  width:500px;
+  border-radius:5px 5px 0 0;
+  position:absolute;
+  top:-1px;
+  left:-1px;
+  border:1px solid gray;
+}
+
+#fb img{
+  position:absolute;
+  left:10px;
+  top:52.5px;
+}
+
+#info{
+  position:absolute;
+  left:120px;
+  top:75px;
+}
+
+#info {
+  color:#4267B2;
+  line-height:25px;
+  font-size:18px;
+}
+
+#info span{
+  color:#777;
+  font-size:14px;
+}
+
+#button-block{
+  position:absolute;
+  right:10px;
+  top:85px;
+}
+
+#button-block div{
+  display:inline-block;
+}
+
+#confirm, #delete{
+  background-color:#4267B2;
+  color:white;
+  padding:7px;
+  border-radius:2px;
+  margin-right:10px;
+  font-family:sans-serif;
+}
+
+#delete{
+  color:#222;
+  background-color:#bbb;
+  border:1px solid #999;
+  padding:6px;
+  margin-right:0;
+}
+
+#button-block div:hover{
+  opacity:.8;
+  cursor:pointer;
+}
+
+
+
