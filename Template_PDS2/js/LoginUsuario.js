@@ -18,6 +18,7 @@ $(document).ready(function () {
         $.ajax({
             method: 'POST',
             url: 'controller/LoginUsuarioController.php',
+            
             data: {
                 emailLogin: $var_email,
                 senhaLogin: $var_senha

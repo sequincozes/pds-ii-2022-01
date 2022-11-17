@@ -200,19 +200,19 @@ if (isset($_SESSION["autenticado"])) {
                           <form>
                             <!-- Form Group (username)-->
                             <div class="mb-3">
-                              <label class="small mb-1" for="inputUsername">Nome de Usuario (Como seu nome vai aparecer no site)</label>
-                              <input class="form-control" id="inputUsername" type="text" name="nomePerfil" placeholder="Digite seu nome" value="">
+                              <label class="small mb-1" for="inputUsername">Nome de Usuario (Como seu nome vai aparecer no site) (Obrigatorio)<span class="red">*</span></label>
+                              <input class="form-control" id="inputUsername" type="text" name="nomePerfil" placeholder="Digite seu nome" value="" required>
                             </div>
                             <!-- Form Row-->
                             <div class="mb-3">
                               <!-- Form Group (first name)-->
-                              <label class="small mb-1" for="exampleFormControlTextarea1">Biografia (fale um pouco sobre você)</label>
-                              <textarea class="form-control" id="exampleFormControlTextarea1" name="biografiaPerfil" placeholder="Fale em poucas palavras um poco sobre quem é você" rows="3"></textarea>
+                              <label class="small mb-1" for="exampleFormControlTextarea1">Biografia (Fale um pouco sobre você)</label>
+                              <textarea class="form-control" id="exampleFormControlTextarea1" name="biografiaPerfil" maxlength="393" placeholder="Fale em poucas palavras um poco sobre quem é você" rows="6"></textarea>
 
                             </div>
 
                             <div class="mb-3">
-                              <label class="small mb-1" for="orangeForm-date">Data de Nascimento</label>
+                              <label class="small mb-1" for="orangeForm-date">Data de Nascimento (Obrigatorio)<span class="red">*</span></label>
                               <div class="input-group">
                                 <input type="text" class="form-control date fj-date" type="date" data-mdb-inline="true" id="orangeForm-date" name="dataPerfil" aria-describedby="basic-addon2" required>
                                 <div class="input-group-append">
@@ -226,7 +226,7 @@ if (isset($_SESSION["autenticado"])) {
                             <div class="row gx-3 mb-3">
                               <!-- Form Group (organization name)-->
                               <div class="col-md-6">
-                                <label class="small mb-1" for="inputOrgName">Trabalho Atual</label>
+                                <label class="small mb-1" for="inputOrgName">Trabalho Atual(Opcional)</label>
                                 <select id="selectInstituicao" class="form-select form-control text-muted" aria-label="Default select example">
                                   <option class="text-muted" selected>Selecione a Instituição</option>
                                   <option value="1">One</option>
@@ -236,20 +236,30 @@ if (isset($_SESSION["autenticado"])) {
                               </div>
                               <!-- Form Group (location)-->
                               <div class="col-md-6">
-                                <label class="small mb-1" for="inputLocation">Cidade</label>
-                                <input class="form-control" name="cidadePerfil" id="inputLocation" type="text" placeholder="Onde você reside ?" value="">
+                                <label class="small mb-1" for="inputLocation">Cidade (Obrigatorio)<span class="red">*</span></label>
+                                <input class="form-control" name="cidadePerfil" id="inputLocation" type="text" placeholder="Onde você reside ?" value="" required>
                               </div>
                             </div>
                             <!-- Form Group (email address)-->
                             <div class="mb-3">
-                              <label class="small mb-1" for="inputEmailAddress">Email</label>
-                              <input class="form-control" id="inputEmailAddress" type="email" name="emailPerfil" title="Email não pode ser alterado" placeholder="<?php echo $email ?>" disabled>
+                              <label class="small mb-1" for="inputEmailAddress">Email(Não Editável)</label>
+                              <input class="form-control" id="emailAlteracao" type="email" name="emailPerfil" title="Email não pode ser alterado" placeholder="" disabled>
                             </div>
 
                             <div class="mb-3">
-                              <label class="small mb-1" for="inputPass">Senha</label>
+                              <label class="small mb-1" for="inputPass">Nova Senha (Opcional)</label>
                               <div class="input-group">
-                                <input type="password" placeholder="Clique no ícone ao lado para editar senha" name="senhaPerfil" title="Alterar senha" class="form-control" data-mdb-inline="true" id="inputAlterarSenha" aria-describedby="basic-addon2" disabled>
+                                <input type="password" placeholder="Digite sua senha atual" name="senhaPerfil" title="Alterar senha" class="form-control" data-mdb-inline="true" id="inputAlterarSenha" aria-describedby="basic-addon2">
+                                <div class="input-group-append">
+                                  <span class="input-group-text" id="iconAlterarSenha"><i class="icon-edit"></i></span>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="mb-3">
+                              <label class="small mb-1" for="inputPass">Senha Atual(Obrigatório)<span class="red">*</span></label>
+                              <div class="input-group">
+                                <input type="password" placeholder="Digite sua senha atual" name="senhaPerfilConfirmacao" title="Alterar senha" class="form-control" data-mdb-inline="true" id="inputAlterarSenha" aria-describedby="basic-addon2" required>
                                 <div class="input-group-append">
                                   <span class="input-group-text" id="iconAlterarSenha"><i class="icon-edit"></i></span>
                                 </div>
@@ -258,7 +268,7 @@ if (isset($_SESSION["autenticado"])) {
 
                             <!-- Save changes button-->
                             <div class="half modal-footer d-flex justify-content-center">
-                              <button class="btn btn-primary btn-lg btn-block salvar" type="submit">Salvar Alterações</button>
+                              <button id="salvarAlteracoes" class="btn btn-primary btn-lg btn-block" type="submit">Salvar Alterações</button>
                             </div>
                           </form>
                         </div>
@@ -346,7 +356,7 @@ if (isset($_SESSION["autenticado"])) {
                   <h1 class="mb-3 nomeUser"><?php echo $nome ?></h1>
                   <p class="mb-4 biografia"><?php echo $biografia ?></p>
                   <ul class="ftco-social mt-3">
-                  <li class="ftco-animate"><a data-toggle='modal' data-target='#modalEditProfile'><span class="icon-settings ic" title="Editar Perfil"></span></a></li>
+                  <li class="ftco-animate"><a data-toggle='modal' data-target='#modalEditProfile' onclick="buscarInfo('<?php echo $_SESSION['email'] ?>')"><span class="icon-settings ic" title="Editar Perfil"></span></a></li>
                     <li class="ftco-animate"><a href="#"><span class="icon-twitter ic" title="Twitter"></span></a></li>
                     <li class="ftco-animate"><a href="#"><span class="icon-facebook ic " title="Facebook"></span></a></li>
                     <li class="ftco-animate"><a href="#"><span class="icon-instagram ic" title="Instagram"></span></a></li>

@@ -1,32 +1,53 @@
 <?php
+
+header('Content-Type: application/json; charset=utf-8');
 require_once("../model/EditarPerfilUsuarioModel.php");
 
-$nome = $_POST["nome"];
-$cidade = $_POST["cidade"];
-$email = $_POST["email"];
-$senha = $_POST["senha"];
-$dataNasc = $_POST["data"];
-$instituicao = $_POST["instituicao"];
+$dados = $_POST["campos"];
+$msg = "";
 
-$nomeUser = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_SPECIAL_CHARS);
-$emailUser = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-$senhaUser = filter_input(INPUT_POST, 'senha', FILTER_SANITIZE_SPECIAL_CHARS);
-$cidadeUser = filter_input(INPUT_POST, 'cidade', FILTER_SANITIZE_SPECIAL_CHARS);
-$data = filter_input(INPUT_POST, 'data', FILTER_SANITIZE_SPECIAL_CHARS);
-$instituicao = filter_input(INPUT_POST, 'instituicao', FILTER_SANITIZE_NUMBER_INT);
-$dataUser = implode("-", array_reverse(explode("/", $data)));
+if(empty($_POST["campos"])){
+    $msg = "Nenhum campo modificado";
+    echo json_encode($msg);
 
-$erro = "";
-
-if(!$emailUser = filter_input(INPUT_POST,'email',FILTER_VALIDATE_EMAIL)){
-    $erro = "Email Invalido";
 }
 
-$pattern = '/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z\d].\S{8,36}$/';
+else{
+
+    $dadosMod = [];
+
+    $nome_user = $_POST["campos"]["nome"];
+    $cidade_user = $_POST["campos"]["cidade"];
+    $biografia_user = $_POST["campos"]["biografia"];
+    $dataNascimento_user = $_POST["campos"]["data"];
+    $data_Nasc = implode("-",array_reverse(explode("/",$dataNascimento_user)));
+
+    if(!empty($nome_user)){
+        $nomeUser = filter_var($nome_user, FILTER_SANITIZE_SPECIAL_CHARS);
+        $dadosMod["nome"]= $nomeUser;
+    }
+    if(!empty($cidade_user)){
+        $cidadeUser = filter_var($cidade_user, FILTER_SANITIZE_SPECIAL_CHARS);
+        $dadosMod["cidade"]= $cidadeUser;
+    }
+    if(!empty($biografia_user)){   
+        $biografiaUser = filter_var($biografia_user, FILTER_SANITIZE_SPECIAL_CHARS);
+        $dadosMod["biografia"]=  $biografiaUser;
+    }
+    if(!empty($data_Nasc)){   
+        $dataUser = filter_var($data_Nasc, FILTER_SANITIZE_SPECIAL_CHARS);
+        $dadosMod["dataNascimento"]= $dataUser;
+    }
+
+/*$pattern = '/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z\d].\S{8,36}$/';
 if(preg_match($pattern, $senhaUser) == false){
     $erro = "Senha Invalida";
-}
+}*/
 
-atualizaUsuario($nome,$email,$senha,$cidade,$dataUser,$instituicao,$erro);
+$msg = "Sucesso";
+
+atualizarBanco($msg,$dadosMod,$nome_user);
+
+}
 
 ?>
