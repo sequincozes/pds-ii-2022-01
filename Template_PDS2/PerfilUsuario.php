@@ -1,6 +1,7 @@
 <?php
 
 require_once("model/LoginUsuarioModel.php");
+require_once("model/ConexaoBD.php");
 
 require_once('./iniciarSessao.php');
 $nome = "";
@@ -63,7 +64,7 @@ if (isset($_SESSION["autenticado"])) {
           <li><a href="photography.html">Photography</a></li>
           <li><a href="travel.html">Travel</a></li>
           <li><a href="fashion.html">Fashion</a></li>
-          <li class="colorlib-active"><a href="about.php">Sobre</a></li>
+          <li class="colorlib-active"><a href="PerfilUsuario.php">Sobre</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
@@ -197,7 +198,7 @@ if (isset($_SESSION["autenticado"])) {
                       <div class="card mb-4">
                         <div class="card-header">Informaçoes Pessoais</div>
                         <div class="card-body">
-                          <form>
+                          <form id="formAlteracoes">
                             <!-- Form Group (username)-->
                             <div class="mb-3">
                               <label class="small mb-1" for="inputUsername">Nome de Usuario (Como seu nome vai aparecer no site) (Obrigatorio)<span class="red">*</span></label>
@@ -229,9 +230,22 @@ if (isset($_SESSION["autenticado"])) {
                                 <label class="small mb-1" for="inputOrgName">Trabalho Atual(Opcional)</label>
                                 <select id="selectInstituicao" class="form-select form-control text-muted" aria-label="Default select example">
                                   <option class="text-muted" selected>Selecione a Instituição</option>
-                                  <option value="1">One</option>
-                                  <option value="2">Two</option>
-                                  <option value="3">Three</option>
+
+                                  <?php
+
+                                  $stmt = $conn->prepare("SELECT * FROM instituicao");
+                                  $stmt->execute();
+                                  $inst = $stmt->fetchAll();
+
+                                  foreach ($inst as $item) {
+                                    $id = $item["idInstituicao"];
+                                    $nomeInst = $item["nome"];
+
+                                    echo "<option value='$id'>$nomeInst</option>";
+                                  }
+
+                                  ?>
+
                                 </select>
                               </div>
                               <!-- Form Group (location)-->
@@ -243,32 +257,26 @@ if (isset($_SESSION["autenticado"])) {
                             <!-- Form Group (email address)-->
                             <div class="mb-3">
                               <label class="small mb-1" for="inputEmailAddress">Email(Não Editável)</label>
-                              <input class="form-control" id="emailAlteracao" type="email" name="emailPerfil" title="Email não pode ser alterado" placeholder="" disabled>
+                              <input class="form-control" id="emailAlteracao" type="email" name="emailPerfil" title="Email não pode ser alterado" placeholder="">
                             </div>
 
                             <div class="mb-3">
                               <label class="small mb-1" for="inputPass">Nova Senha (Opcional)</label>
                               <div class="input-group">
-                                <input type="password" placeholder="Digite sua senha atual" name="senhaPerfil" title="Alterar senha" class="form-control" data-mdb-inline="true" id="inputAlterarSenha" aria-describedby="basic-addon2">
+                                <input type="password" placeholder="Digite sua nova senha" name="senhaPerfil" title="Alterar senha" class="form-control" data-mdb-inline="true" id="inputAlterarSenha" aria-describedby="basic-addon2">
                                 <div class="input-group-append">
                                   <span class="input-group-text" id="iconAlterarSenha"><i class="icon-edit"></i></span>
                                 </div>
                               </div>
                             </div>
 
-                            <div class="mb-3">
-                              <label class="small mb-1" for="inputPass">Senha Atual(Obrigatório)<span class="red">*</span></label>
-                              <div class="input-group">
-                                <input type="password" placeholder="Digite sua senha atual" name="senhaPerfilConfirmacao" title="Alterar senha" class="form-control" data-mdb-inline="true" id="inputAlterarSenha" aria-describedby="basic-addon2" required>
-                                <div class="input-group-append">
-                                  <span class="input-group-text" id="iconAlterarSenha"><i class="icon-edit"></i></span>
-                                </div>
-                              </div>
+                            <div id="alertaAlteracoes" class="alert alert-alt alert-danger alert-dismissible fade show " role="alert">
+                              Alerta Formulario alteracoes
                             </div>
 
                             <!-- Save changes button-->
                             <div class="half modal-footer d-flex justify-content-center">
-                              <button id="salvarAlteracoes" class="btn btn-primary btn-lg btn-block" type="submit">Salvar Alterações</button>
+                              <button class="btn btn-primary btn-lg btn-block" id="botaoAlteracoes">Salvar Alterações</button>
                             </div>
                           </form>
                         </div>
@@ -356,11 +364,11 @@ if (isset($_SESSION["autenticado"])) {
                   <h1 class="mb-3 nomeUser"><?php echo $nome ?></h1>
                   <p class="mb-4 biografia"><?php echo $biografia ?></p>
                   <ul class="ftco-social mt-3">
-                  <li class="ftco-animate"><a data-toggle='modal' data-target='#modalEditProfile' onclick="buscarInfo('<?php echo $_SESSION['email'] ?>')"><span class="icon-settings ic" title="Editar Perfil"></span></a></li>
+                    <li class="ftco-animate"><a data-toggle='modal' type="submit" data-target='#modalEditProfile' onclick="buscarInfo('<?php echo $_SESSION['email'] ?>')"><span class="icon-settings ic" title="Editar Perfil"></span></a></li>
                     <li class="ftco-animate"><a href="#"><span class="icon-twitter ic" title="Twitter"></span></a></li>
                     <li class="ftco-animate"><a href="#"><span class="icon-facebook ic " title="Facebook"></span></a></li>
                     <li class="ftco-animate"><a href="#"><span class="icon-instagram ic" title="Instagram"></span></a></li>
-                    
+
                   </ul>
                 <?php } ?>
               </div>

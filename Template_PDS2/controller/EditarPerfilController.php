@@ -15,11 +15,13 @@ if(empty($_POST["campos"])){
 else{
 
     $dadosMod = [];
+    $email = $_POST["campos"]["email"];
 
     $nome_user = $_POST["campos"]["nome"];
     $cidade_user = $_POST["campos"]["cidade"];
     $biografia_user = $_POST["campos"]["biografia"];
     $dataNascimento_user = $_POST["campos"]["data"];
+    $senha_user = $_POST["campos"]["senha"];
     $data_Nasc = implode("-",array_reverse(explode("/",$dataNascimento_user)));
 
     if(!empty($nome_user)){
@@ -35,18 +37,24 @@ else{
         $dadosMod["biografia"]=  $biografiaUser;
     }
     if(!empty($data_Nasc)){   
-        $dataUser = filter_var($data_Nasc, FILTER_SANITIZE_SPECIAL_CHARS);
+        $dataUser = filter_var($data_Nasc,FILTER_SANITIZE_SPECIAL_CHARS);
         $dadosMod["dataNascimento"]= $dataUser;
     }
+    if(!empty($senha_user)){
+        $senhaUser = filter_var($senha_user,FILTER_SANITIZE_SPECIAL_CHARS);
 
-/*$pattern = '/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z\d].\S{8,36}$/';
-if(preg_match($pattern, $senhaUser) == false){
-    $erro = "Senha Invalida";
-}*/
+        $pattern = '/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z\d].\S{8,36}$/';
+        if(preg_match($pattern, $senhaUser) == false){
+            $erro = "Senha Invalida";
+            echo json_encode($erro);
+        }else{
+            $dadosMod["senha"]= $senhaUser;
+        }
+    }
 
-$msg = "Sucesso";
+$msg = "Certo";
 
-atualizarBanco($msg,$dadosMod,$nome_user);
+atualizarBanco($msg,$dadosMod,$email);
 
 }
 

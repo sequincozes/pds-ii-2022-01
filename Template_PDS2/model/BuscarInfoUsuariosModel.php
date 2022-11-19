@@ -12,6 +12,7 @@
             $emailEx = $stmt->fetch();
 
             $nome = $emailEx["nome"];
+            $email = $emailEx["email"];
             $biografia = $emailEx["biografia"];
             $cidade = $emailEx["cidade"];
             $senha = $emailEx["senha"];
@@ -21,7 +22,7 @@
 
         }
         
-        $dados = array("nome"=>$nome,"biografia"=>$biografia,"dataNascimento"=>$dataNascimento,"cidade"=>$cidade,"senha"=>$senha,"msg"=>$msg);
+        $dados = array("nome"=>$nome,"biografia"=>$biografia,"dataNascimento"=>$dataNascimento,"cidade"=>$cidade,"senha"=>$senha,"msg"=>$msg,"email"=>$email);
         echo json_encode($dados);
 
     }

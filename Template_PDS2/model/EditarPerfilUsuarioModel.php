@@ -1,44 +1,49 @@
 <?php
 
-    function atualizarBanco($msg,$dadosMod,$nome_user){
+function atualizarBanco($msg, $dadosMod, $email)
+{
 
-        require_once("../iniciarSessao.php");
-        require_once("ConexaoBD.php");
-    
-        try{
+    require_once("../iniciarSessao.php");
+    require_once("ConexaoBD.php");
 
-         $sql = "UPDATE usuario SET ";
+    try {
 
-         $keys = array_keys($dadosMod);
-         $values = array_values($dadosMod);
+        if ($msg != "Certo") {
+            $msg = "Erro Inesperado";
+        } else {
 
-        
-        foreach ($dadosMod as $key => $value) {
-            $sql = $sql . strval($key) . "=? ,";
+            $sql = "UPDATE usuario SET ";
+
+            $keys = array_keys($dadosMod);
+            $values = array_values($dadosMod);
+
+
+            foreach ($dadosMod as $key => $value) {
+                $sql = $sql . strval($key) . "=? ,";
+            }
+
+            $sql = substr($sql, 0, -1);
+            $sql = $sql . " WHERE email=?;";
+
+
+            array_push($values, $email);
+
+            $stmt = $conn->prepare($sql);
+            $stmt->execute($values);
+
+            if($dadosMod["nome"]){
+                unset($_SESSION['nome']);
+                $_SESSION["nome"] = $dadosMod["nome"];
+            }
+
+            if($dadosMod["biografia"]){
+                unset($_SESSION['biografia']);
+                $_SESSION["biografia"] = $dadosMod["biografia"];
+            }
         }
 
-        $sql = substr($sql, 0, -1);
-        $sql = $sql . " WHERE nome=?;";
-        $valores = "";
+        echo json_encode($values);
 
-        for($i=0;$i<count($values);$i++){
-            $valores = $valores ."'".strval($values[$i])."'".",";  
-        }
-
-        $valores = $valores . "'gabriel vinicius ramos'";
-
-        $stmt= $conn->prepare($sql);
-        $stmt->execute([$valores]);
-
-
-         echo json_encode($sql . "  ".$valores);
-        
-            
-
-        }catch(PDOException $e){
-            
-        }
-
+    } catch (PDOException $e) {
     }
-
-?>
+}
