@@ -14,6 +14,9 @@ if (isset($_SESSION["autenticado"])) {
     $idUser = $_SESSION["id"];
     $biografia = $_SESSION["biografia"];
     $foto = $_SESSION["fotoPerfil"];
+    if (empty($foto)) {
+      $foto = "#";
+    }
   }
 }
 ?>
@@ -186,7 +189,7 @@ if (isset($_SESSION["autenticado"])) {
                         <div class="card-header">Avatar</div>
                         <div class="card-body text-center">
                           <!-- Profile picture image-->
-                          <img class="img-account-profile rounded-circle mb-2" src="images/author.jpg" alt="">
+                          <img class="img-account-profile rounded-circle mb-2" width="100%" height="100%" src="<?php echo $foto ?>" alt="">
                           <!-- Profile picture help block-->
                           <div class="small font-italic text-muted mb-4">JPG ou PNG menor que 5MB</div>
                           <!-- Profile picture upload button-->
@@ -197,14 +200,14 @@ if (isset($_SESSION["autenticado"])) {
                             <div class="image-upload-wrap">
                               <input class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" />
                               <div class="drag-text">
-          
+
                               </div>
                             </div>
                             <div class="file-upload-content">
-                              <img class="file-upload-image" src="#" alt="your image"/>
+                              <img class="file-upload-image" src="#" alt="your image" />
                               <div class="image-title-wrap">
-                                <button type="button" onclick="removeUpload()" class="remove-image">X</span></button>
-                                <button type="button"  class="confirm-image" onclick="inserirBanco()">V</span></button>
+                                <button type="button" onclick="removeUpload()" class="remove-image rounded"><span class="icon-trash ic" title=""></span></button>
+                                <button type="button" class="confirm-image rounded" onclick="inserirBanco()"><span class="icon-check ic" title=""></button>
                               </div>
                             </div>
                           </div>
@@ -306,7 +309,7 @@ if (isset($_SESSION["autenticado"])) {
                             <!-- Form Group (email address)-->
                             <div class="mb-3">
                               <label class="small mb-1" for="inputEmailAddress">Email(Não Editável)</label>
-                              <input class="form-control" id="emailAlteracao" type="email" name="emailPerfil" title="Email não pode ser alterado" placeholder="">
+                              <input class="form-control" id="emailAlteracao" type="email" name="emailPerfil" title="Email não pode ser alterado" placeholder="" disabled>
                             </div>
 
                             <div class="mb-3">
@@ -403,7 +406,7 @@ if (isset($_SESSION["autenticado"])) {
           <div class="overlay"></div>
           <div class="js-fullheight d-flex justify-content-center align-items-center">
             <div class="col-md-8 text text-center">
-              <div id="imageLogin2" class="img mb-3" style="background-image: url('images/author.jpg')"></div>
+              <img id="imageLogin2" class="img mb-3" src="<?php echo $foto ?>" />
               <div class="desc">
                 <h2 class="subheading">
                   Olá, eu sou

@@ -14,7 +14,7 @@ function readURL(input) {
         $('.image-title').html(input.files[0].name);
 
         $urlImage = e.target.result;
-        $url = $urlImage.slice(23);
+        $url = $urlImage;
       };
   
       reader.readAsDataURL(input.files[0]);
@@ -55,6 +55,8 @@ function readURL(input) {
     
             success: function (resposta) {
                 console.log(resposta)
+
+                window.location.replace("PerfilUsuario.php");
                
             },
             error: function (resposta) {
