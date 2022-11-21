@@ -12682,7 +12682,7 @@ select.option:hover {
   padding: 20px;
 }
 .confirm-image{
-  width: 35%;
+  width: 100%;
   margin: 0 auto;
   color: #fff;
   background: #fd7e14;
@@ -12697,7 +12697,7 @@ select.option:hover {
 }
 
 .remove-image {
-  width: 35%;
+  width: 100%;
   margin: 0 auto;
   color: #fff;
   background: #6c757d;

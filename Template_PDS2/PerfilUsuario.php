@@ -206,8 +206,9 @@ if (isset($_SESSION["autenticado"])) {
                             <div class="file-upload-content">
                               <img class="file-upload-image" src="#" alt="your image" />
                               <div class="image-title-wrap">
-                                <button type="button" onclick="removeUpload()" class="remove-image rounded"><span class="icon-trash ic" title=""></span></button>
-                                <button type="button" class="confirm-image rounded" onclick="inserirBanco()"><span class="icon-check ic" title=""></button>
+                              <button type="button" class="confirm-image rounded mb-1" onclick="inserirBanco()"><span class="icon-check ic" title=""></button>
+                                <button type="button" onclick="removeUpload()" class="remove-image rounded mb-1"><span class="icon-trash ic" title=""></span></button><br>
+                               
                               </div>
                             </div>
                           </div>
