@@ -442,3 +442,10 @@ ALTER TABLE `usuario` CHANGE `nome` `nome` VARCHAR(100) CHARACTER SET utf8mb4 CO
 
 ALTER TABLE `usuario` CHANGE `biografia` `biografia` VARCHAR(393) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL;
 
+ALTER TABLE `vinculosusuario` CHANGE `dataInicioTrabalho` `dataInicioTrabalho` DATE NULL;
+
+ALTER TABLE `vinculosusuario` CHANGE `cargo` `cargo` VARCHAR(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL;
+
+ALTER TABLE `vinculosusuario` CHANGE `idVinculo` `idVinculo` INT(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `usuario` CHANGE `fotoPerfil` `fotoPerfil` LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL;

@@ -20,6 +20,7 @@ function logarUsuario($emailUser, $senhaUser, $msg)
                 $msg = "Usuario Existe";
 
                     $_SESSION["nome"] = $userEx["nome"];
+                    $_SESSION["id"] = $userEx["idUsuario"];
                     $_SESSION["email"] = $emailUser;
                     $_SESSION["senha"] = $senhaUser;
                     $_SESSION["fotoPerfil"] = $userEx["fotoPerfil"];

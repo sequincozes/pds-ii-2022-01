@@ -1,16 +1,29 @@
 <?php
 
-function atualizarBanco($msg, $dadosMod, $email)
+function atualizarBanco($msg, $dadosMod, $email,$inst)
 {
 
-    require_once("../iniciarSessao.php");
-    require_once("ConexaoBD.php");
-
     try {
+
+        require_once("../iniciarSessao.php");
+        require_once("ConexaoBD.php");
+
 
         if ($msg != "Certo") {
             $msg = "Erro Inesperado";
         } else {
+
+            $idU = $_SESSION["id"];
+
+            if(!empty($inst)){
+                $sqlD = "delete from vinculosusuario where fk_Usuario=?";
+                $stmD = $conn->prepare($sqlD);
+                $stmD->execute([$idU]);
+
+                $sqlI = "insert into vinculosusuario(fk_Usuario,fk_Vinculo) values (?,?);";
+                $stmI = $conn->prepare($sqlI);
+                $stmI->execute([$idU,$inst]);
+            }
 
             $sql = "UPDATE usuario SET ";
 

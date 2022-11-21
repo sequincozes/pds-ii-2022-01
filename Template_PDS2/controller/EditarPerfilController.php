@@ -2,6 +2,7 @@
 
 header('Content-Type: application/json; charset=utf-8');
 require_once("../model/EditarPerfilUsuarioModel.php");
+require_once("../iniciarSessao.php");
 
 $dados = $_POST["campos"];
 $msg = "";
@@ -23,6 +24,7 @@ else{
     $dataNascimento_user = $_POST["campos"]["data"];
     $senha_user = $_POST["campos"]["senha"];
     $data_Nasc = implode("-",array_reverse(explode("/",$dataNascimento_user)));
+    $inst= $_POST["campos"]["inst"];
 
     if(!empty($nome_user)){
         $nomeUser = filter_var($nome_user, FILTER_SANITIZE_SPECIAL_CHARS);
@@ -48,13 +50,14 @@ else{
             $erro = "Senha Invalida";
             echo json_encode($erro);
         }else{
-            $dadosMod["senha"]= $senhaUser;
+            $senhaUsuario = password_hash($senha_user, PASSWORD_DEFAULT);
+            $dadosMod["senha"]= $senhaUsuario;
         }
     }
 
 $msg = "Certo";
 
-atualizarBanco($msg,$dadosMod,$email);
+atualizarBanco($msg,$dadosMod,$email,$inst);
 
 }
 

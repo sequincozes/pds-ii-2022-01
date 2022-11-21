@@ -11,6 +11,7 @@ if (isset($_SESSION["autenticado"])) {
   if (isset($_SESSION["autenticado"]) == true) {
     $nome = $_SESSION["nome"];
     $email = $_SESSION["email"];
+    $idUser = $_SESSION["id"];
     $biografia = $_SESSION["biografia"];
     $foto = $_SESSION["fotoPerfil"];
   }
@@ -189,7 +190,24 @@ if (isset($_SESSION["autenticado"])) {
                           <!-- Profile picture help block-->
                           <div class="small font-italic text-muted mb-4">JPG ou PNG menor que 5MB</div>
                           <!-- Profile picture upload button-->
-                          <button class="btn btn-primary" type="button">Trocar Avatar</button>
+                          <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+                          <div class="file-upload">
+                            <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Editar Imagem</button>
+
+                            <div class="image-upload-wrap">
+                              <input class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" />
+                              <div class="drag-text">
+          
+                              </div>
+                            </div>
+                            <div class="file-upload-content">
+                              <img class="file-upload-image" src="#" alt="your image"/>
+                              <div class="image-title-wrap">
+                                <button type="button" onclick="removeUpload()" class="remove-image">X</span></button>
+                                <button type="button"  class="confirm-image" onclick="inserirBanco()">V</span></button>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -229,19 +247,50 @@ if (isset($_SESSION["autenticado"])) {
                               <div class="col-md-6">
                                 <label class="small mb-1" for="inputOrgName">Trabalho Atual(Opcional)</label>
                                 <select id="selectInstituicao" class="form-select form-control text-muted" aria-label="Default select example">
-                                  <option class="text-muted" selected>Selecione a Instituição</option>
-
                                   <?php
 
-                                  $stmt = $conn->prepare("SELECT * FROM instituicao");
-                                  $stmt->execute();
+                                  $sql = "select inst.nome as nome, inst.idInstituicao as id from instituicao as inst inner join vinculosusuario as vinc on vinc.fk_Vinculo = inst.idInstituicao 
+                                  inner join usuario as users on vinc.fk_Usuario = users.idUsuario where email=?";
+                                  $stmt = $conn->prepare($sql);
+                                  $stmt->execute([$email]);
                                   $inst = $stmt->fetchAll();
 
-                                  foreach ($inst as $item) {
-                                    $id = $item["idInstituicao"];
-                                    $nomeInst = $item["nome"];
+                                  if (count($inst) > 0) {
 
-                                    echo "<option value='$id'>$nomeInst</option>";
+                                    foreach ($inst as $item) {
+                                      $idSelect = $item["id"];
+                                      $nomeSelect = $item["nome"];
+
+                                      echo "<option value='$idSelect' selected>$nomeSelect</option>";
+                                    }
+
+                                    $sql2 = "select inst.nome as nome, inst.idInstituicao as id from instituicao as inst left join vinculosusuario as vinc on vinc.fk_Vinculo = inst.idInstituicao left join usuario as users on vinc.fk_Usuario = users.idUsuario
+                                    where inst.idInstituicao !=?;";
+
+                                    $stmt2 = $conn->prepare($sql2);
+                                    $stmt2->execute([$idSelect]);
+                                    $inst2 = $stmt2->fetchAll();
+
+                                    foreach ($inst2 as $item2) {
+                                      $id = $item2["id"];
+                                      $nomeInst = $item2["nome"];
+
+                                      echo "<option value='$id'>$nomeInst</option>";
+                                    }
+                                  } else {
+
+                                    $sql2 = "select * from instituicao";
+
+                                    $stmt2 = $conn->prepare($sql2);
+                                    $stmt2->execute();
+                                    $inst2 = $stmt2->fetchAll();
+
+                                    foreach ($inst2 as $item2) {
+                                      $id = $item2["idInstituicao"];
+                                      $nomeInst = $item2["nome"];
+
+                                      echo "<option value='$id'>$nomeInst</option>";
+                                    }
                                   }
 
                                   ?>
@@ -417,6 +466,7 @@ if (isset($_SESSION["autenticado"])) {
   <script src="js/CadastroUsuario.js"></script>
   <script src="js/LoginUsuario.js"></script>
   <script src="js/EditarPerfilUsuario.js"></script>
+  <script src="js/ImagemPerfil.js"></script>
 
   <script src="js/jquery.easing.1.3.js"></script>
   <script src="js/jquery.waypoints.min.js"></script>

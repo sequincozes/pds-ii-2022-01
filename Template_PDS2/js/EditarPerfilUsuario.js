@@ -24,6 +24,8 @@ $('#botaoAlteracoes').click(function (e) {
     $cidade_Perfil = $('input[name=cidadePerfil]').val();
     $senha_perfil = $('input[name=senhaPerfil]').val();
 
+    $select = document.getElementById("selectInstituicao");
+    $instituicao_user = $select.options[$select.selectedIndex].value;
 
     if (!$nome_Perfil || !$data_Perfil || !$cidade_Perfil) {
         $erro = document.querySelector('.alert-alt');
@@ -51,6 +53,9 @@ $('#botaoAlteracoes').click(function (e) {
         if ($senha_perfil) {
             $camposAlterados.senha = $senha_perfil;
         }
+        if ($instituicao_user) {
+            $camposAlterados.inst = $instituicao_user ;
+        }
 
         $camposAlterados.email = $emailPerfil;
 
@@ -71,6 +76,7 @@ $('#botaoAlteracoes').click(function (e) {
 
                     exibir();
                 } else {
+     
                      window.location.replace("PerfilUsuario.php");
 
                 }
