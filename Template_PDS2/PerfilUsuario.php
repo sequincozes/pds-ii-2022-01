@@ -189,7 +189,7 @@ if (isset($_SESSION["autenticado"])) {
                         <div class="card-header">Avatar</div>
                         <div class="card-body text-center">
                           <!-- Profile picture image-->
-                          <img class="img-account-profile rounded-circle mb-2" width="100%" height="100%" src="<?php echo $foto ?>" alt="">
+                          <img class="img-account-profile rounded-circle mb-2 img-fluid"  src="<?php echo $foto ?>" alt="">
                           <!-- Profile picture help block-->
                           <div class="small font-italic text-muted mb-4">JPG ou PNG menor que 5MB</div>
                           <!-- Profile picture upload button-->
