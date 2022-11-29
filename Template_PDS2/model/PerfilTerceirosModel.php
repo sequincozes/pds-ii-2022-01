@@ -13,7 +13,21 @@
 
         $dados = $stmt->fetch();
 
-        echo json_encode($dados);
+        $sql2 = "select inst.nome, vinc.cargo from instituicao as inst 
+        inner join vinculosusuario as vinc on inst.idInstituicao = vinc.fk_Vinculo WHERE vinc.fk_Usuario =?;";
+        $stmt2 = $conn->prepare($sql2);
+        $stmt2->execute([$id]);
+        $instituicao = $stmt2->fetch();
+
+        $sql3 = "select us.nome, av.avaliacoes, av.score from avaliacoesperfilusuarios as av 
+        inner join usuario as us on av.fk_avaliador = us.idUsuario where av.fk_avaliado =?;";
+
+        $stmt3 = $conn->prepare($sql3);
+        $stmt3->execute([$id]);
+        $avaliacoes = $stmt3->fetchAll();
+
+        $val = array("user"=>$dados,"inst"=>$instituicao,"avaliacoes"=>$avaliacoes);
+        echo json_encode($val);
 
     }catch(PDOException $e){
 

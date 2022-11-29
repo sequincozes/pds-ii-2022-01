@@ -189,7 +189,7 @@ if (isset($_SESSION["autenticado"])) {
                         <div class="card-header">Avatar</div>
                         <div class="card-body text-center">
                           <!-- Profile picture image-->
-                          <img class="img-account-profile rounded-circle mb-2 img-fluid"  src="<?php echo $foto ?>" alt="">
+                          <img class="img-account-profile rounded-circle mb-2 img-fluid" src="<?php echo $foto ?>" alt="">
                           <!-- Profile picture help block-->
                           <div class="small font-italic text-muted mb-4">JPG ou PNG menor que 5MB</div>
                           <!-- Profile picture upload button-->
@@ -206,9 +206,9 @@ if (isset($_SESSION["autenticado"])) {
                             <div class="file-upload-content">
                               <img class="file-upload-image" src="#" alt="your image" />
                               <div class="image-title-wrap">
-                              <button type="button" class="confirm-image rounded mb-1" onclick="inserirBanco()"><span class="icon-check ic" title=""></button>
+                                <button type="button" class="confirm-image rounded mb-1" onclick="inserirBanco()"><span class="icon-check ic" title=""></button>
                                 <button type="button" onclick="removeUpload()" class="remove-image rounded mb-1"><span class="icon-trash ic" title=""></span></button><br>
-                               
+
                               </div>
                             </div>
                           </div>
