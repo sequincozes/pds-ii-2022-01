@@ -1,12 +1,20 @@
+<?php
+
+require_once("model/ConexaoBD.php");
+require_once('./iniciarSessao.php');
+
+$idUsuario = $_GET["user"];
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
-    <link href="css/PerfilTerceiros.css" rel="stylesheet">
+    <title>Login/Cadastro</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700" rel="stylesheet">
@@ -28,174 +36,298 @@
 
     <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="css/icomoon.css">
+    <link rel="stylesheet" href="css/style.css">
 
 
     <link rel="stylesheet" href="css/bootstrap-datepicker.css">
 
-    <title>Document</title>
+    <link href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/plug-ins/1.13.1/i18n/pt-BR.json" rel="stylesheet">
+    <link rel="stylesheet" href="css/PerfilTerceiros.css">
+
 </head>
 
 <body>
-    <div class="main-content">
-        <!-- Header -->
-        <div class="header pb-8 pt-5 pt-lg-6 d-flex align-items-center" style="min-height: 600px; background-image: url(https://raw.githubusercontent.com/creativetimofficial/argon-dashboard/gh-pages/assets-old/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
-            <!-- Mask -->
-            <span class="mask bg-gradient-default opacity-8"></span>
-            <!-- Header container -->
-            <div class="container-fluid d-flex align-items-center">
-                <div class="row">
-                    <div class="col-lg-7 col-md-10">
-                        <h1 class="display-2 text-white">Olá Gabriel</h1>
-                        <p class="text-white mt-0 mb-5">This is your profile page. You can see the progress you've made with your work and manage your projects or assigned tasks</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Page content -->
-        <div class="container-fluid mt--7">
-            <div class="row">
-                <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
-                    <div class="card card-profile shadow">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-3 order-lg-2">
-                                <div class="card-profile-image">
-                                    <a href="#">
-                                        <img src="https://demos.creative-tim.com/argon-dashboard/assets-old/img/theme/team-4.jpg" class="rounded-circle">
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
-                            <div class="d-flex justify-content-between">
-                                <a href="#" class="btn btn-sm btn-info mr-4">Conectar</a>
-                                <a href="#" class="btn btn-sm btn-default float-right">Denunciar</a>
-                            </div>
-                        </div>
-                        <div class="card-body pt-0 pt-md-4">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="card-profile-stats d-flex justify-content-center mt-md-5">
-                                        <div>
-                                            <span class="heading">22</span>
-                                            <span class="description">Friends</span>
-                                        </div>
-                                        <div>
-                                            <span class="heading">10</span>
-                                            <span class="description">Photos</span>
-                                        </div>
-                                        <div>
-                                            <span class="heading">89</span>
-                                            <span class="description">Comments</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="text-center">
-                                <h3>
-                                    Jessica Jones<span class="font-weight-light">, 27</span>
-                                </h3>
-                                <div class="h5 font-weight-300">
-                                    <i class="ni location_pin mr-2"></i>Bucharest, Romania
-                                </div>
-                                <div class="h5 mt-4">
-                                    <i class="ni business_briefcase-24 mr-2"></i>Solution Manager - Creative Tim Officer
-                                </div>
-                                <div>
-                                    <i class="ni education_hat mr-2"></i>University of Computer Science
-                                </div>
-                                <hr class="my-4">
-                                <p>Ryan — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music.</p>
-                                <a href="#">Show more</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-8 order-xl-1">
-                    <div class="card bg-secondary shadow">
-                        <div class="card-header bg-white border-0">
-                            <div class="row align-items-center">
-                                <div class="col-8">
-                                    <h3 class="mb-0">Meu Perfil</h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <form>
-                                <h6 class="heading-small text-muted mb-4">Informações Pessoais</h6>
-                                <div class="pl-lg-4">
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="form-group focused">
-                                                <label class="form-control-label" for="input-username">Nome</label>
-                                                <input type="text" id="input-username" class="form-control form-control-alternative" placeholder="Nome do Usuario" value="Gabriel Vinícius Ramos de Lacerda">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <label class="form-control-label" for="input-email">Email</label>
-                                                <input type="email" id="input-email" class="form-control form-control-alternative" placeholder="gabrielvrlacerda@gmail.com">
-                                            </div>
-                                        </div>
-                                    </div>
 
-                                </div>
-                                <hr class="my-4">
-                                <!-- Address -->
-                                <h6 class="heading-small text-muted mb-4">Informações Gerais</h6>
-                                <div class="pl-lg-4">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group focused">
-                                                <label class="form-control-label" for="input-address">Cidade</label>
-                                                <input id="input-address" class="form-control form-control-alternative" placeholder="Cidade" value="Monte Carmelo - MG" type="text">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="form-group focused">
-                                                <label class="form-control-label" for="input-idade">Idade</label>
-                                                <input type="text" id="input-city" class="form-control form-control-alternative" placeholder="idade" value="21 Anos">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="form-group focused">
-                                                <label class="form-control-label" for="input-country">Visto por Ultimo</label>
-                                                <input type="text" id="input-country" class="form-control form-control-alternative" placeholder="Country" value="21/11/2022">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label class="form-control-label" for="input-country">Instituição Atual</label>
-                                                <input type="number" id="input-postal-code" class="form-control form-control-alternative" placeholder="Universidade Federal de Uberlandia">
-                                            </div>
-                                        </div>
-                                    </div>
+    <div id="colorlib-page">
+        <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
+        <aside id="colorlib-aside" role="complementary" class="js-fullheight text-center">
+            <h1 id="colorlib-logo"><a href="index.html">Elen<span>.</span></a></h1>
+            <nav id="colorlib-main-menu" role="navigation" class="mb-5">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="photography.html">Photography</a></li>
+                    <li><a href="travel.html">Travel</a></li>
+                    <li><a href="fashion.html">Fashion</a></li>
+                    <li class="colorlib-active"><a href="PerfilUsuario.php">Sobre</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
 
-                                </div>
-                                <hr class="my-4">
-                                <!-- Description -->
-                                <h6 class="heading-small text-muted mb-4">About me</h6>
-                                <div class="pl-lg-4">
-                                    <div class="form-group focused">
-                                        <label>About Me</label>
-                                        <textarea rows="4" class="form-control form-control-alternative" placeholder="A few words about you ...">A beautiful Dashboard for Bootstrap 4. It is Free and Open Source.</textarea>
-                                    </div>
-                                </div>
-                            </form>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                Launch demo modal
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModalCenter" data-backdrop="static" tabindex="-4" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            ...
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+            <!-- Botão de Logout -->
+            <?php if (session_status() == PHP_SESSION_ACTIVE && $_SESSION["autenticado"] == true) { ?>
+                <form id="formSVG" action="./destruirSessao.php" method="POST">
+                    <button id="botaoLog" type="submit" class="btn" title="Desconectar"> <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="#6c757d" class="bi bi-door-closed-fill" viewBox="0 0 16 16">
+                            <path d="M12 1a1 1 0 0 1 1 1v13h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V2a1 1 0 0 1 1-1h8zm-2 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
+                        </svg></button>
+                </form>
 
-    <script src="js/jquery.min.js"></script>
-    <script src="js/jquery-migrate-3.0.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+
+            <?php } ?>
+            <div class="colorlib-footer">
+                <ul>
+                    <li><a href="#"><i class="icon-facebook"></i></a></li>
+                    <li><a href="#"><i class="icon-twitter"></i></a></li>
+                    <li><a href="#"><i class="icon-instagram"></i></a></li>
+                    <li><a href="#"><i class="icon-linkedin"></i></a></li>
+                </ul>
+            </div>
+        </aside> <!-- END COLORLIB-ASIDE -->
+
+        <div id="colorlib-main">
+            <section style="background-image: url('images/bg_1.jpg');background-repeat: round;">
+                <div class="container py-3">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="card mb-4">
+                                <div class="card-body text-center">
+                                    <img src="" alt="avatar" class="img-account-profile rounded-circle mb-2 img-fluid foto" style="width: 150px;">
+                                    <h5 class="my-3 nome"></h5>
+                                    <p class="text-muted mb-1 inst"></p>
+                                    <p class="text-muted mb-4 cidade"></p>
+                                    <div class="justify-content-center mb-2">
+                                        <button type="button" class="btn btn-primary">Adicionar</button>
+                                        <button type="button" class="btn btn-danger">Denunciar</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card mb-4 mb-lg-0">
+                                <div class="card-body p-0">
+                                    <ul class="list-group list-group-flush rounded-3" id="av">
+                                        <li class="list-group-item d-flex justify-content-center align-items p-3">
+                                            <i class="fas fa-globe fa-lg text-warning"></i>
+                                            <p class="mb-0 text-left"><span class="text-primary font-italic me-1">Avaliações Recentes</span></p>
+
+                                        </li>
+
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="card mb-4">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">Nome Completo</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <p class="text-muted mb-0 nome"></p>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">Email</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <p class="text-muted mb-0 email"></p>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">Idade</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <p class="text-muted mb-0 data"></p>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">Visto por Ultimo</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <p class="text-muted mb-0 vpu"></p>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">Cidade</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <p class="text-muted mb-0 cidade"></p>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">Cargo</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <p class="text-muted mb-0 cargo"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-lg-4">
+                                <div class="card mb-4 mb-md-0">
+                                    <div class="card-body">
+                                        <p class="mb-4"><span class="text-primary font-italic me-1">Biografia</span>
+
+                                        </p>
+                                        <p class="mb-1 biografia"></p>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-lg-4">
+                                <div class="card mb-4 mb-md-0">
+                                    <div class="card-body">
+                                        <p class="mb-4"><span class="text-primary font-italic me-1">Principais Posts</span>
+                                        </p>
+                                        <table id="table_id" class="display">
+                                            <thead>
+                                                <tr>
+                                                    <th>Assunto</th>
+                                                    <th>Data Publicação</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Row 1 Data 1</td>
+                                                    <td>Row 1 Data 2</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Row 2 Data 1</td>
+                                                    <td>Row 2 Data 2</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-lg-4">
+                                <div class="card mb-4 mb-md-0">
+                                    <div class="card-body text-left">
+                                        <div class="row">
+                                            <div class="col-2">
+                                                <img class="rounded-circle" src="images/author.jpg" height="90" width="90" alt="Image of woman">
+                                            </div>
+                                            <div class="col-10">
+
+                                                <div class="comment-box">
+                                                    <p class="mb-0"><span class="text-primary font-italic me-1">Adicionar Avaliação</span>
+
+                                                    <div class="rating">
+                                                        <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label>
+                                                        <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label>
+                                                        <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label>
+                                                        <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label>
+                                                        <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
+                                                    </div>
+
+                                                    <div class="form-group mb-3">
+                                                        <textarea class="form-control" placeholder="Digite aqui sua Avaliação" id="exampleFormControlTextarea1" rows="4"></textarea>
+                                                    </div>
+
+                                                    <div class="d-grid gap-2">
+                                                        <button class="btn btn-primary btn-lg btn-block" type="button">Enviar</button>
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </section>
+
+        </div>
+
+
+        <!-- loader -->
+        <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
+                <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+                <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" />
+            </svg></div>
+
+        <script src="js/jquery.min.js"></script>
+        <script src="js/jquery-migrate-3.0.1.min.js"></script>
+        <script src="js/popper.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/CadastroUsuario.js"></script>
+        <script src="js/LoginUsuario.js"></script>
+        <script src="js/EditarPerfilUsuario.js"></script>
+        <script src="js/ImagemPerfil.js"></script>
+        <script src="js/PaginaTerceiros.js"></script>
+        <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+
+        <script src="js/jquery.easing.1.3.js"></script>
+        <script src="js/jquery.waypoints.min.js"></script>
+        <script src="js/jquery.stellar.min.js"></script>
+        <script src="js/owl.carousel.min.js"></script>
+        <script src="js/jquery.magnific-popup.min.js"></script>
+        <script src="js/aos.js"></script>
+        <script src="js/jquery.animateNumber.min.js"></script>
+        <script src="js/bootstrap-datepicker.js"></script>
+        <script src="https://unpkg.com/htmlincludejs"></script>
+
+        <script src="js/scrollax.min.js"></script>
+        <script src="js/bootstrap-datepicker.js" ?></script>
+
+        <script src="js/main.js"></script>
+
+        <script>
+            $(document).ready(function() {
+
+                exibirPagina(<?php echo $idUsuario ?>);
+                $('#table_id').DataTable({
+
+                    "language": {
+                        "url": "https://cdn.datatables.net/plug-ins/1.13.1/i18n/pt-BR.json"
+                    }
+
+
+                })
+            })
+        </script>
+
+
 
 </body>
 
