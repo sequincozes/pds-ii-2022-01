@@ -31,44 +31,36 @@ function exibirPagina($id) {
             $('.cargo').text($dadosRetorno.inst.cargo)
 
             $dadosRetorno.avaliacoes.forEach(element => {
-                $html =
+                var html =
                     `<li class="list-group-item d-flex  align-items-center p-3 avaliacoes">` +
                     `<svg class="mr-2" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
                     <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
                  </svg>
-                <p class="mb-0"><a>`+
+                <p class="mb-0 idAvaliacao" value="`+ element.id + `"><a>` +
                     '@' +
                     element.nome
                     + `</a></p>
               </li`;
 
-                $div = document.createElement('div');
-                $div.innerHTML = $html;
+
                 $ul = document.getElementById('av');
-                $ul.appendChild($div);
 
-            });
-
-            /*for ($i = 0; $i < 5; $i++) {
-                $html =
-                `<li class="list-group-item d-flex justify-content-between align-items-center p-3 avaliacoes">
-                <i class="fab fa-github fa-lg" style="color: #333333;"></i>
-                <p class="mb-0"><a>Teste</a></p>
+                var newcontent = document.createElement('div');
+                newcontent.innerHTML = `<li class="list-group-item d-flex  align-items-center p-3 avaliacoes" onclick="exibirModal(` + element.idAvaliacoes + `,`+ element.fk_avaliador+`)">` +
+                    `<svg class="mr-2" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
+             </svg>
+            <p class="mb-0 idAvaliacao" value="`+ element.id + `"><a>` +
+                    '@' +
+                    element.nome
+                    + `</a></p>
               </li`;
 
-                $div = document.createElement('div');
-                $div.innerHTML = $html;
-                $ul = document.getElementById('av');
-                $ul.appendChild($div);
-            }*/
+                while (newcontent.firstChild) {
+                    $ul.appendChild(newcontent.firstChild);
+                }
 
-
-
-
-
-            /*$av = document.querySelector('.avaliacoes');
-            $av.insertAdjacentHTML('afterbegin', html);
-            $av.insertAdjacentHTML('afterbegin', html);*/
+            });
 
         },
 
@@ -77,8 +69,46 @@ function exibirPagina($id) {
         }
     });
 
+    $(".avaliacoes").click(function () {
+        $("#modal-mensagem").modal();
+    });
+
+    $(".list-group-item").click(function () {
+        console.log("teste")
+    })
 
 
 
+}
 
+function exibirModal($id,$fk_avaliador){
+
+    $("#modal-mensagem").modal();
+    exibirAvaliacao($id,$fk_avaliador);
+}
+function exibirAvaliacao($id,$fk_avaliador) {
+
+    $.ajax({
+        method: 'POST',
+        url: 'controller/ExibirAvaliacoesController.php',
+
+        data: {
+            idAvaliacao: $id,
+            avaliador: $fk_avaliador
+        },
+
+        success: function (resposta) {
+
+            $resp = JSON.parse(resposta);
+            
+            $(".avaliador").text($resp.user.nome)
+            $(".texto").text($resp.avaliacao.avaliacoes)
+        
+        },
+        error: function (resposta) {
+            console.log("Errado")
+        }
+    });
+
+    
 }

@@ -451,3 +451,5 @@ ALTER TABLE `vinculosusuario` CHANGE `idVinculo` `idVinculo` INT(11) NOT NULL AU
 ALTER TABLE `usuario` CHANGE `fotoPerfil` `fotoPerfil` LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL;
 
 ALTER TABLE `avaliacoesperfilusuarios` CHANGE `idAvaliacoes` `idAvaliacoes` INT(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `post` CHANGE `idPost` `idPost` INT(11) NOT NULL AUTO_INCREMENT;

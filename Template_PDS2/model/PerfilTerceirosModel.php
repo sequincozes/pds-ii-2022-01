@@ -19,7 +19,7 @@
         $stmt2->execute([$id]);
         $instituicao = $stmt2->fetch();
 
-        $sql3 = "select us.nome, av.avaliacoes, av.score from avaliacoesperfilusuarios as av 
+        $sql3 = "select us.nome, av.avaliacoes, av.score, av.idAvaliacoes, av.fk_avaliador from avaliacoesperfilusuarios as av 
         inner join usuario as us on av.fk_avaliador = us.idUsuario where av.fk_avaliado =?;";
 
         $stmt3 = $conn->prepare($sql3);

@@ -50,6 +50,8 @@ $idUsuario = $_GET["user"];
 <body>
 
     <div id="colorlib-page">
+        <!-- Button trigger modal -->
+
         <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
         <aside id="colorlib-aside" role="complementary" class="js-fullheight text-center">
             <h1 id="colorlib-logo"><a href="index.html">Elen<span>.</span></a></h1>
@@ -64,31 +66,6 @@ $idUsuario = $_GET["user"];
                 </ul>
             </nav>
 
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-                Launch demo modal
-            </button>
-
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModalCenter" data-backdrop="static" tabindex="-4" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            ...
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <!-- Botão de Logout -->
             <?php if (session_status() == PHP_SESSION_ACTIVE && $_SESSION["autenticado"] == true) { ?>
                 <form id="formSVG" action="./destruirSessao.php" method="POST">
@@ -237,6 +214,80 @@ $idUsuario = $_GET["user"];
                                     </div>
                                 </div>
                             </div>
+                            
+
+                            <button class="btn btn-primary" id="btn-mensagem">Exibir modal via JavaScript</button>
+
+                            <!-- Modal -->
+                            <div class="modal fade bd-example-modal-lg" id="modal-mensagem" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLongTitle">Avaliacão</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="container">
+
+                                                <div class="row d-flex justify-content-center">
+
+                                                    <div class="col-md-12">
+
+                                                        <div class="card p-2 carAv">
+
+                                                            <div class="d-flex justify-content-between align-items-center">
+
+                                                                <div class="user d-flex flex-row align-items-center">
+
+                                                                    <img src="images/author.jpg" width="30" class="user-img rounded-circle mr-2">
+                                                                    <span><small class="font-weight-bold text-primary avaliador">james_olesenn</small> <small class="font-weight-bold texto"></small></span>
+
+                                                                </div>
+                                                                <small>2 days ago</small>
+                                                                <div class="rating">
+                                                                    <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label>
+                                                                    <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label>
+                                                                    <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label>
+                                                                    <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label>
+                                                                    <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="action d-flex justify-content-between mt-2 align-items-center">
+
+                                                                <div class="reply px-4">
+                                                                    <small>Remove</small>
+                                                                    <span class="dots"></span>
+                                                                    <small>Reply</small>
+                                                                    <span class="dots"></span>
+                                                                    <small>Translate</small>
+
+                                                                </div>
+
+                                                                <div class="icons align-items-center">
+
+                                                                    <i class="fa fa-star text-warning"></i>
+                                                                    <i class="fa fa-check-circle-o check-icon"></i>
+
+                                                                </div>
+
+                                                            </div>
+
+
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Voltar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="mb-lg-4">
                                 <div class="card mb-4 mb-md-0">
@@ -290,10 +341,8 @@ $idUsuario = $_GET["user"];
         <script src="js/jquery-migrate-3.0.1.min.js"></script>
         <script src="js/popper.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
-        <script src="js/CadastroUsuario.js"></script>
+
         <script src="js/LoginUsuario.js"></script>
-        <script src="js/EditarPerfilUsuario.js"></script>
-        <script src="js/ImagemPerfil.js"></script>
         <script src="js/PaginaTerceiros.js"></script>
         <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
 
