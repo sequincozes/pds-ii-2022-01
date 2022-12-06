@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+  <link rel="stylesheet" href="css/animate.css">
+
+  <link rel="stylesheet" href="css/owl.carousel.min.css">
+  <link rel="stylesheet" href="css/owl.theme.default.min.css">
+  <link rel="stylesheet" href="css/magnific-popup.css">
+
+  <link rel="stylesheet" href="css/aos.css">
+
+  <link rel="stylesheet" href="css/ionicons.min.css">
+
+  <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+  <link rel="stylesheet" href="css/jquery.timepicker.css">
+
+
+  <link rel="stylesheet" href="css/flaticon.css">
+  <link rel="stylesheet" href="css/icomoon.css">
+  <link rel="stylesheet" href="css/style.css">
+
+
+  <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+</head>
+<body>
+
+
+<section class="vh-100" style="background-color: #9A616D;">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col col-xl-10">
+          <div class="card" style="border-radius: 1rem;">
+            <div class="row g-0">
+              <div class="col-md-6 col-lg-5 d-none d-md-block">
+                <img src="images/bg_10.jpg"
+                  alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
+              </div>
+              <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                <div class="card-body p-4 p-lg-5 text-black">
+  
+                  <form>
+  
+                    <div class="d-flex align-items-center mb-3 pb-1">
+                      <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
+                      <span class="h1 fw-bold mb-0">Logo</span>
+                    </div>
+  
+                    <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Sign into your account</h5>
+  
+                    <div class="form-outline mb-4">
+                      <input type="email" id="form2Example17" class="form-control form-control-lg" />
+                      <label class="form-label" for="form2Example17">Email address</label>
+                    </div>
+  
+                    <div class="form-outline mb-4">
+                      <input type="password" id="form2Example27" class="form-control form-control-lg" />
+                      <label class="form-label" for="form2Example27">Password</label>
+                    </div>
+  
+                    <div class="pt-1 mb-4">
+                      <button class="btn btn-dark btn-lg btn-block" type="button">Login</button>
+                    </div>
+  
+                    <a class="small text-muted" href="#!">Forgot password?</a>
+                    <p class="mb-5 pb-lg-2" style="color: #393f81;">Don't have an account? <a href="#!"
+                        style="color: #393f81;">Register here</a></p>
+                    <a href="#!" class="small text-muted">Terms of use.</a>
+                    <a href="#!" class="small text-muted">Privacy policy</a>
+                  </form>
+  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/CadastroUsuario.js"></script>
+  <script src="js/LoginUsuario.js"></script>
+
+  <script src="js/jquery.easing.1.3.js"></script>
+  <script src="js/jquery.waypoints.min.js"></script>
+  <script src="js/jquery.stellar.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.magnific-popup.min.js"></script>
+  <script src="js/aos.js"></script>
+  <script src="js/jquery.animateNumber.min.js"></script>
+  <script src="js/bootstrap-datepicker.js"></script>
+  <script src="https://unpkg.com/htmlincludejs"></script>
+
+  <script src="js/scrollax.min.js"></script>
+  <script src="js/bootstrap-datepicker.js" ?></script>
+
+  <script src="js/main.js"></script>
+    
+</body>
+</html>
+
+
+<div class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url(images/bg_6.jpg);" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="js-fullheight d-flex justify-content-center align-items-center">
+      <div class="col-md-8 text text-center">
+        <div id="imageLogin" class="img mb-4" style="background-image: url(images/author.jpg);"></div>
+        <div class="desc">
+          <h2 class="subheading">
+            <?php
+
+            if (!isset($_SESSION["autenticado"]) || $_SESSION["autenticado"] == null) {
+              echo "<a id='botaoModalLogin' data-toggle='modal' data-target='#modalLoginForm' style='color:#fd7e14'>" . 'Realizar Login' . "</a>" . "<br>";
+              echo "<a id='botaoModalRegister' data-toggle='modal' data-target='#modalRegisterForm'>" . "Criar Conta" . "</a>";
+            } else {
+              echo "Olá, eu sou ";
+            }
+            ?>
+          </h2>
+
+          <?php if (session_status() == PHP_SESSION_ACTIVE && $_SESSION["autenticado"] == true) { ?>
+            <h1 class="mb-3"><?php echo $nome ?></h1>
+            <p class="mb-4"><?php echo $biografia ?></p>
+            <ul class="ftco-social mt-3">
+              <li class="ftco-animate"><a href="#"><span class="icon-twitter" title="Twitter"></span></a></li>
+              <li class="ftco-animate"><a href="#"><span class="icon-facebook" title="Facebook"></span></a></li>
+              <li class="ftco-animate"><a href="#"><span class="icon-instagram" title="Instagram"></span></a></li>
+              <li class="ftco-animate"><a data-toggle='modal' data-target='#modalEditProfile'><span class="icon-settings" title="Editar Perfil"></span></a></li>
+            </ul>
+          <?php } ?>
+        </div>
+      </div>
+    </div>
+  </div>
