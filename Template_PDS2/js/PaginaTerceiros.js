@@ -77,8 +77,6 @@ function exibirPagina($id) {
         console.log("teste")
     })
 
-
-
 }
 
 function exibirModal($id,$fk_avaliador){
