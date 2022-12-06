@@ -1,0 +1,109 @@
+.comment-box {
+  padding: 5px;
+}
+
+
+.rating {
+  display: flex;
+  flex-direction: row-reverse;
+  float: left;
+}
+
+.rating>input {
+  display: none
+}
+
+.rating>label {
+  position: relative;
+  font-size: 25px;
+  color: #ff0000;
+  cursor: pointer;
+}
+
+.rating>label::before {
+  content: "\2605";
+  position: absolute;
+  opacity: 0
+}
+
+.rating>label:hover:before,
+.rating>label:hover~label:before {
+  opacity: 1 !important
+}
+
+.rating>input:checked~label:before {
+  opacity: 1
+}
+
+.rating:hover>input:checked~label:before {
+  opacity: 0.4
+}
+
+li:hover {
+  color: #fd7e14;
+  transition: 0.3s;
+}
+
+.dots {
+
+  background-color: #bbb;
+  display: inline-block;
+}
+
+.badge {
+
+  padding: 7px;
+  padding-right: 9px;
+  padding-left: 16px;
+  box-shadow: 5px 6px 6px 2px #e9ecef;
+}
+
+.user-img {
+
+  margin-top: 4px;
+}
+
+.check-icon {
+
+  font-size: 17px;
+  color: #c3bfbf;
+  top: 1px;
+  position: relative;
+  margin-left: 3px;
+}
+
+.form-check-input {
+  margin-top: 6px;
+  margin-left: -24px !important;
+  cursor: pointer;
+}
+
+
+.form-check-input:focus {
+  box-shadow: none;
+}
+
+
+.icons i {
+
+  margin-left: 8px;
+}
+
+.reply {
+
+  margin-left: 12px;
+}
+
+.reply small {
+
+  color: #b7b4b4;
+
+}
+
+
+.reply small:hover {
+
+  color: green;
+  cursor: pointer;
+
+}

@@ -176,7 +176,7 @@ CREATE TABLE `tipousuario` (
 --
 
 CREATE TABLE `usuario` (
-  `idUsuario` int(11) NOT NULL,
+  `idUsuario` int(11) NOT NULL PRIMARY key AUTO_INCREMENT,
   `fk_tipoUsuario` int(11) NOT NULL,
   `dataNascimento` date NOT NULL,
   `senha` varchar(50) NOT NULL,
@@ -201,6 +201,55 @@ CREATE TABLE `vinculosusuario` (
   `dataInicioTrabalho` date NOT NULL,
   `cargo` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `carona`
+--
+
+CREATE TABLE `carona` (
+  `idCarona` int(11) NOT NULL,
+  `fk_idMotorista` int(11) NOT NULL,
+  `dataCarona` date DEFAULT NULL,
+  `vagas` int(2) NOT NULL,
+  `origem` varchar(50) NOT NULL,
+  `destino` varchar(50) NOT NULL,
+  `horario` time NOT NULL,
+  `descricao` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `caronista`
+--
+
+CREATE TABLE `caronista` (
+  `idCaronista` int(11) NOT NULL,
+  `fk_idCarona` int(11) NOT NULL,
+  `fk_idUsuario` int(11) NOT NULL,
+  `qtVagas` int(2) NOT NULL,
+  `descricao` varchar(50) NOT NULL,
+  `status` boolean NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `avaliacoesCaronistas`
+--
+
+CREATE TABLE `avaliacoesCaronistas` (
+  `idAvaliacoesCaronista` int(11) NOT NULL,
+  `fk_idCarona` int(11) NOT NULL,
+  `fk_avaliador` int(11) NOT NULL,
+  `fk_avaliado` int(11) NOT NULL,
+  `score` enum('1','2','3','4','5') NOT NULL,
+  `avaliacoes` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
 
 --
 -- Índices para tabelas despejadas
@@ -279,13 +328,6 @@ ALTER TABLE `tipousuario`
   ADD PRIMARY KEY (`idTipoUsuario`);
 
 --
--- Índices para tabela `usuario`
---
-ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`idUsuario`),
-  ADD KEY `fk_UsuarioTipo` (`fk_tipoUsuario`);
-
---
 -- Índices para tabela `vinculosusuario`
 --
 ALTER TABLE `vinculosusuario`
@@ -293,6 +335,30 @@ ALTER TABLE `vinculosusuario`
   ADD KEY `fk_user` (`fk_Usuario`),
   ADD KEY `fk_vinc` (`fk_Vinculo`);
 
+--
+-- Índices para tabela `carona`
+--
+ALTER TABLE `carona`
+  ADD PRIMARY KEY (`idCarona`),
+  ADD KEY `fk_idMotorista` (`fk_idMotorista`);
+  
+--
+-- Índices para tabela `caronistas`
+--
+ALTER TABLE `caronistas`
+  ADD PRIMARY KEY (`idCaronistas`),
+  ADD KEY `fk_idCarona` (`fk_idCarona`),
+  ADD KEY `fk_idUsuario` (`fk_idUsuario`);
+  
+--
+-- Índices para tabela `avaliacaoCaronistas`
+--
+ALTER TABLE `avaliacaoCaronistas`
+  ADD PRIMARY KEY (`idAvaliacaoCaronistas`),
+  ADD KEY `fk_idCarona` (`fk_idCarona`),
+  ADD KEY `fk_idAvaliador` (`fk_idAvaliador`),
+  ADD KEY `fk_idAvaliado` (`fk_idAvaliado`);
+  
 --
 -- AUTO_INCREMENT de tabelas despejadas
 --
@@ -340,8 +406,50 @@ ALTER TABLE `usuario`
 ALTER TABLE `vinculosusuario`
   ADD CONSTRAINT `fk_user` FOREIGN KEY (`fk_Usuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_vinc` FOREIGN KEY (`fk_Vinculo`) REFERENCES `instituicao` (`idInstituicao`) ON DELETE SET NULL ON UPDATE CASCADE;
-COMMIT;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+--
+-- Limitadores para a tabela `carona`
+--
+ALTER TABLE `carona`
+  ADD CONSTRAINT `fk_idMotorista` FOREIGN KEY (`fk_idMotorista`) REFERENCES `usuario` (`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Limitadores para a tabela `caronistas`
+--
+ALTER TABLE `caronistas`
+  ADD CONSTRAINT `fk_idCarona` FOREIGN KEY (`fk_idCarona`) REFERENCES `carona` (`idCarona`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_idUsuario` FOREIGN KEY (`fk_idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Limitadores para a tabela `avaliacoesCaronistas`
+--
+ALTER TABLE `avaliacoesCaronistas`
+  ADD CONSTRAINT `fk_idCarona` FOREIGN KEY (`fk_idCarona`) REFERENCES `caronistas` (`idcaronistas`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_idAvaliado` FOREIGN KEY (`fk_idAvaliado`) REFERENCES `usuario` (`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_idAvaliador` FOREIGN KEY (`fk_idAvaliador`) REFERENCES `usuario` (`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `usuario` CHANGE `fotoPerfil` `fotoPerfil` VARCHAR(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL;
+
+ALTER TABLE `usuario` CHANGE `biografia` `biografia` TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL;
+
+ALTER TABLE `usuario` CHANGE `vistoPorUltimo` `vistoPorUltimo` TIMESTAMP on update CURRENT_TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP;
+
+ALTER TABLE `usuario` ADD `email` VARCHAR(50) NOT NULL AFTER `nome`;
+
+ALTER TABLE `usuario` CHANGE `senha` `senha` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL;
+
+ALTER TABLE `usuario` CHANGE `nome` `nome` VARCHAR(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL;
+
+ALTER TABLE `usuario` CHANGE `biografia` `biografia` VARCHAR(393) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL;
+
+ALTER TABLE `vinculosusuario` CHANGE `dataInicioTrabalho` `dataInicioTrabalho` DATE NULL;
+
+ALTER TABLE `vinculosusuario` CHANGE `cargo` `cargo` VARCHAR(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL;
+
+ALTER TABLE `vinculosusuario` CHANGE `idVinculo` `idVinculo` INT(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `usuario` CHANGE `fotoPerfil` `fotoPerfil` LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL;
+
+ALTER TABLE `avaliacoesperfilusuarios` CHANGE `idAvaliacoes` `idAvaliacoes` INT(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `post` CHANGE `idPost` `idPost` INT(11) NOT NULL AUTO_INCREMENT;
