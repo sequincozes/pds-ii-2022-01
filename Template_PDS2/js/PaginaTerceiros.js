@@ -101,7 +101,7 @@ function exibirAvaliacao($id,$fk_avaliador) {
             
             $(".avaliador").text($resp.user.nome)
             $(".texto").text($resp.avaliacao.avaliacoes)
-            $(".dataAv").text($resp.avaliacao.data)
+            $(".dataAv").text($resp.avaliacao.data.split(" ")[0])
 
             if($resp.avaliacao.score == 1){
                 $("#1s").prop("checked", true);

@@ -54,10 +54,9 @@ $(document).ready(function () {
     
                 else if ($resp.msg == "Email Invalido") {
                     $erro.textContent = "Email Invalido"
-    
-                    if (visibilidade == false) {
-                        exibir();
-                    }
+                   
+                 exibir();
+                    
                 }
     
             },
@@ -75,13 +74,13 @@ $(document).ready(function () {
         });
     })
 
+    function exibir() {
+        $('.alert-login').css('display', 'block');
+    }
+
 
 });
 
-function exibir() {
-    $('.alert-login').css('display', 'block');
-    visibilidade = true;
-}
 
 function ocultar() {
     $('.alert-login').css('display', 'none');
