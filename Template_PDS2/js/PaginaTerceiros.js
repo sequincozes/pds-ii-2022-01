@@ -101,7 +101,26 @@ function exibirAvaliacao($id,$fk_avaliador) {
             
             $(".avaliador").text($resp.user.nome)
             $(".texto").text($resp.avaliacao.avaliacoes)
-        
+            $(".dataAv").text($resp.avaliacao.data)
+
+            if($resp.avaliacao.score == 1){
+                $("#1s").prop("checked", true);
+            }
+            else if($resp.avaliacao.score == 2){
+                $("#2s").prop("checked", true);
+            }
+            else if($resp.avaliacao.score == 3){
+                $("#3s").prop("checked", true);
+            }
+            else if($resp.avaliacao.score == 4){
+                $("#4s").prop("checked", true);
+            }
+            else if($resp.avaliacao.score == 5){
+                $("#5s").prop("checked", true);
+            }
+
+            $(".dis").prop('disabled', true);
+ 
         },
         error: function (resposta) {
             console.log("Errado")

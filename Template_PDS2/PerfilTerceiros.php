@@ -190,6 +190,43 @@ $idUsuario = $_GET["user"];
 
                             <div class="mb-lg-4">
                                 <div class="card mb-4 mb-md-0">
+                                    <div class="card-body text-left">
+                                        <div class="row">
+                                            <div class="col-2">
+                                                <img class="rounded-circle" src="images/author.jpg" height="90" width="90" alt="Image of woman">
+                                            </div>
+                                            <div class="col-10">
+
+                                                <div class="comment-box">
+                                                    <p class="mb-0"><span class="text-primary font-italic me-1">Adicionar Avaliação</span>
+
+                                                    <div class="rating">
+                                                        <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label>
+                                                        <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label>
+                                                        <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label>
+                                                        <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label>
+                                                        <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
+                                                    </div>
+
+                                                    <div class="form-group mb-3">
+                                                        <input class="idAvaliado" value="<?php echo $idUsuario ?>" type="button" hidden>
+                                                        <textarea class="form-control avaliacao" placeholder="Digite aqui sua Avaliação" id="exampleFormControlTextarea1" rows="4"></textarea>
+                                                    </div>
+
+                                                    <div class="d-grid gap-2">
+                                                        <button class="btn btn-primary btn-lg btn-block addAv" type="button">Enviar</button>
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-lg-4">
+                                <div class="card mb-4 mb-md-0">
                                     <div class="card-body">
                                         <p class="mb-4"><span class="text-primary font-italic me-1">Principais Posts</span>
                                         </p>
@@ -216,7 +253,6 @@ $idUsuario = $_GET["user"];
                             </div>
                             <!-- teste git -->
 
-                            <button class="btn btn-primary" id="btn-mensagem">Exibir modal via JavaScript</button>
 
                             <!-- Modal -->
                             <div class="modal fade bd-example-modal-lg" id="modal-mensagem" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -242,26 +278,25 @@ $idUsuario = $_GET["user"];
                                                                 <div class="user d-flex flex-row align-items-center">
 
                                                                     <img src="images/author.jpg" width="30" class="user-img rounded-circle mr-2">
-                                                                    <span><small class="font-weight-bold text-primary avaliador">james_olesenn</small> <small class="font-weight-bold texto"></small></span>
+                                                                    <span><small class="font-weight-bold text-primary avaliador">james_olesenn</small> <small class="font-weight-bold texto mr-2"></small></span>
 
                                                                 </div>
-                                                                <small>2 days ago</small>
-                                                                <div class="rating">
-                                                                    <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label>
-                                                                    <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label>
-                                                                    <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label>
-                                                                    <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label>
-                                                                    <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
+                                                                
+                                                                <div class="rating ml-1 scoreUser">
+                                                                    <input class="dis" type="radio" name="rating" value="5" id="5s"><label for="5" disabled>☆</label>
+                                                                    <input class="dis" type="radio" name="rating" value="4" id="4s"><label for="4" disabled>☆</label>
+                                                                    <input class="dis" type="radio" name="rating" value="3" id="3s"><label for="3" disabled>☆</label>
+                                                                    <input class="dis" type="radio" name="rating" value="2" id="2s"><label for="2" disabled>☆</label>
+                                                                    <input class="dis" type="radio" name="rating" value="1" id="1s"><label for="1" disabled>☆</label>
                                                                 </div>
+                                                                
                                                             </div>
+                                                            
                                                             <div class="action d-flex justify-content-between mt-2 align-items-center">
 
                                                                 <div class="reply px-4">
-                                                                    <small>Remove</small>
-                                                                    <span class="dots"></span>
-                                                                    <small>Reply</small>
-                                                                    <span class="dots"></span>
-                                                                    <small>Translate</small>
+                                                                <small class="dataAv">2 days ago</small>
+                                                                
 
                                                                 </div>
 
@@ -289,41 +324,7 @@ $idUsuario = $_GET["user"];
                                 </div>
                             </div>
 
-                            <div class="mb-lg-4">
-                                <div class="card mb-4 mb-md-0">
-                                    <div class="card-body text-left">
-                                        <div class="row">
-                                            <div class="col-2">
-                                                <img class="rounded-circle" src="images/author.jpg" height="90" width="90" alt="Image of woman">
-                                            </div>
-                                            <div class="col-10">
-
-                                                <div class="comment-box">
-                                                    <p class="mb-0"><span class="text-primary font-italic me-1">Adicionar Avaliação</span>
-
-                                                    <div class="rating">
-                                                        <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label>
-                                                        <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label>
-                                                        <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label>
-                                                        <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label>
-                                                        <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
-                                                    </div>
-
-                                                    <div class="form-group mb-3">
-                                                        <textarea class="form-control" placeholder="Digite aqui sua Avaliação" id="exampleFormControlTextarea1" rows="4"></textarea>
-                                                    </div>
-
-                                                    <div class="d-grid gap-2">
-                                                        <button class="btn btn-primary btn-lg btn-block" type="button">Enviar</button>
-
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            
                         </div>
                     </div>
             </section>
@@ -341,6 +342,7 @@ $idUsuario = $_GET["user"];
         <script src="js/jquery-migrate-3.0.1.min.js"></script>
         <script src="js/popper.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
+        <script src="js/AdicionarAvaliacao.js"></script>
 
         <script src="js/LoginUsuario.js"></script>
         <script src="js/PaginaTerceiros.js"></script>

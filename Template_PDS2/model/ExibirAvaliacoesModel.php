@@ -12,7 +12,7 @@ function ExibirAvaliacoes($idAvaliacao,$userAvaliador){
     $stmt->execute([$userAvaliador]);
     $dadosUsuario = $stmt->fetch();
 
-    $sql2 = "select avaliacoes from avaliacoesperfilusuarios where idAvaliacoes=?";
+    $sql2 = "select avaliacoes,data,score from avaliacoesperfilusuarios where idAvaliacoes=?";
     $stmt2 = $conn->prepare($sql2);
     $stmt2->execute([$idAvaliacao]);
     $dadosAvaliacao = $stmt2->fetch();
