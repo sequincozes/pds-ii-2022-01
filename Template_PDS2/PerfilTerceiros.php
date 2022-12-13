@@ -1,5 +1,10 @@
 <?php
 
+if (isset($_SESSION["id"]))
+{
+    header('Location: /index.html');
+}
+
 require_once("model/ConexaoBD.php");
 require_once('./iniciarSessao.php');
 
@@ -86,6 +91,8 @@ $idUsuario = $_GET["user"];
             </div>
         </aside> <!-- END COLORLIB-ASIDE -->
 
+        
+
         <div id="colorlib-main">
             <section style="background-image: url('images/bg_1.jpg');background-repeat: round;">
                 <div class="container py-3">
@@ -98,7 +105,7 @@ $idUsuario = $_GET["user"];
                                     <p class="text-muted mb-1 inst"></p>
                                     <p class="text-muted mb-4 cidade"></p>
                                     <div class="justify-content-center mb-2">
-                                        <button type="button" class="btn btn-primary">Adicionar</button>
+                                        <button type="button" class="btn btn-primary addUser" onclick="adicionarUsuario(<?php echo $idUsuario ?>)">Adicionar</button>
                                         <button type="button" class="btn btn-danger">Denunciar</button>
                                     </div>
                                 </div>
@@ -343,6 +350,7 @@ $idUsuario = $_GET["user"];
         <script src="js/popper.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/AdicionarAvaliacao.js"></script>
+        <script src="js/PedidosAmizade.js"></script>
 
         <script src="js/LoginUsuario.js"></script>
         <script src="js/PaginaTerceiros.js"></script>

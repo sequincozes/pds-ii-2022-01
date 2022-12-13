@@ -50,6 +50,8 @@ if (isset($_SESSION["autenticado"])) {
   <link rel="stylesheet" href="css/flaticon.css">
   <link rel="stylesheet" href="css/icomoon.css">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/PerfilUsuarios.css">
+  <link rel="" href="scss/PerfilUsuario.scss">
 
 
   <link rel="stylesheet" href="css/bootstrap-datepicker.css">
@@ -58,7 +60,9 @@ if (isset($_SESSION["autenticado"])) {
 
 <body>
 
+
   <div id="colorlib-page">
+
     <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
     <aside id="colorlib-aside" role="complementary" class="js-fullheight text-center">
       <h1 id="colorlib-logo"><a href="index.html">Elen<span>.</span></a></h1>
@@ -76,7 +80,7 @@ if (isset($_SESSION["autenticado"])) {
       <!-- Botão de Logout -->
       <?php if (session_status() == PHP_SESSION_ACTIVE && $_SESSION["autenticado"] == true) { ?>
         <form id="formSVG" action="./destruirSessao.php" method="POST">
-          <button id="botaoLog" type="submit" class="btn" title="Desconectar"> <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="#6c757d" class="bi bi-door-closed-fill" viewBox="0 0 16 16">
+          <button id="botaoLog" type="submit" class="btn" title="Desconectar"> <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" fill="#6c757d" class="bi bi-door-closed-fill" viewBox="0 0 16 16">
               <path d="M12 1a1 1 0 0 1 1 1v13h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V2a1 1 0 0 1 1-1h8zm-2 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
             </svg></button>
         </form>
@@ -89,11 +93,50 @@ if (isset($_SESSION["autenticado"])) {
           <li><a href="#"><i class="icon-twitter"></i></a></li>
           <li><a href="#"><i class="icon-instagram"></i></a></li>
           <li><a href="#"><i class="icon-linkedin"></i></a></li>
+
         </ul>
+
       </div>
     </aside> <!-- END COLORLIB-ASIDE -->
 
+
+
     <div id="colorlib-main">
+      <div>
+
+        <!-- Modal -->
+        <div class="modal modal-notify fade bd-example-modal-lg" id="" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Notificações</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div id="fb">
+                  <div id="fb-top">
+                    <p><b>Solicitação de Amizade</b><span>teste</span></p>
+                  </div>
+                  <img src="images/author.jpg" height="100" class="" width="100" alt="Image of woman">
+                  <p id="info"><b>Natalie G.</b> <br> <span  class="dataSolicitacao">Data Solicitacao</p>
+                  <div id="button-block">
+                    <div id="confirm">Confirmar</div>
+                    <div id="delete">Excluir</div>
+                  </div>
+                </div>
+                <hr>
+                
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- Form para Cadastro de Usuarios -->
       <form method="POST" id="formularioUsuarios" autocomplete="off">
         <div class="modal modal-cadastro fade" id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -157,10 +200,7 @@ if (isset($_SESSION["autenticado"])) {
           </div>
         </div>
       </form>
-
       <!--Fim Formulario-->
-
-
 
       <!-- Modal para edicao de perfil -->
 
@@ -215,6 +255,7 @@ if (isset($_SESSION["autenticado"])) {
                         </div>
                       </div>
                     </div>
+
                     <div class="col-xl-8">
                       <!-- Account details card-->
                       <div class="card mb-4">
@@ -341,6 +382,7 @@ if (isset($_SESSION["autenticado"])) {
               </div>
             </div>
           </div>
+
         </div>
       </form>
 
@@ -408,10 +450,12 @@ if (isset($_SESSION["autenticado"])) {
           <div class="js-fullheight d-flex justify-content-center align-items-center">
             <div class="col-md-8 text text-center">
               <img id="imageLogin2" class="img mb-3" src="<?php echo $foto ?>" />
+
               <div class="desc">
                 <h2 class="subheading">
                   Olá, eu sou
                 </h2>
+
 
                 <?php if (session_status() == PHP_SESSION_ACTIVE && $_SESSION["autenticado"] == true) { ?>
                   <h1 class="mb-3 nomeUser"><?php echo $nome ?></h1>
@@ -421,6 +465,7 @@ if (isset($_SESSION["autenticado"])) {
                     <li class="ftco-animate"><a href="#"><span class="icon-twitter ic" title="Twitter"></span></a></li>
                     <li class="ftco-animate"><a href="#"><span class="icon-facebook ic " title="Facebook"></span></a></li>
                     <li class="ftco-animate"><a href="#"><span class="icon-instagram ic" title="Instagram"></span></a></li>
+                    <li class="ftco-animate"><a href="#"><span class="icon-bell ic botao-notify" title="Notificacoes"></span></a></li>
 
                   </ul>
                 <?php } ?>
@@ -429,32 +474,12 @@ if (isset($_SESSION["autenticado"])) {
           </div>
         </div>
 
-        <div class="container">
-
-          <div class="fab" ontouchstart="" title="Notificações">
-            <button class="main">
-            </button>
-            <ul>
-              <li>
-                <div id="fb">
-                  <div id="fb-top">
-                    <p><b>Friend Requests</b><span>Find Friends &bull; Settings</span></p>
-                  </div>
-                  <img src="images/author.jpg" height="100" width="100" alt="Image of woman">
-                  <p id="info"><b>Natalie G.</b> <br> <span>14 mutual friends</p>
-                  <div id="button-block">
-                    <div id="confirm">Confirm</div>
-                    <div id="delete">Delete Request</div>
-                  </div>
-                </div>
-              </li>
-
-            </ul>
-          </div>
-        </div>
       <?php } ?>
     </div>
+
   </div><!-- END COLORLIB-PAGE -->
+
+
 
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
@@ -471,6 +496,7 @@ if (isset($_SESSION["autenticado"])) {
   <script src="js/LoginUsuario.js"></script>
   <script src="js/EditarPerfilUsuario.js"></script>
   <script src="js/ImagemPerfil.js"></script>
+  <script src="js/PedidosAmizade.js"></script>
 
   <script src="js/jquery.easing.1.3.js"></script>
   <script src="js/jquery.waypoints.min.js"></script>

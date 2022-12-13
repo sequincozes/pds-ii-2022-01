@@ -453,3 +453,7 @@ ALTER TABLE `usuario` CHANGE `fotoPerfil` `fotoPerfil` LONGTEXT CHARACTER SET ut
 ALTER TABLE `avaliacoesperfilusuarios` CHANGE `idAvaliacoes` `idAvaliacoes` INT(11) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `post` CHANGE `idPost` `idPost` INT(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `convitesamizade` CHANGE `idConviteAmizade` `idConviteAmizade` INT(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `convitesamizade` ADD UNIQUE(`fk_convidado`, `fk_solicitante`);
