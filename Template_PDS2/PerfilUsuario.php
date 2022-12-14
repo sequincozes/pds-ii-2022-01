@@ -25,7 +25,7 @@ if (isset($_SESSION["autenticado"])) {
 <html lang="en">
 
 <head>
-  <title>Login/Cadastro</title>
+  <title><?php  echo $nome ?></title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 

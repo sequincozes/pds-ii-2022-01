@@ -1,43 +1,52 @@
+$notif = 0
+
 $(".botao-notify").click(function () {
 
-    $.ajax({
-        method: 'POST',
-        url: 'controller/BuscarSolicitacoesController.php',
-        data: {},
+    if ($notif == 0) {
 
-        success: function (resposta) {
+        $.ajax({
+            method: 'POST',
+            url: 'controller/BuscarSolicitacoesController.php',
+            data: {},
 
-            $resp = JSON.parse(resposta);
+            success: function (resposta) {
 
-            $resp.forEach(element => {
+                $resp = JSON.parse(resposta);
 
-                $old = document.getElementById('not');
-                var newcontent = document.createElement('div');
+                $resp.forEach(element => {
 
-                newcontent.innerHTML =
-                    `<div id="fb" value="` + element.idUsuario + `">
-            <div id="fb-top">
-                <p><b value="`+ element.idConviteAmizade + `">Solicitação de Amizade</b>
-            </div>
-            <img src="images/author.jpg" height="100" class="" width="100" alt="Image of woman">
-            <p id="info" onclick="paginaTerceiros(`+ element.idUsuario + `)"><b>` + element.nome + `</b> <br> <span  class="dataSolicitacao">` + element.dataConvite + `</p>
-                <div id="button-block">
-                    <div id="confirm" onclick="confirmarAmizade(`+ element.idConviteAmizade + ` , ` + element.idUsuario + `)">Confirmar</div>
-                    <div id="delete" onclick="recusarAmizade(`+ element.idConviteAmizade + `)">Excluir</div>
-                </div>
-            </div>
-            <hr>`;
+                    $old = document.getElementById('not');
+                    var newcontent = document.createElement('div');
 
-                while (newcontent.firstChild) {
-                    $old.appendChild(newcontent.firstChild);
-                }
+                    newcontent.innerHTML =
+                        `<div id="fb" class="` + element.idConviteAmizade + `">
+                            <div id="fb-top">
+                                <p><b value="`+ element.idConviteAmizade + `">Solicitação de Amizade</b>
+                            </div>
+                            <img src="images/author.jpg" height="100" class="" width="100" alt="Image of woman">
+                            <p id="info" onclick="paginaTerceiros(`+ element.idUsuario + `)"><b>` + element.nome + `</b> <br> <span  class="dataSolicitacao">` + element.dataConvite + `</p>
+                                <div id="button-block">
+                                    <div id="confirm" onclick="confirmarAmizade(`+ element.idConviteAmizade + ` , ` + element.idUsuario + `)">Confirmar</div>
+                                    <div id="delete" onclick="recusarAmizade(`+ element.idConviteAmizade + `)">Excluir</div>
+                                </div>
+                                <hr>
+                            </div>
+                            `;
 
-            });
-        },
-        error: function (resposta) {
+                    while (newcontent.firstChild) {
+                        $old.appendChild(newcontent.firstChild);
+                    }
 
-        }
-    });
+                    $notif = $notif + 1;
+
+                });
+            },
+            error: function (resposta) {
+
+            }
+        });
+
+    }
 
     $(".modal-notify").modal();
 });
@@ -58,6 +67,8 @@ function confirmarAmizade($idSolicitacao, $idSolicitante) {
 
         success: function (resposta) {
 
+            $("."+$idSolicitacao).remove()
+
         },
         error: function (resposta) {
 
@@ -66,7 +77,8 @@ function confirmarAmizade($idSolicitacao, $idSolicitante) {
 }
 
 function recusarAmizade($idSolicitacao) {
-    $.ajax({
+
+     $.ajax({
         method: 'POST',
         url: 'controller/RecusarConviteAmizadeController.php',
         data: {
@@ -75,6 +87,7 @@ function recusarAmizade($idSolicitacao) {
 
         success: function (resposta) {
 
+            $("."+$idSolicitacao).remove()
         },
         error: function (resposta) {
 
@@ -133,7 +146,7 @@ function adicionarUsuario($usuarioSolicitado) {
             },
 
             success: function (resposta) {
-       
+
             },
             error: function (resposta) {
                 alert("erro")
@@ -142,6 +155,4 @@ function adicionarUsuario($usuarioSolicitado) {
 
         $(".addUser").text("Adicionar")
     }
-
-    //location.replace();
 }
