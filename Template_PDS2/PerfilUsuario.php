@@ -69,11 +69,11 @@ if (isset($_SESSION["autenticado"])) {
       <nav id="colorlib-main-menu" role="navigation" class="mb-5">
         <ul>
           <li><a href="index.html">Home</a></li>
-          <li><a href="photography.html">Photography</a></li>
+          <li><a href="photography.html">Caronas</a></li>
           <li><a href="travel.html">Travel</a></li>
           <li><a href="fashion.html">Fashion</a></li>
-          <li class="colorlib-active"><a href="PerfilUsuario.php">Sobre</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li class="colorlib-active"><a href="PerfilUsuario.php">Perfil</a></li>
+          <li><a href="contact.html">Contatos</a></li>
         </ul>
       </nav>
 
@@ -114,20 +114,8 @@ if (isset($_SESSION["autenticado"])) {
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <div class="modal-body">
-                <div id="fb">
-                  <div id="fb-top">
-                    <p><b>Solicitação de Amizade</b><span>teste</span></p>
-                  </div>
-                  <img src="images/author.jpg" height="100" class="" width="100" alt="Image of woman">
-                  <p id="info"><b>Natalie G.</b> <br> <span  class="dataSolicitacao">Data Solicitacao</p>
-                  <div id="button-block">
-                    <div id="confirm">Confirmar</div>
-                    <div id="delete">Excluir</div>
-                  </div>
-                </div>
-                <hr>
-                
+              <div class="modal-body" id="not">
+
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
@@ -454,12 +442,11 @@ if (isset($_SESSION["autenticado"])) {
               <div class="desc">
                 <h2 class="subheading">
                   Olá, eu sou
-                </h2>
-
+      </h2>
 
                 <?php if (session_status() == PHP_SESSION_ACTIVE && $_SESSION["autenticado"] == true) { ?>
                   <h1 class="mb-3 nomeUser"><?php echo $nome ?></h1>
-                  <p class="mb-4 biografia"><?php echo $biografia ?></p>
+                  <p class="mb-4 biografia mw-80"><?php echo $biografia ?></p>
                   <ul class="ftco-social mt-3">
                     <li class="ftco-animate"><a data-toggle='modal' type="submit" data-target='#modalEditProfile' onclick="buscarInfo('<?php echo $_SESSION['email'] ?>')"><span class="icon-settings ic" title="Editar Perfil"></span></a></li>
                     <li class="ftco-animate"><a href="#"><span class="icon-twitter ic" title="Twitter"></span></a></li>

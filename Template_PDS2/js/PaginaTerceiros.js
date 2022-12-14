@@ -10,12 +10,13 @@ function exibirPagina($id) {
         success: function (resposta) {
 
             $dadosRetorno = JSON.parse(resposta);
-
+            
             $('.nome').text($dadosRetorno.user.nome)
             $('.email').text($dadosRetorno.user.email)
             $('.cidade').text($dadosRetorno.user.cidade)
             $('.biografia').text($dadosRetorno.user.biografia)
             $('.foto').attr('src', $dadosRetorno.user.fotoPerfil)
+            $('.tituloPage').text($dadosRetorno.user.nome)
 
             $ano_atual = new Date().getFullYear();
             $data = $dadosRetorno.user.dataNascimento.split('-')[0]
@@ -84,6 +85,7 @@ function exibirModal($id,$fk_avaliador){
     $("#modal-mensagem").modal();
     exibirAvaliacao($id,$fk_avaliador);
 }
+
 function exibirAvaliacao($id,$fk_avaliador) {
 
     $.ajax({

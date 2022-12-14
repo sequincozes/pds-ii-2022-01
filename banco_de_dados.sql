@@ -457,3 +457,7 @@ ALTER TABLE `post` CHANGE `idPost` `idPost` INT(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `convitesamizade` CHANGE `idConviteAmizade` `idConviteAmizade` INT(11) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `convitesamizade` ADD UNIQUE(`fk_convidado`, `fk_solicitante`);
+
+ALTER TABLE `amigos` CHANGE `idAmigos` `idAmigos` INT(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `amigos` CHANGE `dataAmizade` `dataAmizade` DATE NOT NULL DEFAULT CURRENT_TIMESTAMP;

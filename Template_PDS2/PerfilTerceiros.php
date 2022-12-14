@@ -1,14 +1,17 @@
 <?php
 
-if (isset($_SESSION["id"]))
-{
-    header('Location: /index.html');
-}
-
 require_once("model/ConexaoBD.php");
 require_once('./iniciarSessao.php');
 
+if (session_status() != PHP_SESSION_ACTIVE || !isset($_SESSION["autenticado"])){
+    header('Location: index.html');
+}
+
 $idUsuario = $_GET["user"];
+
+if($idUsuario == $_SESSION["id"]){
+    header('Location: PerfilUsuario.php');
+}
 
 ?>
 
@@ -17,7 +20,7 @@ $idUsuario = $_GET["user"];
 <html lang="en">
 
 <head>
-    <title>Login/Cadastro</title>
+    <title class="tituloPage"></title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -91,7 +94,7 @@ $idUsuario = $_GET["user"];
             </div>
         </aside> <!-- END COLORLIB-ASIDE -->
 
-        
+
 
         <div id="colorlib-main">
             <section style="background-image: url('images/bg_1.jpg');background-repeat: round;">
@@ -195,6 +198,8 @@ $idUsuario = $_GET["user"];
                                 </div>
                             </div>
 
+                            <?php if (session_status() == PHP_SESSION_ACTIVE && $_SESSION["autenticado"] == true){ ?>
+
                             <div class="mb-lg-4">
                                 <div class="card mb-4 mb-md-0">
                                     <div class="card-body text-left">
@@ -202,6 +207,7 @@ $idUsuario = $_GET["user"];
                                             <div class="col-2">
                                                 <img class="rounded-circle" src="images/author.jpg" height="90" width="90" alt="Image of woman">
                                             </div>
+                                            
                                             <div class="col-10">
 
                                                 <div class="comment-box">
@@ -231,6 +237,7 @@ $idUsuario = $_GET["user"];
                                     </div>
                                 </div>
                             </div>
+                            <?php } ?> 
 
                             <div class="mb-lg-4">
                                 <div class="card mb-4 mb-md-0">
@@ -288,7 +295,7 @@ $idUsuario = $_GET["user"];
                                                                     <span><small class="font-weight-bold text-primary avaliador">james_olesenn</small> <small class="font-weight-bold texto mr-2"></small></span>
 
                                                                 </div>
-                                                                
+
                                                                 <div class="rating ml-1 scoreUser">
                                                                     <input class="dis" type="radio" name="rating" value="5" id="5s"><label for="5" disabled>☆</label>
                                                                     <input class="dis" type="radio" name="rating" value="4" id="4s"><label for="4" disabled>☆</label>
@@ -296,15 +303,13 @@ $idUsuario = $_GET["user"];
                                                                     <input class="dis" type="radio" name="rating" value="2" id="2s"><label for="2" disabled>☆</label>
                                                                     <input class="dis" type="radio" name="rating" value="1" id="1s"><label for="1" disabled>☆</label>
                                                                 </div>
-                                                                
+
                                                             </div>
-                                                            
+
                                                             <div class="action d-flex justify-content-between mt-2 align-items-center">
 
                                                                 <div class="reply px-4">
-                                                                <small class="dataAv">2 days ago</small>
-                                                                
-
+                                                                    <small class="dataAv">2 days ago</small>
                                                                 </div>
 
                                                                 <div class="icons align-items-center">
@@ -331,7 +336,7 @@ $idUsuario = $_GET["user"];
                                 </div>
                             </div>
 
-                            
+
                         </div>
                     </div>
             </section>
