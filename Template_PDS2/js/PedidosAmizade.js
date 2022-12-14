@@ -23,7 +23,7 @@ $(".botao-notify").click(function () {
             <p id="info" onclick="paginaTerceiros(`+ element.idUsuario + `)"><b>` + element.nome + `</b> <br> <span  class="dataSolicitacao">` + element.dataConvite + `</p>
                 <div id="button-block">
                     <div id="confirm" onclick="confirmarAmizade(`+ element.idConviteAmizade + ` , ` + element.idUsuario + `)">Confirmar</div>
-                    <div id="delete">Excluir</div>
+                    <div id="delete" onclick="recusarAmizade(`+ element.idConviteAmizade + `)">Excluir</div>
                 </div>
             </div>
             <hr>`;
@@ -58,9 +58,6 @@ function confirmarAmizade($idSolicitacao, $idSolicitante) {
 
         success: function (resposta) {
 
-
-
-
         },
         error: function (resposta) {
 
@@ -68,21 +65,33 @@ function confirmarAmizade($idSolicitacao, $idSolicitante) {
     });
 }
 
-function recusarAmizade(){
-    
+function recusarAmizade($idSolicitacao) {
+    $.ajax({
+        method: 'POST',
+        url: 'controller/RecusarConviteAmizadeController.php',
+        data: {
+            solicitacao: $idSolicitacao
+        },
+
+        success: function (resposta) {
+
+        },
+        error: function (resposta) {
+
+        }
+    });
+
 }
 
 function adicionarUsuario($usuarioSolicitado) {
 
     if ($(".addUser").text() == "Adicionar") {
-        $(".addUser").text('Solicitado')
 
         $.ajax({
             method: 'POST',
             url: 'controller/EnviarPedidoAmizadeController.php',
             data: {
                 usuarioSolicitado: $usuarioSolicitado,
-
             },
 
             success: function (resposta) {
@@ -92,9 +101,10 @@ function adicionarUsuario($usuarioSolicitado) {
 
             }
         });
-    } else {
 
-        $(".addUser").text('Adicionar')
+        $(".addUser").text("Desfazer")
+
+    } else if ($(".addUser").text() == "Desfazer") {
 
         $.ajax({
             method: 'POST',
@@ -104,11 +114,34 @@ function adicionarUsuario($usuarioSolicitado) {
             },
 
             success: function (resposta) {
-                alert(resposta)
+
             },
             error: function (resposta) {
                 alert("erro")
             }
         });
+
+        $(".addUser").text("Adicionar")
+
+    } else if ($(".addUser").text() == "Remover") {
+
+        $.ajax({
+            method: 'POST',
+            url: 'controller/RemoverAmizadeController.php',
+            data: {
+                fk_amigo2: $usuarioSolicitado,
+            },
+
+            success: function (resposta) {
+       
+            },
+            error: function (resposta) {
+                alert("erro")
+            }
+        });
+
+        $(".addUser").text("Adicionar")
     }
+
+    //location.replace();
 }

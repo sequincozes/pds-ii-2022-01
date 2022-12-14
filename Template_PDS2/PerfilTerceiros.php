@@ -94,8 +94,6 @@ if($idUsuario == $_SESSION["id"]){
             </div>
         </aside> <!-- END COLORLIB-ASIDE -->
 
-
-
         <div id="colorlib-main">
             <section style="background-image: url('images/bg_1.jpg');background-repeat: round;">
                 <div class="container py-3">
@@ -118,8 +116,7 @@ if($idUsuario == $_SESSION["id"]){
 
                                         if($stmt->rowCount() > 0){
                                             $text = "Remover";
-                                        }
-                                        else{
+                                        }else{
                                             $text = "Adicionar";
                                         }
 
