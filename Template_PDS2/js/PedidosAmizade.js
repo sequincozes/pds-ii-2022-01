@@ -22,7 +22,7 @@ $(".botao-notify").click(function () {
             <img src="images/author.jpg" height="100" class="" width="100" alt="Image of woman">
             <p id="info" onclick="paginaTerceiros(`+ element.idUsuario + `)"><b>` + element.nome + `</b> <br> <span  class="dataSolicitacao">` + element.dataConvite + `</p>
                 <div id="button-block">
-                    <div id="confirm" onclick="confirmarAmizade(`+ element.idConviteAmizade + ` , ` + element.$idUsuario + `)">Confirmar</div>
+                    <div id="confirm" onclick="confirmarAmizade(`+ element.idConviteAmizade + ` , ` + element.idUsuario + `)">Confirmar</div>
                     <div id="delete">Excluir</div>
                 </div>
             </div>
@@ -54,16 +54,22 @@ function confirmarAmizade($idSolicitacao, $idSolicitante) {
         data: {
             usuarioSolicitante: $idSolicitante,
             solicitacao: $idSolicitacao
-
         },
 
         success: function (resposta) {
-            alert("certo")
+
+
+
+
         },
         error: function (resposta) {
 
         }
     });
+}
+
+function recusarAmizade(){
+    
 }
 
 function adicionarUsuario($usuarioSolicitado) {
@@ -80,7 +86,7 @@ function adicionarUsuario($usuarioSolicitado) {
             },
 
             success: function (resposta) {
-                alert("certo")
+
             },
             error: function (resposta) {
 

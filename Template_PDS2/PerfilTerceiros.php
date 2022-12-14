@@ -108,7 +108,24 @@ if($idUsuario == $_SESSION["id"]){
                                     <p class="text-muted mb-1 inst"></p>
                                     <p class="text-muted mb-4 cidade"></p>
                                     <div class="justify-content-center mb-2">
-                                        <button type="button" class="btn btn-primary addUser" onclick="adicionarUsuario(<?php echo $idUsuario ?>)">Adicionar</button>
+
+                                    <?php
+                                        $id = $_SESSION["id"];
+                                        $sql = "select * from amigos where fk_amigo1 =? and fk_amigo2=?;";
+                                        $stmt = $conn->prepare($sql);
+                                        $stmt->execute([$id,$idUsuario]);
+                                        $qtd = $stmt->rowCount();
+
+                                        if($stmt->rowCount() > 0){
+                                            $text = "Remover";
+                                        }
+                                        else{
+                                            $text = "Adicionar";
+                                        }
+
+                                    ?>
+
+                                        <button type="button" class="btn btn-primary addUser" onclick="adicionarUsuario(<?php echo $idUsuario ?>)"><?php echo $text ?></button>
                                         <button type="button" class="btn btn-danger">Denunciar</button>
                                     </div>
                                 </div>
