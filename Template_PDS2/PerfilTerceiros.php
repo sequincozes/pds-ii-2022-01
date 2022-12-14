@@ -219,7 +219,19 @@ if($idUsuario == $_SESSION["id"]){
                                     <div class="card-body text-left">
                                         <div class="row">
                                             <div class="col-2">
-                                                <img class="rounded-circle" src="images/author.jpg" height="90" width="90" alt="Image of woman">
+
+                                            <?php 
+                                                    $idFoto = $_SESSION["id"];
+                                                    $sql3 = "select fotoPerfil from usuario where idUsuario=?;";
+                                                    $stmt3 = $conn->prepare($sql3);
+                                                    $stmt3->execute([$idFoto]);
+
+                                                    $fotoP = $stmt3->fetch(); 
+
+                                                    
+
+                                                ?>
+                                                <img class="rounded-circle" src="<?php echo $fotoP["fotoPerfil"] ?>" height="90" width="90" alt="Image of woman">
                                             </div>
                                             
                                             <div class="col-10">
@@ -274,6 +286,7 @@ if($idUsuario == $_SESSION["id"]){
                                                     <td>Row 2 Data 1</td>
                                                     <td>Row 2 Data 2</td>
                                                 </tr>
+                                                                
                                             </tbody>
                                         </table>
                                     </div>
@@ -310,12 +323,12 @@ if($idUsuario == $_SESSION["id"]){
 
                                                                 </div>
 
-                                                                <div class="rating ml-1 scoreUser">
-                                                                    <input class="dis" type="radio" name="rating" value="5" id="5s"><label for="5" disabled>☆</label>
-                                                                    <input class="dis" type="radio" name="rating" value="4" id="4s"><label for="4" disabled>☆</label>
-                                                                    <input class="dis" type="radio" name="rating" value="3" id="3s"><label for="3" disabled>☆</label>
-                                                                    <input class="dis" type="radio" name="rating" value="2" id="2s"><label for="2" disabled>☆</label>
-                                                                    <input class="dis" type="radio" name="rating" value="1" id="1s"><label for="1" disabled>☆</label>
+                                                                <div class="rating2 ml-1 scoreUser">
+                                                                    <input class="dis" type="radio" name="rating2" value="5" id="5s"><label for="5s">☆</label>
+                                                                    <input class="dis" type="radio" name="rating2" value="4" id="4s"><label for="4s">☆</label>
+                                                                    <input class="dis" type="radio" name="rating2" value="3" id="3s"><label for="3s">☆</label>
+                                                                    <input class="dis" type="radio" name="rating2" value="2" id="2s"><label for="2s">☆</label>
+                                                                    <input class="dis" type="radio" name="rating2" value="1" id="1s"><label for="1s">☆</label>
                                                                 </div>
 
                                                             </div>

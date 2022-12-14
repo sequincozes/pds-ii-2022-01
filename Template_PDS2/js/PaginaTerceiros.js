@@ -54,7 +54,10 @@ function exibirPagina($id) {
             <p class="mb-0 idAvaliacao" value="`+ element.id + `"><a>` +
                     '@' +
                     element.nome
-                    + `</a></p>
+                    + `</a>
+                
+                    </p>
+                    
               </li`;
 
                 while (newcontent.firstChild) {
