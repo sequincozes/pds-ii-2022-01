@@ -1,3 +1,5 @@
+$id = null;
+
 function listarAmigos($idUser){
     
     $.ajax({
@@ -18,22 +20,23 @@ function listarAmigos($idUser){
 
                 newcontent.innerHTML = `
 
-                <div class="col-lg-4 mb-4" id="`+ element.idUsuario +`" onclick="javascript:location.href='PerfilTerceiros.php?user=`+ element.idUsuario +`'">
+                <div class="col-lg-4 mb-4" id="`+ element.idUsuario +`">
                 <div class="row">
+                <div onclick="javascript:location.href='PerfilTerceiros.php?user=`+ element.idUsuario +`'">
                     <div class="col-md-12">
                         <img src="https://www.wrappixel.com/demos/ui-kit/wrapkit/assets/images/team/t1.jpg" alt="wrapkit" class="img-fluid" />
-                    </div>
-                    <div class="col-md-12">
-                        <div class="pt-2">
-
-                            <h5 class="mt-4 font-weight-medium mb-2">`+ element.nome +`</h5>
+                        <h5 class="mt-4 font-weight-medium mb-2">`+ element.nome +`</h5>
                             <h6 class="subtitle">`+ element.cidade +`</h6>
                             <p> Amigos desde: `+ element.dataAmizade+`</p>
+                        </div>
+                </div>
+                    <div class="col-md-12">
+                        <div class="pt-2">
                              </div>
                                 <ul class="list-inline">
                                     <li class="list-inline-item"><a href="#" class="text-decoration-none d-block px-1"><i class="icon-twitter"></i></a></li>
                                     <li class="list-inline-item"><a href="#" class="text-decoration-none d-block px-1"><i class="icon-instagram"></i></a></li>
-                                    <li class="list-inline-item" onclick="abrirModal()"><a class="text-decoration-none d-block px-1"><i class="icon-trash"></i></a></li>
+                                    <li class="list-inline-item" onclick="abrirModal(`+ element.fk_amigo2 +`)"><a class="text-decoration-none d-block px-1"><i class="icon-trash"></i></a></li>
                                 </ul>
 
                                     <!-- Modal -->
@@ -50,8 +53,8 @@ function listarAmigos($idUser){
                                             Deseja realmente excluir este usuário ?
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
-                                            <button type="button" class="btn btn-primary" onclick="removerAmizade(`+ element.idAmigos +`)">Sim</button>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Não</button>
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="removerAmizade()">Sim</button>
                                         </div>
                                         </div>
                                     </div>
@@ -60,6 +63,7 @@ function listarAmigos($idUser){
                         </div>
                     </div>
                     <!-- Row -->
+                </div>
                 </div>`;
                     
 
@@ -76,10 +80,29 @@ function listarAmigos($idUser){
 
 }
 
-function abrirModal(){
+function abrirModal($idU){
     $('#exampleModal').modal();
+    $id = $idU;
 }
 
-function removerAmizade($id){
-    alert($id)
+function removerAmizade(){
+
+   $.ajax({
+        method: 'POST',
+        url: 'controller/RemoverAmizadeController.php',
+        data: {
+            fk_amigo2: $id,
+        },
+
+        success: function (resposta) {
+
+            $("#"+$id).remove()
+            
+
+        },
+        error: function (resposta) {
+            alert("erro")
+        }
+    });
+
 }
