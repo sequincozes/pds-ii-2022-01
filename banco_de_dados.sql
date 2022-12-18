@@ -465,3 +465,18 @@ ALTER TABLE `amigos` CHANGE `dataAmizade` `dataAmizade` DATE NOT NULL DEFAULT CU
 ALTER TABLE `amigos` ADD UNIQUE(`fk_amigo1`, `fk_amigo2`);
 
 ALTER TABLE `usuario` CHANGE `fotoPerfil` `fotoPerfil` LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT 'https://e7.pngegg.com/pngimages/416/62/png-clipart-anonymous-person-login-google-account-computer-icons-user-activity-miscellaneous-computer.png';
+
+ALTER TABLE `curtidas` ADD `qtdCurtidas` INT NOT NULL DEFAULT '0' AFTER `fk_Post`;
+
+CREATE TABLE `redesocial` (
+  `idRedeSocial` int(11) NOT NULL,
+  `nome` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+ALTER TABLE `redesocial` ADD PRIMARY KEY (`idRedeSocial`);
+
+ALTER TABLE `redesocial` MODIFY `idRedeSocial` int(11) NOT NULL AUTO_INCREMENT; 
+
+CREATE TABLE `pds2`.`redesUsuarios` (`idRedeUsuario` INT NOT NULL AUTO_INCREMENT , `fk_usuario` INT NOT NULL , 
+`fk_redeSocial` INT NOT NULL , `link` INT NOT NULL , PRIMARY KEY (`idRedeUsuario`)) ENGINE = InnoDB;
+

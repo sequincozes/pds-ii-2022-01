@@ -196,6 +196,7 @@ sup {
 #botaoLog {
   border: 0;
   box-shadow: none;
+  color:var(--gray);
 }
 
 a {

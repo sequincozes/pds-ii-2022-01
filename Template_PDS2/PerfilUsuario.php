@@ -56,6 +56,8 @@ if (isset($_SESSION["autenticado"])) {
 
   <link rel="stylesheet" href="css/bootstrap-datepicker.css">
 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
 </head>
 
 <body>
@@ -79,10 +81,10 @@ if (isset($_SESSION["autenticado"])) {
 
       <!-- Botão de Logout -->
       <?php if (session_status() == PHP_SESSION_ACTIVE && $_SESSION["autenticado"] == true) { ?>
+
         <form id="formSVG" action="./destruirSessao.php" method="POST">
-          <button id="botaoLog" type="submit" class="btn" title="Desconectar"> <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" fill="#6c757d" class="bi bi-door-closed-fill" viewBox="0 0 16 16">
-              <path d="M12 1a1 1 0 0 1 1 1v13h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V2a1 1 0 0 1 1-1h8zm-2 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
-            </svg></button>
+          <button id="botaoLog" type="submit" class="btn" title="Desconectar">  <i class="fa fa-sign-out fa-3x" aria-hidden="true"></i>
+        </button>
         </form>
 
 
@@ -394,16 +396,14 @@ if (isset($_SESSION["autenticado"])) {
                             <span class="h1">Login</span>
                           </div>
 
-                          <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Entre com suas Credenciais</h5>
+                          <h5 class="fw-normal pb-3" style="letter-spacing: 1px;">Entre com suas Credenciais</h5>
 
-                          <div class="form-outline mb-2">
-                            <i class="fas fa-envelope prefix grey-text"></i>
+                          <div class="form-outline mb-0">
                             <input type="email" id="orangeForm-email" name="emailLogin" title="Digite seu email" class="form-control validate" required>
                             <label data-error="wrong" data-success="right" for="orangeForm-email">Seu email</label>
                           </div>
 
                           <div class="form-outline mb-4">
-                            <i class="fas fa-lock prefix grey-text"></i>
                             <input type="password" id="orangeForm-pass" name="senhaLogin" title="Digite sua senha" class="form-control validate" required>
                             <label data-error="wrong" data-success="right" for="orangeForm-pass">Sua Senha</label>
                           </div>
@@ -440,10 +440,6 @@ if (isset($_SESSION["autenticado"])) {
               <img id="imageLogin2" class="img mb-3" src="<?php echo $foto ?>" />
 
               <div class="desc">
-                <h2 class="subheading">
-                  Olá, eu sou
-      </h2>
-
                 <?php if (session_status() == PHP_SESSION_ACTIVE && $_SESSION["autenticado"] == true) { ?>
                   <h1 class="mb-3 nomeUser"><?php echo $nome ?></h1>
                   <p class="mb-4 biografia mw-80"><?php echo $biografia ?></p>
@@ -452,7 +448,7 @@ if (isset($_SESSION["autenticado"])) {
                     <li class="ftco-animate"><a href="#"><span class="icon-twitter ic" title="Twitter"></span></a></li>
                     <li class="ftco-animate"><a href="#"><span class="icon-instagram ic" title="Instagram"></span></a></li>
                     <li class="ftco-animate"><a href="ListaAmigos.php"><span class="icon-person ic " title="Amizades"></span></a></li>
-                    <li class="ftco-animate"><a href="#"><span class="icon-bell ic botao-notify" title="Notificacoes"></span></a></li>
+                    <li class="ftco-animate"><a href="#"><span class="icon-bell ic botao-notify" title="Notificações"></span></a></li>
 
                   </ul>
                 <?php } ?>

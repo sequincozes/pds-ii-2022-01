@@ -55,6 +55,7 @@ if (isset($_SESSION["autenticado"])) {
 
     <link rel="stylesheet" href="css/bootstrap-datepicker.css">
     <link rel="stylesheet" href="css/ListaAmigos.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
     <style>
         .icon-trash {
@@ -86,9 +87,8 @@ if (isset($_SESSION["autenticado"])) {
             <!-- Botão de Logout -->
             <?php if (session_status() == PHP_SESSION_ACTIVE && $_SESSION["autenticado"] == true) { ?>
                 <form id="formSVG" action="./destruirSessao.php" method="POST">
-                    <button id="botaoLog" type="submit" class="btn" title="Desconectar"> <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" fill="#6c757d" class="bi bi-door-closed-fill" viewBox="0 0 16 16">
-                            <path d="M12 1a1 1 0 0 1 1 1v13h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V2a1 1 0 0 1 1-1h8zm-2 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
-                        </svg></button>
+                    <button id="botaoLog" type="submit" class="btn" title="Desconectar"> <i class="fa fa-sign-out fa-3x" aria-hidden="true"></i>
+                    </button>
                 </form>
 
 
@@ -120,7 +120,7 @@ if (isset($_SESSION["autenticado"])) {
                         </div>
                     </div>
                     <div class="row" id="listaAm">
-                        
+
                         <!-- column  -->
                     </div>
                 </div>
@@ -152,9 +152,9 @@ if (isset($_SESSION["autenticado"])) {
 
     <script src="js/ListaAmigos.js"></script>
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             listarAmigos(<?php echo $_SESSION["id"] ?>);
-        })   
+        })
     </script>
 
 

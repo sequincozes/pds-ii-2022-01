@@ -48,6 +48,7 @@ if ($idUsuario == $_SESSION["id"]) {
     <link href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/plug-ins/1.13.1/i18n/pt-BR.json" rel="stylesheet">
     <link rel="stylesheet" href="css/PerfilTerceiros.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
 </head>
 
@@ -73,9 +74,8 @@ if ($idUsuario == $_SESSION["id"]) {
             <!-- Botão de Logout -->
             <?php if (session_status() == PHP_SESSION_ACTIVE && $_SESSION["autenticado"] == true) { ?>
                 <form id="formSVG" action="./destruirSessao.php" method="POST">
-                    <button id="botaoLog" type="submit" class="btn" title="Desconectar"> <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="#6c757d" class="bi bi-door-closed-fill" viewBox="0 0 16 16">
-                            <path d="M12 1a1 1 0 0 1 1 1v13h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V2a1 1 0 0 1 1-1h8zm-2 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
-                        </svg></button>
+                    <button id="botaoLog" type="submit" class="btn" title="Desconectar"> <i class="fa fa-sign-out fa-3x" aria-hidden="true"></i>
+                    </button>
                 </form>
 
 
@@ -99,8 +99,8 @@ if ($idUsuario == $_SESSION["id"]) {
                                 <div class="card-body text-center">
                                     <img src="" alt="avatar" class="img-account-profile rounded-circle mb-2 img-fluid foto" style="width: 150px;">
                                     <h5 class="my-3 nome"></h5>
-                                    <p class="text-muted mb-1 inst"></p>
-                                    <p class="text-muted mb-4 cidade"></p>
+                                    <p class="text-muted mb-3 inst"></p>
+                                  
                                     <div class="justify-content-center mb-2">
 
                                         <?php
@@ -271,19 +271,18 @@ if ($idUsuario == $_SESSION["id"]) {
                                         <table id="table_id" class="display">
                                             <thead>
                                                 <tr>
-                                                    <th>Assunto</th>
+                                                    <th>Título</th>
                                                     <th>Data Publicação</th>
+                                                    <th>Interações</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
                                                     <td>Row 1 Data 1</td>
                                                     <td>Row 1 Data 2</td>
+                                                    <td>Row 1 Data 2</td>
                                                 </tr>
-                                                <tr>
-                                                    <td>Row 2 Data 1</td>
-                                                    <td>Row 2 Data 2</td>
-                                                </tr>
+                
 
                                             </tbody>
                                         </table>
