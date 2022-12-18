@@ -450,8 +450,8 @@ if (isset($_SESSION["autenticado"])) {
                   <ul class="ftco-social mt-3">
                     <li class="ftco-animate"><a data-toggle='modal' type="submit" data-target='#modalEditProfile' onclick="buscarInfo('<?php echo $_SESSION['email'] ?>')"><span class="icon-settings ic" title="Editar Perfil"></span></a></li>
                     <li class="ftco-animate"><a href="#"><span class="icon-twitter ic" title="Twitter"></span></a></li>
-                    <li class="ftco-animate"><a href="#"><span class="icon-facebook ic " title="Facebook"></span></a></li>
                     <li class="ftco-animate"><a href="#"><span class="icon-instagram ic" title="Instagram"></span></a></li>
+                    <li class="ftco-animate"><a href="ListaAmigos.php"><span class="icon-person ic " title="Amizades"></span></a></li>
                     <li class="ftco-animate"><a href="#"><span class="icon-bell ic botao-notify" title="Notificacoes"></span></a></li>
 
                   </ul>

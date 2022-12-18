@@ -463,3 +463,5 @@ ALTER TABLE `amigos` CHANGE `idAmigos` `idAmigos` INT(11) NOT NULL AUTO_INCREMEN
 ALTER TABLE `amigos` CHANGE `dataAmizade` `dataAmizade` DATE NOT NULL DEFAULT CURRENT_TIMESTAMP;
 
 ALTER TABLE `amigos` ADD UNIQUE(`fk_amigo1`, `fk_amigo2`);
+
+ALTER TABLE `usuario` CHANGE `fotoPerfil` `fotoPerfil` LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT 'https://e7.pngegg.com/pngimages/416/62/png-clipart-anonymous-person-login-google-account-computer-icons-user-activity-miscellaneous-computer.png';

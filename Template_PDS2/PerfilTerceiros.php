@@ -3,13 +3,9 @@
 require_once("model/ConexaoBD.php");
 require_once('./iniciarSessao.php');
 
-if (session_status() != PHP_SESSION_ACTIVE || !isset($_SESSION["autenticado"])){
-    header('Location: index.html');
-}
-
 $idUsuario = $_GET["user"];
 
-if($idUsuario == $_SESSION["id"]){
+if ($idUsuario == $_SESSION["id"]) {
     header('Location: PerfilUsuario.php');
 }
 
@@ -107,23 +103,25 @@ if($idUsuario == $_SESSION["id"]){
                                     <p class="text-muted mb-4 cidade"></p>
                                     <div class="justify-content-center mb-2">
 
-                                    <?php
+                                        <?php
                                         $id = $_SESSION["id"];
                                         $sql = "select * from amigos where fk_amigo1 =? and fk_amigo2=?;";
                                         $stmt = $conn->prepare($sql);
-                                        $stmt->execute([$id,$idUsuario]);
+                                        $stmt->execute([$id, $idUsuario]);
                                         $qtd = $stmt->rowCount();
 
-                                        if($stmt->rowCount() > 0){
+                                        if ($stmt->rowCount() > 0) {
                                             $text = "Remover";
-                                        }else{
+                                        } else {
                                             $text = "Adicionar";
                                         }
 
-                                    ?>
+                                        ?>
 
-                                        <button type="button" class="btn btn-primary addUser" onclick="adicionarUsuario(<?php echo $idUsuario ?>)"><?php echo $text ?></button>
-                                        <button type="button" class="btn btn-danger">Denunciar</button>
+                                        <?php if (session_status() == PHP_SESSION_ACTIVE && $_SESSION["autenticado"] == true) { ?>
+                                            <button type="button" class="btn btn-primary addUser" onclick="adicionarUsuario(<?php echo $idUsuario ?>)"><?php echo $text ?></button>
+                                            <button type="button" class="btn btn-danger">Denunciar</button>
+                                        <?php } ?>
                                     </div>
                                 </div>
                             </div>
@@ -212,58 +210,58 @@ if($idUsuario == $_SESSION["id"]){
                                 </div>
                             </div>
 
-                            <?php if (session_status() == PHP_SESSION_ACTIVE && $_SESSION["autenticado"] == true){ ?>
+                            <?php if (session_status() == PHP_SESSION_ACTIVE && $_SESSION["autenticado"] == true) { ?>
 
-                            <div class="mb-lg-4">
-                                <div class="card mb-4 mb-md-0">
-                                    <div class="card-body text-left">
-                                        <div class="row">
-                                            <div class="col-2">
+                                <div class="mb-lg-4">
+                                    <div class="card mb-4 mb-md-0">
+                                        <div class="card-body text-left">
+                                            <div class="row">
+                                                <div class="col-2">
 
-                                            <?php 
+                                                    <?php
                                                     $idFoto = $_SESSION["id"];
                                                     $sql3 = "select fotoPerfil from usuario where idUsuario=?;";
                                                     $stmt3 = $conn->prepare($sql3);
                                                     $stmt3->execute([$idFoto]);
 
-                                                    $fotoP = $stmt3->fetch(); 
-
-                                                    
-
-                                                ?>
-                                                <img class="rounded-circle" src="<?php echo $fotoP["fotoPerfil"] ?>" height="90" width="90" alt="Image of woman">
-                                            </div>
-                                            
-                                            <div class="col-10">
-
-                                                <div class="comment-box">
-                                                    <p class="mb-0"><span class="text-primary font-italic me-1">Adicionar Avaliação</span>
-
-                                                    <div class="rating">
-                                                        <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label>
-                                                        <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label>
-                                                        <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label>
-                                                        <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label>
-                                                        <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
-                                                    </div>
-
-                                                    <div class="form-group mb-3">
-                                                        <input class="idAvaliado" value="<?php echo $idUsuario ?>" type="button" hidden>
-                                                        <textarea class="form-control avaliacao" placeholder="Digite aqui sua Avaliação" id="exampleFormControlTextarea1" rows="4"></textarea>
-                                                    </div>
-
-                                                    <div class="d-grid gap-2">
-                                                        <button class="btn btn-primary btn-lg btn-block addAv" type="button">Enviar</button>
+                                                    $fotoP = $stmt3->fetch();
 
 
+
+                                                    ?>
+                                                    <img class="rounded-circle" src="<?php echo $fotoP["fotoPerfil"] ?>" height="90" width="90" alt="Image of woman">
+                                                </div>
+
+                                                <div class="col-10">
+
+                                                    <div class="comment-box">
+                                                        <p class="mb-0"><span class="text-primary font-italic me-1">Adicionar Avaliação</span>
+
+                                                        <div class="rating">
+                                                            <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label>
+                                                            <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label>
+                                                            <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label>
+                                                            <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label>
+                                                            <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
+                                                        </div>
+
+                                                        <div class="form-group mb-3">
+                                                            <input class="idAvaliado" value="<?php echo $idUsuario ?>" type="button" hidden>
+                                                            <textarea class="form-control avaliacao" placeholder="Digite aqui sua Avaliação" id="exampleFormControlTextarea1" rows="4"></textarea>
+                                                        </div>
+
+                                                        <div class="d-grid gap-2">
+                                                            <button class="btn btn-primary btn-lg btn-block addAv" type="button">Enviar</button>
+
+
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <?php } ?> 
+                            <?php } ?>
 
                             <div class="mb-lg-4">
                                 <div class="card mb-4 mb-md-0">
@@ -286,7 +284,7 @@ if($idUsuario == $_SESSION["id"]){
                                                     <td>Row 2 Data 1</td>
                                                     <td>Row 2 Data 2</td>
                                                 </tr>
-                                                                
+
                                             </tbody>
                                         </table>
                                     </div>
