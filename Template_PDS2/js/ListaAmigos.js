@@ -73,8 +73,6 @@ function listarAmigos($idUser) {
                     }
 
                 });
-
-
             }
 
             if ($resp.esquerda) {
