@@ -64,6 +64,7 @@ function exibirPagina($id) {
                     $ul.appendChild(newcontent.firstChild);
                 }
 
+
             });
 
         },
@@ -73,15 +74,30 @@ function exibirPagina($id) {
         }
     });
 
-    $(".avaliacoes").click(function () {
-        $("#modal-mensagem").modal();
-    });
-
-    $(".list-group-item").click(function () {
-        console.log("teste")
-    })
-
 }
+
+function exibirHistorico($id){
+    $.ajax({
+        method: 'POST',
+        url: 'controller/HistoricoOrdenadoController.php',
+        data: {
+            $id: $id,
+        },
+
+        success: function (resposta) {
+            $dados = JSON.parse(resposta);
+            console.log($dados)
+ 
+        },
+        error: function (resposta) {
+            alert("erro")
+        }
+    });
+}
+
+$(".avaliacoes").click(function () {
+    $("#modal-mensagem").modal();
+});
 
 function exibirModal($id,$fk_avaliador){
 

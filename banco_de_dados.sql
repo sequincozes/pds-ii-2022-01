@@ -480,3 +480,6 @@ ALTER TABLE `redesocial` MODIFY `idRedeSocial` int(11) NOT NULL AUTO_INCREMENT;
 CREATE TABLE `pds2`.`redesUsuarios` (`idRedeUsuario` INT NOT NULL AUTO_INCREMENT , `fk_usuario` INT NOT NULL , 
 `fk_redeSocial` INT NOT NULL , `link` INT NOT NULL , PRIMARY KEY (`idRedeUsuario`)) ENGINE = InnoDB;
 
+alter table curtidas add CONSTRAINT fkPost FOREIGN KEY(fk_Post) references post(idPost);
+
+alter table curtidas add CONSTRAINT fkUsuarioP FOREIGN KEY(fk_Usuario) references usuario(idUsuario);

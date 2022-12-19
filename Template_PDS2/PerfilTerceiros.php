@@ -110,7 +110,12 @@ if ($idUsuario == $_SESSION["id"]) {
                                         $stmt->execute([$id, $idUsuario]);
                                         $qtd = $stmt->rowCount();
 
-                                        if ($stmt->rowCount() > 0) {
+                                        $sql2 = "select * from amigos where fk_amigo1 =? and fk_amigo2=?;";
+                                        $stmt2 = $conn->prepare($sql2);
+                                        $stmt2->execute([$idUsuario,$id]);
+                                        $qtd2 = $stmt2->rowCount();
+
+                                        if ($stmt->rowCount() > 0 || $stmt2->rowCount() > 0) {
                                             $text = "Remover";
                                         } else {
                                             $text = "Adicionar";
@@ -336,16 +341,7 @@ if ($idUsuario == $_SESSION["id"]) {
                                                                     <small class="dataAv">2 days ago</small>
                                                                 </div>
 
-                                                                <div class="icons align-items-center">
-
-                                                                    <i class="fa fa-star text-warning"></i>
-                                                                    <i class="fa fa-check-circle-o check-icon"></i>
-
-                                                                </div>
-
                                                             </div>
-
-
 
                                                         </div>
                                                     </div>
@@ -404,6 +400,9 @@ if ($idUsuario == $_SESSION["id"]) {
             $(document).ready(function() {
 
                 exibirPagina(<?php echo $idUsuario ?>);
+                exibirHistorico(<?php echo $idUsuario ?>);
+
+
                 $('#table_id').DataTable({
 
                     "language": {
