@@ -162,6 +162,7 @@ function removerAmizade() {
 
         success: function (resposta) {
             $("#"+$id).remove()
+            $("#table_id").remove()
         },
         error: function (resposta) {
             alert("erro")

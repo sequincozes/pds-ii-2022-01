@@ -100,7 +100,7 @@ if ($idUsuario == $_SESSION["id"]) {
                                     <img src="" alt="avatar" class="img-account-profile rounded-circle mb-2 img-fluid foto" style="width: 150px;">
                                     <h5 class="my-3 nome"></h5>
                                     <p class="text-muted mb-3 inst"></p>
-                                  
+
                                     <div class="justify-content-center mb-2">
 
                                         <?php
@@ -112,7 +112,7 @@ if ($idUsuario == $_SESSION["id"]) {
 
                                         $sql2 = "select * from amigos where fk_amigo1 =? and fk_amigo2=?;";
                                         $stmt2 = $conn->prepare($sql2);
-                                        $stmt2->execute([$idUsuario,$id]);
+                                        $stmt2->execute([$idUsuario, $id]);
                                         $qtd2 = $stmt2->rowCount();
 
                                         if ($stmt->rowCount() > 0 || $stmt2->rowCount() > 0) {
@@ -282,12 +282,27 @@ if ($idUsuario == $_SESSION["id"]) {
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>Row 1 Data 1</td>
-                                                    <td>Row 1 Data 2</td>
-                                                    <td>Row 1 Data 2</td>
-                                                </tr>
-                
+                      
+                                                <?php
+                                                $sql = "select us.idUSuario, us.nome, cur.qtdCurtidas, po.data,po.descricao,po.idPost from curtidas
+                                                    as cur join post as po on cur.fk_Post = po.idPost join usuario as us on cur.fk_Usuario =
+                                                    us.idUsuario where cur.fk_Usuario =? order by cur.qtdCurtidas desc;";
+
+                                                $stmt4 = $conn->prepare($sql);
+                                                $stmt4->execute([$idUsuario]);
+                                                $posts = $stmt4->fetchAll();
+
+                                                foreach ($posts as $valor) { ?>
+                                                    <tr>
+                                                    <td> <?php echo $valor["descricao"]?> </td>
+                                                    <td> <?php echo $valor["data"]?> </td>
+                                                    <td> <?php echo $valor["qtdCurtidas"]?> </td>
+                                                    </tr>
+                                                <?php
+                                                }
+
+                                                ?>
+
 
                                             </tbody>
                                         </table>
@@ -395,6 +410,7 @@ if ($idUsuario == $_SESSION["id"]) {
         <script src="js/bootstrap-datepicker.js" ?></script>
 
         <script src="js/main.js"></script>
+        <script src="js/ListaAmigos.js"></script>
 
         <script>
             $(document).ready(function() {
@@ -407,7 +423,10 @@ if ($idUsuario == $_SESSION["id"]) {
 
                     "language": {
                         "url": "https://cdn.datatables.net/plug-ins/1.13.1/i18n/pt-BR.json"
-                    }
+                    },
+
+                    
+                    "order": [[ 2, 'desc' ]]
 
 
                 })

@@ -87,6 +87,10 @@ li:hover {
   display: inline-block;
 }
 
+td:hover{
+  cursor: pointer;
+}
+
 .badge {
 
   padding: 7px;
