@@ -85,26 +85,7 @@ function listarAmigos($idUser) {
                     newcontent.innerHTML = `
     
                     <div class="col-lg-4 mb-4" id="`+ element.idUsuario + `">
-                    <!-- Modal -->
-                                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="staticBackdropLabel">Confirmação</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                 <span aria-hidden="true">&times;</span>
-                                          </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                Deseja realmente excluir este usuário ?
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Não</button>
-                                                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="removerAmizade()">Sim</button>
-                                            </div>
-                                            </div>
-                                        </div>
-                                        </div>
+        
                     <div class="row">
                     <div onclick="javascript:location.href='PerfilTerceiros.php?user=`+ element.idUsuario + `'">
                         <div class="col-md-12">
@@ -126,6 +107,26 @@ function listarAmigos($idUser) {
                             </div>
                         </div>
                         <!-- Row -->
+                    </div>
+                    </div>`+
+                    `<!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">Confirmação</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                             <span aria-hidden="true">&times;</span>
+                      </button>
+                        </div>
+                        <div class="modal-body">
+                            Deseja realmente excluir este usuário ?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Não</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="removerAmizade()">Sim</button>
+                        </div>
+                        </div>
                     </div>
                     </div>`;
 
