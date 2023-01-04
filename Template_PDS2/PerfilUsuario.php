@@ -73,7 +73,7 @@ if (isset($_SESSION["autenticado"])) {
           <li><a href="index.html">Home</a></li>
           <li><a href="photography.html">Caronas</a></li>
           <li><a href="travel.html">Travel</a></li>
-          <li><a href="fashion.html">Fashion</a></li>
+          <li><a href="ListaUsuarios.php">Usuarios</a></li>
           <li class="colorlib-active"><a href="PerfilUsuario.php">Perfil</a></li>
           <li><a href="contact.html">Contatos</a></li>
         </ul>
