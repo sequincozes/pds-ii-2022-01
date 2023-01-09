@@ -67,13 +67,13 @@ if (isset($_SESSION["autenticado"])) {
 
     <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
     <aside id="colorlib-aside" role="complementary" class="js-fullheight text-center">
-      <h1 id="colorlib-logo"><a href="index.html">Elen<span>.</span></a></h1>
+      <h1 id="colorlib-logo"><a href="index.html">UFórum<span>.</span></a></h1>
       <nav id="colorlib-main-menu" role="navigation" class="mb-5">
         <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="photography.html">Caronas</a></li>
           <li><a href="travel.html">Travel</a></li>
-          <li><a href="ListaUsuarios.php">Usuarios</a></li>
+          <li><a href="ListaUsuarios.php">Usuários</a></li>
           <li class="colorlib-active"><a href="PerfilUsuario.php">Perfil</a></li>
           <li><a href="contact.html">Contatos</a></li>
         </ul>
@@ -139,25 +139,21 @@ if (isset($_SESSION["autenticado"])) {
                 </button>
               </div>
               <div class="modal-body mx-3">
-                <div class="md-form mb-3">
-                  <i class="fas fa-user prefix grey-text"></i>
+                <div class="form-outline mb-0">
                   <input type="text" name="nome" id="orangeForm-name" title="Digite seu nome" class="form-control validate" required>
-                  <label data-error="wrong" data-success="right" for="orangeForm-name">Seu nome <span class="red">*</span></label>
+                  <label data-success="right" for="orangeForm-name">Seu nome <span class="red">*</span></label>
                 </div>
-                <div class="md-form mb-3">
-                  <i class="fas fa-envelope prefix grey-text"></i>
+                <div class="form-outline mb-0">
                   <input type="email" id="orangeForm-email" name="email" title="Digite seu email" class="form-control validate" required>
                   <label data-error="wrong" data-success="right" for="orangeForm-email">Seu email <span class="red">*</span></label>
                 </div>
 
-                <div class="md-form mb-3">
-                  <i class="fas fa-lock prefix grey-text"></i>
+                <div class="form-outline mb-0">
                   <input type="password" id="orangeForm-pass" name="senha" title="Digite sua senha" class="form-control validate" required>
                   <label data-error="wrong" data-success="right" for="orangeForm-pass">Sua Senha <span class="red">*</span></label>
                 </div>
 
-                <div class="md-form mb-3">
-                  <i class="fas fa-envelope prefix grey-text"></i>
+                <div class="md-outline">
                   <input type="text" id="orangeForm-cidade" name="cidade" title="Digite o nome da sua cidade" class="form-control validate" required>
                   <label data-error="wrong" data-success="right" for="orangeForm-email">Cidade <span class="red">*</span></label>
                 </div>
@@ -388,7 +384,7 @@ if (isset($_SESSION["autenticado"])) {
                   <div class="card" style="border-radius: 1rem;">
                     <div class="row g-0">
                       <div class="col-md-6 col-lg-5 d-none d-md-block">
-                        <img id="imageLogin" width="100%" src="images/image_1.jpg" />
+                        <img id="imageLogin" width="100%" height="100%" src="images/1242x2688_Fireball.jpg" />
                       </div>
                       <div class="col-md-6 col-lg-7 d-flex align-items-center">
                         <div class="card-body p-4 p-lg-5">

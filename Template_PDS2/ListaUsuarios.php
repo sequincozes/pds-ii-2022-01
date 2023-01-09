@@ -78,8 +78,8 @@ if (isset($_SESSION["autenticado"])) {
                     <li><a href="index.html">Home</a></li>
                     <li><a href="photography.html">Caronas</a></li>
                     <li><a href="travel.html">Travel</a></li>
-                    <li><a href="fashion.html">Fashion</a></li>
-                    <li class="colorlib-active"><a href="PerfilUsuario.php">Perfil</a></li>
+                    <li class="colorlib-active"><a href="ListaUsuarios.php">Usuários</a></li>
+                    <li><a href="PerfilUsuario.php">Perfil</a></li>
                     <li><a href="contact.html">Contatos</a></li>
                 </ul>
             </nav>
@@ -113,8 +113,8 @@ if (isset($_SESSION["autenticado"])) {
                 <div class="container">
                     <div class="row justify-content-center mb-3">
                         <div class="col-md-7 text-center">
-                            <h3 class="mb-1">Usuários Fórum</h3>
-                            <h6 class="subtitle font-weight-normal">Lista de Usuários do Fórum
+                            <h3 class="mb-1">Usuários UFórum</h3>
+                            <h6 class="subtitle font-weight-normal">Lista de Usuários que utilizam UFórum
                             </h6>
                         </div>
                     </div>

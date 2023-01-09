@@ -152,7 +152,8 @@ function abrirModal($idU) {
     $id = $idU;
 }
 
-function removerAmizade() {
+function removerAmizade(e) {
+    e.preventDefault();
 
     $.ajax({
         method: 'POST',
