@@ -31,11 +31,9 @@ function cadastrarUsuario($nome, $email, $senha, $cidade, $dataNasc, $msg)
                 $sth->execute();
                 $msg = "Valido";
 
-
             }
         }
-        $dados = array("dados"=>$nome, $email, $senha, $cidade, $dataNasc, $msg);
-        echo json_encode($dados);
+        echo json_encode($msg);
         
     } catch (PDOException $e) {
         echo $e;

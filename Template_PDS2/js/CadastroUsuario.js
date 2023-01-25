@@ -66,9 +66,8 @@ $(document).ready(function () {
                 //Cadastro foi feito com sucesso
                 else{
 
-                    console.log(resposta)
-                   // window.location.replace("index.php");
-                    //visibilidade = false;
+                   window.location.replace("index.php");
+                   visibilidade = false;
                 }
 
             },
