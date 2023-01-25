@@ -17,19 +17,15 @@ function exibirPagina($id) {
             $('.biografia').text($dadosRetorno.user.biografia)
             $('.foto').attr('src', $dadosRetorno.user.fotoPerfil)
             $('.tituloPage').text($dadosRetorno.user.nome)
+            $dataN = $dadosRetorno.dataN;
 
-            $ano_atual = new Date().getFullYear();
-            $data = $dadosRetorno.user.dataNascimento.split('-')[0]
-            $idade = $ano_atual - $data;
-
-            $('.data').text($idade + " anos")
+            $('.data').text($dataN + " anos")
 
             $date = $dadosRetorno.user.vistoPorUltimo.split(' ')[0]
             $vpu = $date.split('-').reverse().join('/');
 
             $('.vpu').text($vpu)
             $('.inst').text($dadosRetorno.inst.nome)
-            $('.cargo').text($dadosRetorno.inst.cargo)
 
             $dadosRetorno.avaliacoes.forEach(element => {
                 var html =

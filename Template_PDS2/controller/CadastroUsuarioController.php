@@ -25,7 +25,7 @@
     if(preg_match($pattern, $senhaUser) == false){
         $erro = "Senha Invalida";
     }
-
+    
     cadastrarUsuario($nome,$email,$senha,$cidade,$dataUser,$erro);
 
 ?>

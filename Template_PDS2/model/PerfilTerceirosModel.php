@@ -4,7 +4,6 @@
     require_once("../iniciarSessao.php");
     require_once("ConexaoBD.php");
     
-
     try{
 
         $sql = "select * from usuario where idUsuario=?";
@@ -26,7 +25,13 @@
         $stmt3->execute([$id]);
         $avaliacoes = $stmt3->fetchAll();
 
-        $val = array("user"=>$dados,"inst"=>$instituicao,"avaliacoes"=>$avaliacoes);
+        $d1 = new DateTime('now');
+        $d2 = new DateTime('2001-06-16');
+        $intervalo = $d1->diff( $d2 );
+        $int = $intervalo->y;
+
+
+        $val = array("user"=>$dados,"inst"=>$instituicao,"avaliacoes"=>$avaliacoes,"dataN"=>$int);
         echo json_encode($val);
 
     }catch(PDOException $e){

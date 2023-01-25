@@ -5,7 +5,9 @@ $('.addAv').click(function(){
     
 
     if(!document.querySelector("input[name='rating']:checked")){
-        alert("Por favor, avalie o usuário por meio das estrelas")
+        $erro = document.querySelector('#alert');
+        $erro.textContent = "Avaliação por estrelas é obrigatória"
+        $('#alert').css('display','block')
     }
     else{
         $score = document.querySelector("input[name='rating']:checked").value

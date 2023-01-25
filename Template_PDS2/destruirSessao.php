@@ -9,6 +9,6 @@ unset($_SESSION['senha']);
 unset($_SESSION['autenticado']);
 session_destroy();
 
-header("Location: index.html");
+header("Location: index.php");
 
 ?>

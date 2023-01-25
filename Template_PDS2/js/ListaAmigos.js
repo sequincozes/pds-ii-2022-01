@@ -10,9 +10,9 @@ function listarAmigos($idUser) {
         },
 
         success: function (resposta) {
-
+    
             $resp = JSON.parse(resposta);
-
+      
             if ($resp.direita) {
                 $resp.direita.forEach(element => {
 
@@ -74,8 +74,8 @@ function listarAmigos($idUser) {
 
                 });
             }
-
             if ($resp.esquerda) {
+
 
                 $resp.esquerda.forEach(element => {
 
@@ -143,7 +143,10 @@ function listarAmigos($idUser) {
         error: function (resposta) {
 
         }
+
+
     });
+    
 
 }
 
@@ -152,8 +155,8 @@ function abrirModal($idU) {
     $id = $idU;
 }
 
-function removerAmizade(e) {
-    e.preventDefault();
+function removerAmizade() {
+    event.preventDefault();
 
     $.ajax({
         method: 'POST',
@@ -165,10 +168,10 @@ function removerAmizade(e) {
         success: function (resposta) {
             $("#"+$id).remove()
             $("#table_id").remove()
+            
         },
         error: function (resposta) {
             alert("erro")
         }
     });
-
 }

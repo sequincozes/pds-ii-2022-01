@@ -59,15 +59,14 @@ if ($idUsuario == $_SESSION["id"]) {
 
         <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
         <aside id="colorlib-aside" role="complementary" class="js-fullheight text-center">
-            <h1 id="colorlib-logo"><a href="index.html">Elen<span>.</span></a></h1>
+            <h1 id="colorlib-logo"><a href="index.php"">UFórum<span>.</span></a></h1>
             <nav id="colorlib-main-menu" role="navigation" class="mb-5">
                 <ul>
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="photography.html">Photography</a></li>
-                    <li><a href="travel.html">Travel</a></li>
-                    <li><a href="fashion.html">Fashion</a></li>
-                    <li class="colorlib-active"><a href="PerfilUsuario.php">Sobre</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="photography.html">Caronas</a></li>
+                    <li><a href="ListaUsuarios.php">Usuários</a></li>
+                    <li class="colorlib-active"><a href="PerfilUsuario.php">Perfil</a></li>
+                    <li><a href="contact.html">Contatos</a></li>
                 </ul>
             </nav>
 
@@ -191,15 +190,6 @@ if ($idUsuario == $_SESSION["id"]) {
                                             <p class="text-muted mb-0 cidade"></p>
                                         </div>
                                     </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-sm-3">
-                                            <p class="mb-0">Cargo</p>
-                                        </div>
-                                        <div class="col-sm-9">
-                                            <p class="text-muted mb-0 cargo"></p>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
 
@@ -255,6 +245,13 @@ if ($idUsuario == $_SESSION["id"]) {
                                                             <textarea class="form-control avaliacao" placeholder="Digite aqui sua Avaliação" id="exampleFormControlTextarea1" rows="4"></textarea>
                                                         </div>
 
+                                                        <div id="alert" class="alert alert-danger alert-dismissible fade show mb-2" role="alert">
+                                                            Alerta Formulario Usuarios
+                                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+
                                                         <div class="d-grid gap-2">
                                                             <button class="btn btn-primary btn-lg btn-block addAv" type="button">Enviar</button>
 
@@ -282,7 +279,7 @@ if ($idUsuario == $_SESSION["id"]) {
                                                 </tr>
                                             </thead>
                                             <tbody>
-                      
+
                                                 <?php
                                                 $sql = "select us.idUSuario, us.nome, cur.qtdCurtidas, po.data,po.descricao,po.idPost from curtidas
                                                     as cur join post as po on cur.fk_Post = po.idPost join usuario as us on cur.fk_Usuario =
@@ -294,9 +291,9 @@ if ($idUsuario == $_SESSION["id"]) {
 
                                                 foreach ($posts as $valor) { ?>
                                                     <tr>
-                                                    <td> <?php echo $valor["descricao"]?> </td>
-                                                    <td> <?php echo $valor["data"]?> </td>
-                                                    <td> <?php echo $valor["qtdCurtidas"]?> </td>
+                                                        <td> <?php echo $valor["descricao"] ?> </td>
+                                                        <td> <?php echo $valor["data"] ?> </td>
+                                                        <td> <?php echo $valor["qtdCurtidas"] ?> </td>
                                                     </tr>
                                                 <?php
                                                 }
@@ -425,8 +422,10 @@ if ($idUsuario == $_SESSION["id"]) {
                         "url": "https://cdn.datatables.net/plug-ins/1.13.1/i18n/pt-BR.json"
                     },
 
-                    
-                    "order": [[ 2, 'desc' ]]
+
+                    "order": [
+                        [2, 'desc']
+                    ]
 
 
                 })

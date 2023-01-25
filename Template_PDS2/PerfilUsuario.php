@@ -67,12 +67,11 @@ if (isset($_SESSION["autenticado"])) {
 
     <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
     <aside id="colorlib-aside" role="complementary" class="js-fullheight text-center">
-      <h1 id="colorlib-logo"><a href="index.html">UFórum<span>.</span></a></h1>
+      <h1 id="colorlib-logo"><a href="index.php"">UFórum<span>.</span></a></h1>
       <nav id="colorlib-main-menu" role="navigation" class="mb-5">
         <ul>
-          <li><a href="index.html">Home</a></li>
+          <li><a href="index.php">Home</a></li>
           <li><a href="photography.html">Caronas</a></li>
-          <li><a href="travel.html">Travel</a></li>
           <li><a href="ListaUsuarios.php">Usuários</a></li>
           <li class="colorlib-active"><a href="PerfilUsuario.php">Perfil</a></li>
           <li><a href="contact.html">Contatos</a></li>
@@ -278,7 +277,8 @@ if (isset($_SESSION["autenticado"])) {
                               <div class="col-md-6">
                                 <label class="small mb-1" for="inputOrgName">Trabalho Atual(Opcional)</label>
                                 <select id="selectInstituicao" class="form-select form-control text-muted" aria-label="Default select example">
-                                  <?php
+                                <option>Selecione a instituição</option>
+                                 <?php
 
                                   $sql = "select inst.nome as nome, inst.idInstituicao as id from instituicao as inst inner join vinculosusuario as vinc on vinc.fk_Vinculo = inst.idInstituicao 
                                   inner join usuario as users on vinc.fk_Usuario = users.idUsuario where email=?";

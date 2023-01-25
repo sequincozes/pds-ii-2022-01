@@ -72,12 +72,11 @@ if (isset($_SESSION["autenticado"])) {
 
         <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
         <aside id="colorlib-aside" role="complementary" class="js-fullheight text-center">
-            <h1 id="colorlib-logo"><a href="index.html">Elen<span>.</span></a></h1>
+            <h1 id="colorlib-logo"><a href="index.php"">UFórum<span>.</span></a></h1>
             <nav id="colorlib-main-menu" role="navigation" class="mb-5">
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="photography.html">Caronas</a></li>
-                    <li><a href="travel.html">Travel</a></li>
                     <li class="colorlib-active"><a href="ListaUsuarios.php">Usuários</a></li>
                     <li><a href="PerfilUsuario.php">Perfil</a></li>
                     <li><a href="contact.html">Contatos</a></li>
